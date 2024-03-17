@@ -1,68 +1,34 @@
-import {FaFacebook} from 'react-icons/fa'
+// ICON IMPORTS
+import { FaTwitch } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaPinterest } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
-
-
-export default function Footer(){
-    return(
-        <div className='w-full mt-24 bg-sky-700 text-gray-300 py-y px-2'>
-        <div className='max-w-[1240px] mx-auto grid grid-cols-2 md:grid-cols-6 border-b-2 border-gray-500 py-8'>
-            <div>
-                <h6 className='font-bold uppercase pt-2'>Solutions</h6>
-                <ul>
-                    <li className='py-1'>Marketing</li>
-                    <li className='py-1'>Analytics</li>
-                    <li className='py-1'>Commerce</li>
-                    <li className='py-1'>Data</li>
-                </ul>
-            </div>
-            <div>
-                <h6 className='font-bold uppercase pt-2'>Support</h6>
-                <ul>
-                    <li className='py-1'>Pricing</li>
-                    <li className='py-1'>Documentation</li>
-                    <li className='py-1'>Guides</li>
-                </ul>
-            </div>
-            <div>
-                <h6 className='font-bold uppercase pt-2'>Company</h6>
-                <ul>
-                    <li className='py-1'>About</li>
-                    <li className='py-1'>Blog</li>
-                    <li className='py-1'>Jobs</li>
-                    <li className='py-1'>Partners</li>
-                </ul>
-            </div>
-            <div>
-                <h6 className='font-bold uppercase pt-2'>Legal</h6>
-                <ul>
-
-                    <li className='py-1'>Privacy</li>
-                    <li className='py-1'>Terms</li>
-                    <li className='py-1'>Policies</li>
-                    <li className='py-1'>Conditions</li>
-                </ul>
-            </div>
-            <div className='col-span-2 pt-8 md:pt-2'>
-                <p className='font-bold uppercase'>Subscribe to our newsletter</p>
-                <p className='py-4'>The latest news, articles, and resources, sent to your inbox weekly.</p>
-                <form className='flex flex-col sm:flex-row'>
-                    <input className='w-full p-2 mr-4 rounded-md mb-4' type="email" placeholder='Enter email..'/>
-                    <button className='p-2 mb-4'>Subscribe</button>
-                </form>
-            </div>
-        </div>
-
-        <div className='flex flex-col max-w-[1240px] px-2 py-4 mx-auto justify-between sm:flex-row text-center text-blue-300'>
-        <p className='py-4'>2024 Solaris Group. All rights reserved</p>
-        <div className='flex justify-between sm:w-[300px] pt-4 text-2xl text-blue-400'>
+export default function Footer() {
+  return (
+    <footer className='row-span-2 bg-zinc-900 border-t border-gray-700/50 '>
+        <ul className='flex justify-around h-[50%] items-center text-sm text-gray-400'>
+            <li><a href="/">About</a></li>
+            <li><a href="/">Partners</a></li>
+            <li><a href="/">Achievements</a></li>
+            <li><a href="/">Conditions</a></li>
+            <li><a href="/">Privacy</a></li>
+            <li><a href="/">Analytucs</a></li>
+            <li><a href="/">Marketing</a></li>
+        </ul>
+        <div className='flex justify-center gap-3'>
+            <FaTwitch/>
+            <FaGithub/>
+            <FaTwitter/>
             <FaFacebook/>
-            <FaFacebook/>
-            <FaFacebook />
-            <FaFacebook />
-            <FaFacebook />
-            <FaFacebook />
+            <FaInstagram/>
+            <FaPinterest/>
         </div>
-        </div>
-    </div>
-    )
+        <p className='flex justify-center pt-7 text-gray-600 italic text-xs'>
+        2024 Solaris Group. All rights reserved
+        </p>
+    </footer>
+  )
 }

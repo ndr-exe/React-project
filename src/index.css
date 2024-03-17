@@ -6,13 +6,4 @@
     a {
         @apply hover:text-gray-400;
     }
-
-    li {
-        @apply p-4;
-    }
-
-    button {
-        @apply text-white border bg-orange-500 border-orange-600 
-        hover:bg-transparent hover:text-orange-600 rounded-md;
-    }
 }
