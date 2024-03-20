@@ -6,4 +6,11 @@
     a {
         @apply hover:text-gray-400;
     }
+
+}
+
+.active,
+.active:hover,
+.active:active {
+    @apply text-white;
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 import ItemsGrid from './ItemsGrid'
 
 export default function Main() {

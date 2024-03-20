@@ -21,6 +21,7 @@ export default function ItemsGrid() {
                     release={release}
                     platform={platform}
                     price={price}
+                    key={title}
                     />
                 )
             })}              

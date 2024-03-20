@@ -8,7 +8,7 @@ import { FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className='row-span-2 bg-zinc-900 border-t border-gray-700/50 '>
+    <footer className='row-start-11 row-span-2 bg-zinc-900 border-t border-gray-700/50 '>
         <ul className='flex justify-around h-[50%] items-center text-sm text-gray-400'>
             <li><a href="/">About</a></li>
             <li><a href="/">Partners</a></li>
