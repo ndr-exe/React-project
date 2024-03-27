@@ -2,7 +2,7 @@
 
 export default function Item({image,title,genre,release,platform,price}) {
   return (
-    <article className="grid grid-rows-3 grod-cols-4 m-9 border-2 border-blue-950 rounded-lg overflow-hidden">
+    <article className="grid grid-rows-3 grod-cols-4 border-2 border-blue-950 rounded-lg overflow-hidden m-7">
     <div className="row-start-1 row-end-4 col-start-1 col-end-3 overflow-hidden"> 
     <img src={image} alt=""  className="h-full w-full" />
     </div>

@@ -12,7 +12,6 @@ export default function Main() {
              just and gracious, powerful, far-seeing, himself a peerless warrior, 
              moreover fluent in speech.
             </p>
-
         </div>
     </main>
   )

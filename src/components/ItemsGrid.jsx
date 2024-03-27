@@ -10,7 +10,7 @@ export default function ItemsGrid() {
 
         <Search/>
 
-        <div className='row-span-10 grid grid-cols-3 grid-rows-2 '>
+        <div className='row-span-10 grid grid-cols-3 grid-rows-2'>
             {games.map(game => {
                 const {image,title,genre,release,platform,price} = game
                 return (

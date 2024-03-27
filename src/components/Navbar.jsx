@@ -10,7 +10,9 @@ export default function Navbar() {
             <ul className='flex items-center gap-4 ml-8 text-sm text-gray-500'> 
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/marketplace" >Marketplace</NavLink></li>
+                <li><NavLink to="blog">Blog</NavLink></li>
                 <li><NavLink to="contact">Contact</NavLink></li>
+                <li><NavLink to="profile">Profile</NavLink></li>
             </ul>
             <ul className='flex justify-between  border-x border-gray-700/50 col-start-9 col-end-11'>
                 <li className='pl-6 flex items-center '><a href="/">Sign in</a></li>
