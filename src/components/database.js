@@ -6,6 +6,16 @@ import cj from "../assets/gta-sa.jpeg"
 import tommy from "../assets/gta-vc.jpeg"
 import duckhunt from "../assets/duckhunt.jpeg"
 import sonic from "../assets/sonic.jpeg"
+import half from "../assets/half.jpeg"
+import nfs from "../assets/nfs.jpeg"
+import persia from "../assets/persia.jpeg"
+import mk from "../assets/mk.jpeg"
+import bio from "../assets/bio.jpeg"
+import portal from "../assets/portal.jpeg"
+import tekken from "../assets/tekken.jpeg"
+import gt from "../assets/gt.jpeg"
+import resident from "../assets/resident.jpeg"
+
 
 // IMAGE IMPORTS FOR BLOGS
 
@@ -22,61 +32,155 @@ const games = [
     {
         image: mario ,
         title: "Decent Mario" ,
-        genre: "Arcade Advanture",
-        release: "1985",
+        genre: ["Arcade ", "Advanture"],
+        release: 1985,
         platform: "SNES" ,
-        price: "36",
+        price: 36,
+        id: 1,
 
     },
     
     {
         image: tommy ,
         title: "GTA: Nice City",
-        genre: "Action Advanture" ,
-        release: "2002" ,
+        genre: ["Action", "Advanture"] ,
+        release: 2002 ,
         platform:"PC" ,
-        price:"69" ,
+        price: 69,
+        id: 2,
 
     },
     {
         image: sonic,
         title: "super Sonic",
-        genre: "Arcade Advanture" ,
-        release: "1992" ,
+        genre: ["Arcade", "Advanture"] ,
+        release: 1992 ,
         platform: "SEGA GENESIS",
-        price: "45" ,
+        price: 45 ,
+        id: 3,
 
     },
     {
         image: halo ,
         title: "HOLA",
-        genre: "First Person Shooter",
-        release: "2011" ,
+        genre: ["Shooter","Action"],
+        release: 2011,
         platform: "XBOX 360" ,
-        price: "47",
+        price: 47,
+        id: 4,
 
     },
     {
         image: duckhunt,
         title: "Duck Hunting" ,
-        genre: "Arcade Shooter",
-        release: "1984",
+        genre: ["Arcade", "Shooter"],
+        release: 1984,
         platform:"NES" ,
-        price: "28" ,
+        price: 28,
+        id: 5,
 
     },
     
     {
         image: cj,
         title: "GTA: Ban Andreas" ,
-        genre: "Shooter Action Advanture" ,
-        release: "2004" ,
+        genre: ["Shooter", "Action" ,"Advanture"] ,
+        release: 2004,
         platform: "PS 2",
-        price: "4.20",
+        price: 4.2,
+        id: 6,
 
     },
-    
-   
+    {
+        image: half ,
+        title: "Quarter-Life" ,
+        genre: ["Shooter", "Action"] ,
+        release: 1998,
+        platform: "PC",
+        price: 21,
+        id: 7,
+
+    },
+
+    {
+        image: nfs ,
+        title: "Speed for Need" ,
+        genre: ["Racing", "Arcade"] ,
+        release: 2018,
+        platform: "PS 4",
+        price: 48,
+        id: 8,
+
+    },
+    {
+        image: persia ,
+        title: "Cringe of Persia" ,
+        genre: ["Action", "Arcade"] ,
+        release: 2005,
+        platform: "PC",
+        price: 15,
+        id: 9,
+
+    },
+
+    {
+        image: bio ,
+        title: "Biorock" ,
+        genre: ["Shooter","Action"] ,
+        release: 2008,
+        platform: "PC",
+        price: 38,
+        id: 11,
+
+    },
+    {
+        image: mk ,
+        title: "Portal Kombat" ,
+        genre: ["Arcade"] ,
+        release: 2007,
+        platform: "Xbox",
+        price: 55,
+        id: 10,
+
+    },
+    {
+        image: portal ,
+        title: "Prortal" ,
+        genre: ["Action","Advanture"] ,
+        release: 2010,
+        platform: "PC",
+        price: 52,
+        id: 12,
+
+    },
+    {
+        image: tekken ,
+        title: "Hekken" ,
+        genre: ["Arcade"] ,
+        release: 2013,
+        platform: "Xbox",
+        price: 75,
+        id: 13,
+    },
+    {
+        image: gt ,
+        title: "Brand Turismo" ,
+        genre: ["Racing","Arcade"] ,
+        release: 2015,
+        platform: "PC",
+        price: 39,
+        id: 14,
+    },
+    {
+        image: resident ,
+        title: "President Evil" ,
+        genre: ["Shooter"] ,
+        release: 2015,
+        platform: "PC",
+        price: 60,
+        id: 15,
+    },
+     
 ]
 
 export const blogs = [

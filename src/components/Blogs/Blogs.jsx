@@ -1,5 +1,5 @@
-import Blog from '../components/Blog'
-import {blogs} from "./database"
+import Blog from './Blog'
+import {blogs} from "../database"
 
 export default function Blogs() {
   return (

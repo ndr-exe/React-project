@@ -1,4 +1,5 @@
-import profilePic from '../assets/vice.jpeg'
+import profilePic from '../../assets/vice.jpeg'
+import { useState } from 'react';
 
 //ICON IMPORTS
 
@@ -8,9 +9,25 @@ import { PiCalendarDuotone } from "react-icons/pi";
 
 
 
-
-
 export default function Profile() {
+    const [newPass,setNewPass] = useState('')
+    const [confirmPass,setConfirmPass] = useState('')
+
+    function handleSubmit(e){
+        e.preventDefault()
+        if (newPass === confirmPass){
+            console.log('yep')
+        } else {
+            console.log("passwords nope")
+        }
+
+    }
+
+    function handleChange (e,passType) {
+        passType === "new" ? setNewPass(e.target.value) : setConfirmPass(e.target.value)
+        console.log(newPass,confirmPass)
+    }
+
   return (
     <div className='bg-zinc-900 grid grid-rows-1 grid-cols-12 row-span-9'>
 
@@ -60,12 +77,12 @@ export default function Profile() {
                     </li>                  
                 </ul>
 
-                    <form name='passCHange' id="passChange" className='flex flex-col'>
+                    <form  onSubmit={e => handleSubmit(e)} name='passCHange' id="passChange" className='flex flex-col'>
                     <label htmlFor="newPass" className='mb-2 text-base text-gray-500'>Type new password:</label>
-                    <input autoComplete="off" id="newPass" name="newPass" type="password" required placeholder='New password...'className="py-2 px-2 mb-3 rounded-md bg-blue-950 placeholder:text-gray-500 outline-none placeholder:tracking-wide"/>
+                    <input onChange={(e)=> handleChange(e,'new')} value={newPass} autoComplete="off" id="newPass" name="newPass" type="password" required placeholder='New password...'className="py-2 px-2 mb-3 rounded-md bg-blue-950 placeholder:text-gray-500 outline-none placeholder:tracking-wide"/>
 
                     <label htmlFor="confPass"  className='mb-2 text-base text-gray-500'>Confirm password:</label>
-                    <input autoComplete="off" name="confPass" id="confPass" type="password" required placeholder='Confirm Password...'className="py-2 px-2 mb-4 rounded-md bg-blue-950 placeholder:text-gray-500 outline-none placeholder:tracking-wide"/>
+                    <input onChange={(e)=> handleChange(e,'confirm')} value={confirmPass} autoComplete="off" name="confPass" id="confPass" type="password" required placeholder='Confirm Password...'className="py-2 px-2 mb-4 rounded-md bg-blue-950 placeholder:text-gray-500 outline-none placeholder:tracking-wide"/>
 
                     <button className="flex justify-center items-center text-xl text-white bg-orange-600 hover:bg-orange-700 hover:text-blue-950 py-1  rounded-md ">Save Changes</button>
                     </form>

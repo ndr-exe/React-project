@@ -1,4 +1,4 @@
-import ItemsGrid from './ItemsGrid'
+import ItemsGrid from '../Marketplace/ItemsGrid'
 
 export default function Main() {
   return (

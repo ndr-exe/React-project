@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
 
 // Component imports
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
+
 
 
 export default function PageLayout() {
