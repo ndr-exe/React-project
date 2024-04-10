@@ -1,16 +1,20 @@
 //ICON IMPORTS
 // import { FaSearch } from "react-icons/fa";
-import { FaGun } from "react-icons/fa6";
-import { BiRun } from "react-icons/bi";
-import { FaCarCrash } from "react-icons/fa";
-import { SiApplearcade } from "react-icons/si";
-import { GiSwordInStone } from "react-icons/gi";
+
+import { FiSmartphone } from "react-icons/fi";
+import { GiLaptop } from "react-icons/gi";
+import { GiFragrance } from "react-icons/gi";
+import { MdOutlineLocalGroceryStore } from "react-icons/md";
+import { IoBodyOutline } from "react-icons/io5";
+
+
+
 import CategoryButton from "./CategoryButton";
 import DropDown from "./DropDown";
 
 
 
-export default function Search({handleFilter:handleClick,handleSearch,filters,handleSort,isSorted}) {
+export default function Search({handleFilter,handleSearch,activeFilter,handleSort,isSorted}) {
 
   //Debouncing logic
   let searchTimeout
@@ -30,9 +34,6 @@ export default function Search({handleFilter:handleClick,handleSearch,filters,ha
     e.preventDefault()
   }
 
-  function checkForActiveFilter(filter){
-    return filters.indexOf(filter) !== -1
-  }
 
   return (
     <div className='flex items-center gap-5 justify-center'>
@@ -40,19 +41,19 @@ export default function Search({handleFilter:handleClick,handleSearch,filters,ha
        <ul className="flex gap-7 text-lg">
         <li className="">
           <CategoryButton 
-          handleClick={handleClick} filter="Action" active={checkForActiveFilter('Action')} ><BiRun/> Action</CategoryButton>
+          handleFilter={handleFilter} filter="smartphones" activeFilter={activeFilter} ><FiSmartphone/>Smartphones</CategoryButton>
           </li>
         <li className="">
-          <CategoryButton handleClick={handleClick} filter="Shooter" active={checkForActiveFilter('Shooter')} ><FaGun/>Shooter</CategoryButton>
+          <CategoryButton handleFilter={handleFilter} filter="laptops" activeFilter={activeFilter} ><GiLaptop/>Laptops</CategoryButton>
           </li>
         <li className="">
-          <CategoryButton handleClick={handleClick} filter="Racing" active={checkForActiveFilter('Racing')} ><FaCarCrash/>Racing</CategoryButton>
+          <CategoryButton handleFilter={handleFilter} filter="fragrances" activeFilter={activeFilter}><GiFragrance/>Fragrances</CategoryButton>
           </li>
         <li className="">
-          <CategoryButton handleClick={handleClick} filter="Arcade" active={checkForActiveFilter('Arcade')} ><SiApplearcade/>Arcade</CategoryButton>
+          <CategoryButton handleFilter={handleFilter} filter="skincare" activeFilter={activeFilter}><IoBodyOutline/>Skincare</CategoryButton>
           </li>
         <li className="">
-          <CategoryButton handleClick={handleClick} filter="Advanture" active={checkForActiveFilter('Advanture')} ><GiSwordInStone/>Advanture</CategoryButton>
+          <CategoryButton handleFilter={handleFilter} filter="groceries" activeFilter={activeFilter}><MdOutlineLocalGroceryStore/>Groceries</CategoryButton>
           </li>
 
       </ul>
@@ -64,7 +65,7 @@ export default function Search({handleFilter:handleClick,handleSearch,filters,ha
         <input 
         onChange={e => handleChange(e.target.value)}
         className='bg-blue-950 px-4 py-3 outline-none rounded-lg block placeholder:text-gray-500 '
-         type="text" name="search" id="" placeholder='Search All Games ..' />
+         type="text" name="search" id="" placeholder='Search All Products ..' />
         {/* <button type="submit" className="text-blue-900 text-3xl block">
             <FaSearch/>
         </button> */}
@@ -72,4 +73,3 @@ export default function Search({handleFilter:handleClick,handleSearch,filters,ha
 </div>
   )
 }
-

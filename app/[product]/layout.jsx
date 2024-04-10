@@ -1,0 +1,12 @@
+
+
+export default function layout({children}) {
+    return (
+      <main className='bg-zinc-900 row-span-9'>
+          <div className="w-full h-full max-w-screen-xl mx-auto mt-10">
+          {children}
+          </div>
+      </main>
+    )
+  }
+  

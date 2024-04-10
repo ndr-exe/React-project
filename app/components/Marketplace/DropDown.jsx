@@ -57,17 +57,6 @@ className={"absolute bg-transparent w-full h-screen right-0 top-0 " + activeClas
             className={"hover:text-white text-gray-500 block w-full px-4 py-2 text-sm" + checkIfIsSorted('price-DESC')  } >
             Price descending
             </button>
-
-        <button  
-            onClick={()=> isSorted !== "year-ASC" ? (handleSort("year-ASC") , setSortingTag("Year Asc.")) : handleSort('default')} 
-            className={"hover:text-white text-gray-500 block w-full px-4 py-2 text-sm" + checkIfIsSorted('year-ASC')}>
-            Release Year ascending
-         </button>
-        <button 
-            onClick={()=> isSorted !== "year-DESC" ? (handleSort("year-DESC"), setSortingTag("Year Desc.")) : handleSort('default')} 
-            className={"hover:text-white text-gray-500 block w-full px-4 py-2 text-sm" + checkIfIsSorted('year-DESC')} >
-            Release Year descending
-            </button>
     </div>
   </div>
 </div>

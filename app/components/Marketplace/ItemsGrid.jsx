@@ -1,126 +1,126 @@
 'use client'
-import {default as initialgames} from "../../database"
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 //COMPONENT IMPORTS
 import Search from "./Search";
 import Item from "./Item";
 
+
 export default function ItemsGrid() {
-    const [games,setGames] = useState(initialgames)
-    const [filters,setFilters] = useState([])
+    const [products,setProducts] = useState([])
+    const [initialProducts,setInitialProducts] = useState([])
+    const [activeFilter,setActiveFilter] = useState(null)
     const [isSorted,setIsSorted] = useState(false)
 
-
-
-    //Apply multiple filters on items at the same time
-    function handleFilter(e,selectedFilter, remove = false,callBackFn,condition){
-        let activeFilters
-        //Adding selected Filter & updating state
-        handleSort('default')
-        if(!remove){
-            activeFilters = [...filters,selectedFilter]
-            setFilters(activeFilters)
+    // fetch PRODUCTS
+    useEffect(()=>{
+        async function getProducts(){
+            const res = await fetch("https://dummyjson.com/products/")
+            const json = await res.json()
+            setProducts(json.products.slice(0,21))
+            setInitialProducts(json.products.slice(0,21))
         }
-        //Removing selected Filter & updating state
-        else    
-         {
-            activeFilters = [...filters].filter(f => f !== selectedFilter)
-            setFilters(activeFilters)
+        getProducts()
+    },[])
+
+
+
+    // Applying FILTERS
+    function handleFilter(filter = null,remove = false){
+        if(!filter){
+            setActiveFilter(null)
+            setProducts(initialProducts)
+            return
+        } 
+
+        if(remove && activeFilter){
+            setActiveFilter(null)
+            setProducts(initialProducts)
+            return
         }
+        
+        setActiveFilter(filter)
+        const filteredProducts =  initialProducts.filter(product => {
+            return product.category === filter
+        })
+        setProducts(filteredProducts)
 
-        //check if displayed games are satisfying all of the selected Genres/Categories        
-        setGames(initialgames.filter(game => {
-            let init=true
-
-            activeFilters.forEach(filter => {
-                if(game.genre.indexOf(filter) === -1) return init=false
-            })
-            
-            return init ?  game : false
-        }))
     }
+
+
 
     //Searching through *ALL* items
     function handleSearch(query) {
             handleSort('default')   
-            setFilters([])
-            if (query === 'empty') return setGames(initialgames)
-            const searchedGames = initialgames.filter(game => {
-                return (game.title
+            handleFilter()
+            if (query === 'empty') return setProducts(initialProducts)
+            const searchedProducts = initialProducts.filter(product => {
+                return (product.title
                         .split(" ")
                         .join("")
                         .toLowerCase()
                         .includes(query)
                         )
             })
-            setGames(searchedGames)
-
+            setProducts(searchedProducts)
+            
     }
+
+
 
     //Applying sort 
     function handleSort(param){
-        let sortedGames
+        let sortedProducts
         switch(param){
             case "price-ASC":
-            sortedGames = [...games].sort((a,b)=> a.price - b.price)
+            sortedProducts = [...products].sort((a,b)=> a.price - b.price)
             setIsSorted("price-ASC")
             break;
 
             case "price-DESC":
-            sortedGames = [...games].sort((a,b)=> b.price - a.price)
+            sortedProducts = [...products].sort((a,b)=> b.price - a.price)
             setIsSorted("price-DESC")
             break;
 
-            case "year-ASC":
-             sortedGames = [...games].sort((a,b)=> a.release - b.release)
-            setIsSorted("year-ASC")
-            break;
-
-            case "year-DESC":
-             sortedGames = [...games].sort((a,b)=> b.release - a.release)
-            setIsSorted("year-DESC")
-            break;
-
             default:
-             sortedGames = [...games].sort((a,b)=> a.id - b.id)
+             sortedProducts = [...products].sort((a,b)=> a.id - b.id)
              setIsSorted(false)
              
 
         }
-       setGames(sortedGames)
+       setProducts(sortedProducts)
     }
 
 
   return (
-    <div className='col-span-9 bg-zinc-900 h-full border-r border-gray-700/50 grid overflow-y-scroll grid-cols-1 grid-rows-[12%,1fr]'>
+    <div className='col-span-9 bg-zinc-900 h-full border-r border-gray-700/50 grid grid-cols-1 grid-rows-[110px,1fr]'>
 
         <Search 
-        filters={filters}
+        activeFilter={activeFilter}
         handleFilter={handleFilter}
         handleSearch={handleSearch}
         handleSort={handleSort}
         isSorted={isSorted}
         />
-
-        <div className='grid grid-cols-3 grid-rows-2 '>
-            {games.map(game => {
-                const {image,title,genre,release,platform,price,id} = game
+    {products.length || initialProducts.length ? (
+        <div className='grid grid-cols-3 auto-rows-[350px] overflow-y-scroll'>
+            {products.map(product => {
+                const {id,title,description,price,brand,category,thumbnail} = product
                 return (
                     <Item 
-                    image={image}
+                    thumbnail={thumbnail}
                     title={title}
-                    genre={genre.join(" ")}
-                    release={release}
-                    platform={platform}
+                    brand={brand}
+                    category={category}
                     price={price}
+                    description={description.slice(0,20).concat("...")}
                     key={id}
+                    id={id}
                     />
                 )
             })}              
         </div>
+        ): <div className="w-full h-full grid place-content-center">Loading ...</div>}
         </div>
   )
 }
-
-

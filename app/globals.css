@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-    a {
-        @apply hover:text-gray-400;
+    nav a, footer a {
+        @apply hover:text-gray-300;
     }
 
 }
