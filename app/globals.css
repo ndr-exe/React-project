@@ -4,7 +4,7 @@
 
 @layer base {
     nav a, footer a {
-        @apply hover:text-gray-300;
+        @apply hover:text-black;
     }
 
 }
@@ -12,5 +12,6 @@
 .active,
 .active:hover,
 .active:active {
-    @apply text-white;
+    @apply text-black;
 }
+

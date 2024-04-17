@@ -36,10 +36,10 @@ export default function Search({handleFilter,handleSearch,activeFilter,handleSor
 
 
   return (
-    <div className='flex items-center gap-5 justify-center'>
+    <div className='flex items-center gap-5 px-8 '>
       <form onSubmit={handleSubmit} >
-       <ul className="flex gap-7 text-lg">
-        <li className="">
+       <ul className="flex gap-7 text-md">
+        <li className=" outline-neutral-400 outline-1">
           <CategoryButton 
           handleFilter={handleFilter} filter="smartphones" activeFilter={activeFilter} ><FiSmartphone/>Smartphones</CategoryButton>
           </li>
@@ -61,10 +61,10 @@ export default function Search({handleFilter,handleSearch,activeFilter,handleSor
  
       <DropDown handleSort={handleSort} isSorted={isSorted}/>
       
-    <form action="/" className='text-xl flex items-center gap-3 '>
+    <form action="/" className='text-xl flex items-center gap-3 ml-auto '>
         <input 
         onChange={e => handleChange(e.target.value)}
-        className='bg-blue-950 px-4 py-3 outline-none rounded-lg block placeholder:text-gray-500 '
+        className='px-2 py-1 outline-none rounded-lg block placeholder:text-gray-500 placeholder:text-md border border-black'
          type="text" name="search" id="" placeholder='Search All Products ..' />
         {/* <button type="submit" className="text-blue-900 text-3xl block">
             <FaSearch/>

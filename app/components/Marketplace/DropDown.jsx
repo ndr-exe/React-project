@@ -9,7 +9,7 @@ export default function DropDown({handleSort,isSorted}) {
 
     
     const activeClass = !active ? 'hidden' : 'block'
-    const activeSortBtn = isSorted ? " bg-orange-800" : " bg-slate-800"
+    const activeSortBtn = isSorted ? " text-orange-500" : "text-black"
 
     
     function checkIfIsSorted(param){
@@ -27,15 +27,15 @@ export default function DropDown({handleSort,isSorted}) {
 {/* overlay for Sort-By dropwdown */}
 <div 
 onClick={() => setActive(false)}
-className={"absolute bg-transparent w-full h-screen right-0 top-0 " + activeClass} >
+className={"absolute w-full h-screen right-0 top-0 " + activeClass} >
 </div>
 
 
-<div className="relative inline-block text-left text-white ">
+<div className="relative inline-block text-left text-black ">
   <div className="w-[150px]">
     <button 
     onClick={handleClick} 
-    className={"inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-orange-800 hover:bg-orange-800" + activeSortBtn}
+    className={"inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold shadow-md" + activeSortBtn}
     id="menu-button">
      {isSorted ? sortingTag : 'Sort By'}
       <svg className="-mr-1 h-5 w-5 text-white-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -44,17 +44,17 @@ className={"absolute bg-transparent w-full h-screen right-0 top-0 " + activeClas
     </button>
   </div>
 
-  <div className={"absolute right-[50%] translate-x-[50%] z-10 mt-4 w-56 origin-top-right rounded-md bg-slate-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none "  + activeClass} role="menu">
+  <div className={"bg-gray-200 absolute right-[50%] translate-x-[50%] z-10 mt-4 w-56 origin-top-right rounded-md shadow-lg "  + activeClass} role="menu">
     <div className="py-1 flex flex-col items-center" >
         <button 
             onClick={()=> isSorted !== "price-ASC" ? (handleSort("price-ASC") , setSortingTag("Price Asc.")) : handleSort('default')} 
-            className={"hover:text-white text-gray-500 block w-full px-4 py-2 text-sm" + checkIfIsSorted('price-ASC')  } >
+            className={"block w-full px-4 py-2 text-sm" + checkIfIsSorted('price-ASC')  } >
             Price ascending
         </button>
 
         <button 
             onClick={()=> isSorted !== "price-DESC" ? (handleSort("price-DESC"), setSortingTag("Price Desc.")) : handleSort('default')} 
-            className={"hover:text-white text-gray-500 block w-full px-4 py-2 text-sm" + checkIfIsSorted('price-DESC')  } >
+            className={"block w-full px-4 py-2 text-sm" + checkIfIsSorted('price-DESC')  } >
             Price descending
             </button>
     </div>

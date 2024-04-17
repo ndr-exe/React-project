@@ -1,6 +1,6 @@
 export default function CategoryButton({children,handleFilter,filter,activeFilter}) {
   const active = activeFilter === filter
-  const activeClass = activeFilter === filter ? "bg-blue-900" : "bg-slate-800"
+  const activeClass = activeFilter === filter ? "text-orange-500" : "text-black"
 
 return (
   <button 
@@ -8,7 +8,7 @@ return (
           !active  ?  handleFilter(filter) : handleFilter(filter,'remove')
 
       }}
-      className={"px-4 py-3 rounded-2xl hover:bg-blue-900 flex items-center gap-2 " + activeClass} >
+      className={"px-4 py-3 rounded-2xl font-bold flex items-center gap-2 " + activeClass} >
       {children}
   </button>
 )

@@ -93,7 +93,7 @@ export default function ItemsGrid() {
 
 
   return (
-    <div className='col-span-9 bg-zinc-900 h-full border-r border-gray-700/50 grid grid-cols-1 grid-rows-[110px,1fr]'>
+    <div className='col-span-9 h-full grid grid-cols-1 grid-rows-[110px,1fr]'>
 
         <Search 
         activeFilter={activeFilter}
@@ -103,13 +103,13 @@ export default function ItemsGrid() {
         isSorted={isSorted}
         />
     {products.length || initialProducts.length ? (
-        <div className='grid grid-cols-3 auto-rows-[350px] overflow-y-scroll'>
+        <div className='grid grid-cols-[repeat(4,250px)] auto-rows-[320px] overflow-y-scroll gap-12 justify-center'>
             {products.map(product => {
                 const {id,title,description,price,brand,category,thumbnail} = product
                 return (
                     <Item 
                     thumbnail={thumbnail}
-                    title={title}
+                    title={title.length < 28 ? title : title.slice(0,28).concat("...")}
                     brand={brand}
                     category={category}
                     price={price}
