@@ -1,9 +1,5 @@
 import "./globals.css";
 
-// COMPONENT IMPORTS
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-
 
 export const metadata = {
   title: "FastLag inc.",
@@ -14,11 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="h-lvh text-black">
-        <div className="w-full h-full max-w-screen-xl mx-auto grid grid-cols-1 grid-rows-12">
-        <Header/>
-        {children}
-        <Footer/>
-        </div>
+          {children}
       </body>
     </html>
   );

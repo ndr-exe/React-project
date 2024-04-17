@@ -37,7 +37,7 @@ export default function Blog({title,uploadDate,body,important,image,id}) {
                  <div className=''>
                      <h3 className='text-xl mb-4'>{title}</h3>
                      <p className='text-sm text-gray-800'>{body} 
-                    <Link href={`blog/${id}`}>
+                    <Link href={`/home/blog/${id}`}>
                     <span className='text-orange-600 ml-3 hover:text-gray-800' href="/">Read More...</span>
                     </Link> 
                      </p>

@@ -8,7 +8,7 @@ export default function Item({title,description,price,brand,category,thumbnail,i
     if(title.length > 13) titleSize = 'text-sm'
 
   return (
-    <Link href={`/${id}`} className="">
+    <Link href={`/home/${id}`} className="">
         <div className="w-full h-full group shadow-sm border border-gray-300 rounded-xl overflow-hidden">
             <div className=""> 
                 <Image src={thumbnail} alt="" width={250} height={150} className="w-[250px] h-[150px] mx-auto"/>
