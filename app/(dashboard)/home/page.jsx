@@ -1,5 +1,6 @@
-import {default as Homepage} from '../../components/Marketplace/Main'
+import Main from "@/app/components/Marketplace/Main";
+
 
 export default function Home() {
-  return <Homepage/>
+  return <Main/>
 }

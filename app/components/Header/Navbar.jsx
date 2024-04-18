@@ -29,7 +29,7 @@ export default function Navbar() {
                 <button 
                 onClick={()=> {
                     logout()
-                    router.refresh()
+                    router.back()
                     }}>Log out</button>
             </li>
             </ul>
