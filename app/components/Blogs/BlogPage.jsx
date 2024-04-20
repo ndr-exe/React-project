@@ -1,14 +1,5 @@
 import Image from "next/image"
 
-async function generateStaticParams(){
-  const res = await fetch('https://dummyjson.com/posts')
-  const data = await res.json()
-
-  return data.posts.map(post => ({
-    id: post.id
-  }))
-}
-
 async function fetchBlog(id){
   const blogResponse = await fetch(`https://dummyjson.com/posts/${id}`)
   const blogJson = await blogResponse.json()
