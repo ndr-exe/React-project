@@ -1,31 +1,33 @@
-'use client'
-
-import { useEffect, useState } from "react"
 import Image from "next/image"
 
+async function generateStaticParams(){
+  const res = await fetch('https://dummyjson.com/posts')
+  const data = await res.json()
 
-export default function BlogPage({params}) {
-  const [blog,setBlog] = useState(null)
+  return data.posts.map(post => ({
+    id: post.id
+  }))
+}
 
-  useEffect(()=>{
-    async function fetchBlog(){
-        const blogResponse = await fetch(`https://dummyjson.com/posts/${params.id}`)
-        const blogJson = await blogResponse.json()
+async function fetchBlog(id){
+  const blogResponse = await fetch(`https://dummyjson.com/posts/${id}`)
+  const blogJson = await blogResponse.json()
 
-        // dummyjson /posts doesn't come with IMAGES nor UPLOAD-DATE so set them up manually-->
-        const bigImg = 'https://dummyjson.com/image/1280x300/3d5368/ffffff?text=BLOG!&fontSize=20'
-        
-        const blogWithImagesAndDate = 
-        {...blogJson, 
-        image: bigImg,
-        uploadDate: `${26-params.id}/03/2024`}
-
-
-        setBlog(blogWithImagesAndDate)
+  // dummyjson /posts doesn't come with IMAGES nor UPLOAD-DATE so set them up manually-->
+  const bigImg = 'https://dummyjson.com/image/1280x300/3d5368/ffffff?text=BLOG!&fontSize=20'
   
-    }
-    fetchBlog()
-  },[])
+  const blogWithImagesAndDate = 
+  {...blogJson, 
+  image: bigImg,
+  uploadDate: `${26-id}/03/2024`}
+
+  return(blogWithImagesAndDate)
+}
+
+
+export default async function BlogPage({params}) {
+  const id = params.id
+  const blog = await fetchBlog(id)
 
   return (
     blog ? 
@@ -43,11 +45,11 @@ export default function BlogPage({params}) {
             </div>
         </div>
         <div className="pl-7 pr-12 pt-10 "> 
-        <h1 className="text-3xl font-bold text-gray-800 mb-7">{blog.title}</h1>
-        <p className="text-lg">
+        <h1 className="text-3xl font-bold text-gray-800 mb-7 dark:text-gray-300">{blog.title}</h1>
+        <p className="text-lg dark:text-gray-300">
             {blog.body}
         </p>
-         <p className="mt-12 text-right italic text-gray-700">{blog.uploadDate}</p>
+         <p className="mt-12 text-right italic text-gray-700 dark:text-gray-400">{blog.uploadDate}</p>
         </div>
     </div>)
     : <div className="w-full h-full grid place-content-center">Loading ...</div>

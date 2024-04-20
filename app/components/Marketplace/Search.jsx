@@ -64,7 +64,7 @@ export default function Search({handleFilter,handleSearch,activeFilter,handleSor
     <form action="/" className='text-xl flex items-center gap-3 ml-auto '>
         <input 
         onChange={e => handleChange(e.target.value)}
-        className='px-2 py-1 outline-none rounded-lg block placeholder:text-gray-500 placeholder:text-md border border-black'
+        className='px-2 py-1 outline-none rounded-lg block placeholder:text-gray-500 placeholder:text-md border border-black dark:bg-gray-400 dark:placeholder:text-gray-800'
          type="text" name="search" id="" placeholder='Search All Products ..' />
         {/* <button type="submit" className="text-blue-900 text-3xl block">
             <FaSearch/>

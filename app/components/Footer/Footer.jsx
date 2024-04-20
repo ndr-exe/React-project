@@ -18,7 +18,7 @@ export default function Footer() {
             <li><a href="/">Analytics</a></li>
             <li><a href="/">Marketing</a></li>
         </ul>
-        <div className='flex justify-center gap-3'>
+        <div className='flex justify-center gap-3 dark:text-gray-100'>
             <FaTwitch/>
             <FaGithub/>
             <FaTwitter/>

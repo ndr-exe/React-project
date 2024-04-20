@@ -28,11 +28,11 @@ export default function ProdcutPage({params}) {
                 <div className="flex flex-col justify-between ">
                     <div>
                     <p className="text-gray-500 before:content-[''] before:w-[3px] before:h-[100%] before:bg-orange-400/80 relative before:absolute before:-left-0 pl-4  ">{product.brand}</p>
-                    <p className="mt-8 text-3xl font-bold tracking-wide">{product.title}</p>
-                    <p className="mt-4 text-lg text-gray-800">{product.description}</p>
+                    <p className="mt-8 text-3xl font-bold tracking-wide dark:text-gray-300">{product.title}</p>
+                    <p className="mt-4 text-lg text-gray-800 dark:text-gray-400">{product.description}</p>
                     </div>
                     <div className="mb-6">
-                    <p className="text-3xl text-gray-900 font-bold mb-5 ">${product.price}</p>
+                    <p className="text-3xl text-gray-900 font-bold mb-5 dark:text-gray-300 ">${product.price}</p>
                     <button className="text-white text-2xl py-3 rounded-xl bg-orange-600 w-full">Add to cart</button>
                     </div>
                 </div>

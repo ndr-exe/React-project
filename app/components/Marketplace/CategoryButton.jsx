@@ -1,6 +1,6 @@
 export default function CategoryButton({children,handleFilter,filter,activeFilter}) {
   const active = activeFilter === filter
-  const activeClass = activeFilter === filter ? "text-orange-500" : "text-black"
+  const activeClass = activeFilter === filter ? "text-orange-500" : "text-black dark:text-gray-100"
 
 return (
   <button 

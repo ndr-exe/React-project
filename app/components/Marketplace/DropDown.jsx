@@ -9,7 +9,7 @@ export default function DropDown({handleSort,isSorted}) {
 
     
     const activeClass = !active ? 'hidden' : 'block'
-    const activeSortBtn = isSorted ? " text-orange-500" : "text-black"
+    const activeSortBtn = isSorted ? " text-orange-500" : "text-black dark:text-gray-100"
 
     
     function checkIfIsSorted(param){

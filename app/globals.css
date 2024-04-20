@@ -6,6 +6,13 @@
     nav a, footer a {
         @apply hover:text-black;
     }
+    .dark nav a,
+    .dark footer a {
+        @apply hover:text-orange-600;
+    }
+    .dark .active {
+        @apply text-orange-600;
+    }
 
 }
 
@@ -14,4 +21,5 @@
 .active:active {
     @apply text-black;
 }
+
 

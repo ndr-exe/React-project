@@ -24,16 +24,16 @@ export default function Contact() {
                     <ul className="text-gray-600 text-lg flex flex-col gap-5"> 
                         <li className="flex items-center gap-6">
                             <span className="text-4xl text-gray-800 "><MdLocationPin/></span>
-                            <span className="tracking-wide">221B Baker Street</span>
+                            <span className="tracking-wide dark:text-gray-400">221B Baker Street</span>
                         </li>
 
                         <li className="flex items-center gap-6">
                             <span className="text-4xl text-gray-800"><MdPhone/></span>
-                            <span className="tracking-wide">(911) 420-1337</span>
+                            <span className="tracking-wide dark:text-gray-400">(911) 420-1337</span>
                         </li>
                         <li className="flex items-center gap-6">
                             <span className="text-4xl text-gray-800"><IoMail/></span>
-                            <span className="tracking-wide">fastlag@gmail.com</span> 
+                            <span className="tracking-wide dark:text-gray-400">fastlag@gmail.com</span> 
                         </li>
                     </ul>
                     <ul className="flex justify-around text-xl text-black border-y border-gray-400 py-5">
@@ -43,7 +43,7 @@ export default function Contact() {
                         <li className="p-3 bg-gray-400/70 rounded-full"><a href="/"><FaGithub/></a></li>
 
                     </ul>
-                    <p className="text-center italic text-gray-800">Don&apos;t Be Shy Hit Us Up!</p>
+                    <p className="text-center italic text-gray-800 dark:text-gray-500">Don&apos;t Be Shy Hit Us Up!</p>
                 </div>
          </div>
         </div>
