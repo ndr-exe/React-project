@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-export async function GET(Request) {
+export async function GET(request) {
     cookies().delete('token')
-    redirect('/marketplace')
+    return NextResponse.redirect(new URL('/marketplace',request.url))
   }

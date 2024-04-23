@@ -1,5 +1,6 @@
 import { NextResponse,NextRequest} from 'next/server'
 import {cookies} from 'next/headers'
+import { redirect } from 'next/dist/server/api-utils'
 
 
 let locales = ['en','ge']
@@ -21,7 +22,9 @@ export function middleware(request) {
   const locale = getLocale(request)
 
   
-
+  if(pathname.indexOf('logout') !== -1){
+    return NextResponse.redirect(new URL(`${locale}/api/logout`,request.url))
+  }
 
   if(!isLogged && pathname.indexOf('login') === -1){
 
@@ -56,8 +59,22 @@ export function middleware(request) {
 export const config = {
   matcher: [
     // Skip all internal paths (_next)
-    '/((?!_next).*)',
+    '/((?!_next|en/api|ge/api).*)',
+    // '/((?!_next).*)',
     // Optional: only run on root (/) URL
     // '/'
   ],
 }
+
+// export const config = {
+//   matcher: [
+//     /*
+//      * Match all request paths except for the ones starting with:
+//      * - api (API routes)
+//      * - static (static files)
+//      * - favicon.ico (favicon file)
+//      */
+//     '/((?!api|static|favicon.ico).*)',
+//   ],
+// }
+
