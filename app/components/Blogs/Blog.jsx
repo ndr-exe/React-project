@@ -2,7 +2,7 @@ import React from 'react'
 import Image from "next/image"
 import Link from "next/link"
 
-export default function Blog({title,uploadDate,body,important,image,id}) {
+export default function Blog({title,uploadDate,body,important,image,id,dict}) {
          if(important) return (
              <li className="col-span-8 h-full rounded-md overflow-hidden hover:bg-gray-200 hover:dark:bg-gray-800 ">
                  <article className='w-full h-full flex flex-col'> 
@@ -15,7 +15,7 @@ export default function Blog({title,uploadDate,body,important,image,id}) {
                      <p className='text-sm text-gray-800 dark:text-gray-200'>{body} 
                      <br/>
                     <Link href={`blog/${id}`}>
-                        <span className='text-orange-600 hover:text-gray-800  dark:hover:text-gray-500' href="/">Read More...</span>
+                        <span className='text-orange-600 hover:text-gray-800  dark:hover:text-gray-500' href="/">{dict.blog.readMore}</span>
                      </Link>
                      </p>
 
@@ -37,8 +37,8 @@ export default function Blog({title,uploadDate,body,important,image,id}) {
                  <div className=''>
                      <h3 className='text-xl mb-4 dark:text-gray-100'>{title}</h3>
                      <p className='text-sm text-gray-800 dark:text-gray-200'>{body} 
-                    <Link href={`/home/blog/${id}`}>
-                    <span className='text-orange-600 ml-3 hover:text-gray-800 dark:hover:text-gray-500' href="/">Read More...</span>
+                    <Link href={`blog/${id}`}>
+                    <span className='text-orange-600 ml-3 hover:text-gray-800 dark:hover:text-gray-500' href="/">{dict.blog.readMore}</span>
                     </Link> 
                      </p>
                  </div>

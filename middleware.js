@@ -1,28 +1,63 @@
 import { NextResponse,NextRequest} from 'next/server'
 import {cookies} from 'next/headers'
+
+
+let locales = ['en','ge']
  
+function getLocale(request) { 
+    let locale = cookies().get('locale')
+    if (locale) return locale.value
+    return locale = 'en'
+}
+
 
 export function middleware(request) {
-    let isLogged = cookies().get('token') ? true : false
+  
+  let { pathname } = request.nextUrl
+  let pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  )
+  let isLogged = cookies().get('token') ? true : false
+  const locale = getLocale(request)
 
-
-    if(!isLogged && !request.nextUrl.pathname.startsWith('/login') ){
-      return NextResponse.redirect(new URL('/login', request.url))
-    }
-    if(!isLogged && request.nextUrl.pathname.startsWith('/home')) {
-      return NextResponse.redirect(new URL('/login', request.url))
-    }
-
-    if (isLogged && request.nextUrl.pathname === '/') {
-      return NextResponse.redirect(new URL('/home', request.url))
-    }
-    if (isLogged && request.nextUrl.pathname === '/login') {
-      return NextResponse.redirect(new URL('/home', request.url))
-    }
   
 
-}
-export const config = {
-  matcher: ['/','/home','/home/:path*', '/login'],
-}
 
+  if(!isLogged && pathname.indexOf('login') === -1){
+
+      pathname = '/login'
+      pathnameHasLocale = false
+  }
+
+  else if(isLogged && pathname.indexOf('login') !== -1){
+
+
+    pathname = '/marketplace'
+    pathnameHasLocale = false
+  }
+
+  else if(isLogged && pathname === '/' || isLogged && pathname === `/${locale}`) {
+
+
+    pathname = `/marketplace`
+    pathnameHasLocale = false
+  }
+
+  
+  if (pathnameHasLocale) return
+ 
+  // Redirect if there is no locale
+  request.nextUrl.pathname = `/${locale}${pathname}`
+  // e.g. incoming request is /products
+  // The new URL is now /en-US/products
+  return NextResponse.redirect(request.nextUrl)
+}
+ 
+export const config = {
+  matcher: [
+    // Skip all internal paths (_next)
+    '/((?!_next).*)',
+    // Optional: only run on root (/) URL
+    // '/'
+  ],
+}

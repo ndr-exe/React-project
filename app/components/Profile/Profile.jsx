@@ -12,7 +12,7 @@ import { PiCalendarDuotone } from "react-icons/pi";
 
 
 
-export default function Profile() {
+export default function Profile({dict}) {
     const [newPass,setNewPass] = useState('')
     const [confirmPass,setConfirmPass] = useState('')
 
@@ -43,7 +43,7 @@ export default function Profile() {
                         <h3 className='text-center text-2xl mb-5 dark:text-gray-100'>TheHarwoodButcher</h3>
                         <p className='text-center text-gray-950 mb-6 dark:text-gray-200'>Tommy Vercetti</p>
                         <div className='p-4 flex-1 rounded-md shadow-lg '>
-                            <h4 className='mb-2 text-gray-700'>BIO</h4>
+                            <h4 className='mb-2 text-gray-700'>{dict.profile.bio}</h4>
                             <hr className='mb-2' />
                             <p className='mb-2 text-black dark:text-gray-200'>
                             This Persian tale, now done into Georgian, has hitherto been like a pearl of great price cast in play from hand to hand;
@@ -60,34 +60,34 @@ export default function Profile() {
                     <li>
                         <div className='flex items-center gap-2 text-gray-700'>
                             <span className='text-lg dark:text-gray-400'><IoMail/></span>
-                            <span className='dark:text-gray-400'>Email:</span>
+                            <span className='dark:text-gray-400'>{dict.profile.email}:</span>
                         </div>
                         <span className='text-xl dark:text-gray-200'>tommyvercetti@gta.com</span>
                     </li>
                     <li>
                         <div className='flex items-center gap-2 text-gray-700'>
                             <span className='text-lg dark:text-gray-400'><GiWorld/></span>
-                            <span className='dark:text-gray-400'>Country:</span>
+                            <span className='dark:text-gray-400'>{dict.profile.country}:</span>
                         </div>
                         <span className='text-xl dark:text-gray-200'>United States</span>
                     </li>
                     <li>
                         <div className='flex items-center gap-2 text-gray-700'>
                             <span className='text-lg dark:text-gray-400'><PiCalendarDuotone/></span>
-                            <span className='dark:text-gray-400'>Date of Birth:</span>
+                            <span className='dark:text-gray-400'>{dict.profile.dateOfBirth}:</span>
                         </div>
                         <span className='text-lg dark:text-gray-200'>20/04/1951</span>
                     </li>                  
                 </ul>
 
                     <form  onSubmit={e => handleSubmit(e)} name='passCHange' id="passChange" className='flex flex-col'>
-                    <label htmlFor="newPass" className='mb-2 text-base text-gray-800 dark:text-gray-300'>Type new password:</label>
-                    <input onChange={(e)=> handleChange(e,'new')} value={newPass} autoComplete="off" id="newPass" name="newPass" type="password" required placeholder='New password...'className="py-2 px-2 mb-3 rounded-md bg-gray-300 placeholder:text-gray-800 outline-none placeholder:tracking-wide"/>
+                    <label htmlFor="newPass" className='mb-2 text-base text-gray-800 dark:text-gray-300'>{dict.profile.typeNewPass}:</label>
+                    <input onChange={(e)=> handleChange(e,'new')} value={newPass} autoComplete="off" id="newPass" name="newPass" type="password" required placeholder={`${dict.profile.newPassHolder}...`} className="py-2 px-2 mb-3 rounded-md bg-gray-300 placeholder:text-gray-800 outline-none placeholder:tracking-wide"/>
 
-                    <label htmlFor="confPass"  className='mb-2 text-base text-gray-800 dark:text-gray-300'>Confirm password:</label>
-                    <input onChange={(e)=> handleChange(e,'confirm')} value={confirmPass} autoComplete="off" name="confPass" id="confPass" type="password" required placeholder='Confirm Password...'className="py-2 px-2 mb-4 rounded-md bg-gray-300 placeholder:text-gray-800 outline-none placeholder:tracking-wide"/>
+                    <label htmlFor="confPass"  className='mb-2 text-base text-gray-800 dark:text-gray-300'>{dict.profile.confirmPass}:</label>
+                    <input onChange={(e)=> handleChange(e,'confirm')} value={confirmPass} autoComplete="off" name="confPass" id="confPass" type="password" required placeholder={`${dict.profile.confirmPassHolder}...`} className="py-2 px-2 mb-4 rounded-md bg-gray-300 placeholder:text-gray-800 outline-none placeholder:tracking-wide"/>
 
-                    <button className="flex justify-center items-center text-xl text-orange-600 hover:text-white  hover:bg-orange-600 border border-orange-600 py-1  rounded-md ">Save Changes</button>
+                    <button className="flex justify-center items-center text-xl text-orange-600 hover:text-white  hover:bg-orange-600 border border-orange-600 py-1  rounded-md ">{dict.profile.save}</button>
                     </form>
                 </div>
 

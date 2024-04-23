@@ -14,7 +14,7 @@ import DropDown from "./DropDown";
 
 
 
-export default function Search({handleFilter,handleSearch,activeFilter,handleSort,isSorted}) {
+export default function Search({handleFilter,handleSearch,activeFilter,handleSort,isSorted,dict}) {
 
   //Debouncing logic
   let searchTimeout
@@ -41,31 +41,31 @@ export default function Search({handleFilter,handleSearch,activeFilter,handleSor
        <ul className="flex gap-7 text-md">
         <li className=" outline-neutral-400 outline-1">
           <CategoryButton 
-          handleFilter={handleFilter} filter="smartphones" activeFilter={activeFilter} ><FiSmartphone/>Smartphones</CategoryButton>
+          handleFilter={handleFilter} filter="smartphones" activeFilter={activeFilter} ><FiSmartphone/>{dict.filters.smartphones}</CategoryButton>
           </li>
         <li className="">
-          <CategoryButton handleFilter={handleFilter} filter="laptops" activeFilter={activeFilter} ><GiLaptop/>Laptops</CategoryButton>
+          <CategoryButton handleFilter={handleFilter} filter="laptops" activeFilter={activeFilter} ><GiLaptop/>{dict.filters.laptops}</CategoryButton>
           </li>
         <li className="">
-          <CategoryButton handleFilter={handleFilter} filter="fragrances" activeFilter={activeFilter}><GiFragrance/>Fragrances</CategoryButton>
+          <CategoryButton handleFilter={handleFilter} filter="fragrances" activeFilter={activeFilter}><GiFragrance/>{dict.filters.fragrance}</CategoryButton>
           </li>
         <li className="">
-          <CategoryButton handleFilter={handleFilter} filter="skincare" activeFilter={activeFilter}><IoBodyOutline/>Skincare</CategoryButton>
+          <CategoryButton handleFilter={handleFilter} filter="skincare" activeFilter={activeFilter}><IoBodyOutline/>{dict.filters.skincare}</CategoryButton>
           </li>
         <li className="">
-          <CategoryButton handleFilter={handleFilter} filter="groceries" activeFilter={activeFilter}><MdOutlineLocalGroceryStore/>Groceries</CategoryButton>
+          <CategoryButton handleFilter={handleFilter} filter="groceries" activeFilter={activeFilter}><MdOutlineLocalGroceryStore/>{dict.filters.groceries}</CategoryButton>
           </li>
 
       </ul>
       </form>
  
-      <DropDown handleSort={handleSort} isSorted={isSorted}/>
+      <DropDown handleSort={handleSort} isSorted={isSorted} dict={dict}/>
       
     <form action="/" className='text-xl flex items-center gap-3 ml-auto '>
         <input 
         onChange={e => handleChange(e.target.value)}
         className='px-2 py-1 outline-none rounded-lg block placeholder:text-gray-500 placeholder:text-md border border-black dark:bg-gray-400 dark:placeholder:text-gray-800'
-         type="text" name="search" id="" placeholder='Search All Products ..' />
+         type="text" name="search" id="" placeholder={`${dict.filters.searchPlaceholder}...`} />
         {/* <button type="submit" className="text-blue-900 text-3xl block">
             <FaSearch/>
         </button> */}

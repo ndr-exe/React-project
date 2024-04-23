@@ -25,8 +25,8 @@ async function fetchBlogs(){
 }
 
 
-export default async function Blogs() {
-  
+export default async function Blogs({dict}) {
+
 const blogs = await fetchBlogs()
 
   return (
@@ -43,6 +43,7 @@ const blogs = await fetchBlogs()
                         important = {important}
                         image = {image}
                         id={id}
+                        dict={dict}
                         />
                     )
                 })}

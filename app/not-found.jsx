@@ -12,7 +12,7 @@ export default function NotFound() {
             <h2 className="flex flex-col text-gray-400">
                 <span className="text-6xl text-black"><TfiFaceSad/><span className="text-xl">OOPS!</span> </span>
                <span className="text-xl">YOU&apos;RE BEYOND THE BORDERS.</span> 
-                <span className="text-2xl ">GO BACK TO <Link href="/home" className="text-orange-600 hover:text-orange-800" >HOMEPAGE</Link></span>
+                <span className="text-2xl ">GO BACK TO <Link href="/marketplace" className="text-orange-600 hover:text-orange-800" >HOMEPAGE</Link></span>
             </h2>
         </div>
 </div>

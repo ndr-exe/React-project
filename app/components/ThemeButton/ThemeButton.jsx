@@ -7,7 +7,7 @@ import { GiBleedingEye } from "react-icons/gi";
 
 
 
-export default function ThemeButton() {
+export default function ThemeButton({dict}) {
     const [isDarkMode, setIsDarkMode] = useState(false)
 
     useEffect(()=>{
@@ -21,7 +21,6 @@ export default function ThemeButton() {
             }
         }else {
             if(window.localStorage.getItem('darkMode') === "true"){
-                console.log(window.localStorage.getItem('darkMode') === true)
                 setIsDarkMode(true)
                 document.body.classList.add('dark')
             }else {
@@ -39,10 +38,9 @@ export default function ThemeButton() {
     }
 
 
-
   return (
         <button onClick={handleThemeChange} className="text-xl ">
-            {isDarkMode ? <span className="flex items-center text-yellow-400">LGHT<GiBleedingEye/></span> : <span className="flex items-center">DRK<CiDark/></span>}
+            {isDarkMode ? <span className="flex items-center text-yellow-400">{dict.options.light}<GiBleedingEye/></span> : <span className="flex items-center">{dict.options.dark}<CiDark/></span>}
          </button>
   )
 }

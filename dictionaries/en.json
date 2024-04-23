@@ -1,0 +1,77 @@
+{
+    "navbar": {
+      "marketplace": "Marketplace",
+      "blog":"Blog",
+      "contact": "Contact",
+      "profile": "Profile"
+    },
+
+    "options": {
+      "eng": "Eng",
+      "geo":"Geo",
+      "dark":"DRK",
+      "light":"LGHT",
+      "logout": "Log out"
+    },
+    "filters": {
+      "smartphones": "Smartphones",
+      "laptops":"Laptops",
+      "fragrance":"Fragrance",
+      "skincare":"Skincare",
+      "groceries": "Groceries",
+      "sort":"Sort by",
+      "prizeAsc":"Prize Ascending",
+      "prizeDesc":"Prize Descending",
+      "asc":"Price Asc.",
+      "desc":"Price Desc.",
+      "searchPlaceholder": "Search All Products"
+    },
+    "product": {
+      "addToCart": "Add to cart ",
+    "termsHeader" : "Terms and Conditions",
+      "terms": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in incidunt modi quas nostrum. Repellat assumenda expedita officiis, omnis sunt ratione possimus, exercitationem, optio veniam tempora eos maiores repudiandae magnam."
+    
+    },
+  
+    "footer": {
+      "about": "About",
+      "partners":"Partners",
+      "achievements":"Achievements",
+      "conditions":"Conditions",
+      "privacy": "Privacy",
+      "analytics":"Analytics",
+      "marketing":"Marketing",
+      "trade" : "2024 Solaris Group. All rights reserved"
+    },
+  
+    "blog": {
+      "readMore": "Read More..."
+    },
+  
+    "contact":{
+      "nameHolder": "NAME",
+      "mailHolder":"EMAIL",
+      "msgHolder":"MESSAGE",
+      "addres":"221B Baker Street",
+      "dontBeShy": "Don't Be Shy Hit Us Up!"
+    },
+  
+    "profile":{
+      "bio": "Bio",
+      "email":"Email",
+      "country":"Country",
+      "dateOfBirth":"Date of Birth",
+      "typeNewPass" : "Type new password",
+      "newPassHolder" : "New password...",
+      "confirmPass" : "Confirm password",
+      "confirmPassHolder" : "Confirm password...",
+      "save": "Save Changes"
+    },
+
+
+    "login":{
+      "usernameHolder": "Username",
+      "passwordHolder":"Password",
+      "login":"Login"
+    }
+  }

@@ -6,7 +6,7 @@ import Search from "./Search";
 import Item from "./Item";
 
 
-export default function ItemsGrid() {
+export default function ItemsGrid({dict}) {
     const [products,setProducts] = useState([])
     const [initialProducts,setInitialProducts] = useState([])
     const [activeFilter,setActiveFilter] = useState(null)
@@ -101,6 +101,7 @@ export default function ItemsGrid() {
         handleSearch={handleSearch}
         handleSort={handleSort}
         isSorted={isSorted}
+        dict={dict}
         />
     {products.length || initialProducts.length ? (
         <div className='grid grid-cols-[repeat(4,250px)] auto-rows-[320px] overflow-y-scroll gap-12 justify-center'>
@@ -116,6 +117,7 @@ export default function ItemsGrid() {
                     description={description.slice(0,20).concat("...")}
                     key={id}
                     id={id}
+                     dict={dict}
                     />
                 )
             })}              

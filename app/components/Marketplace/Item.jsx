@@ -1,14 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 
-export default function Item({title,description,price,brand,category,thumbnail,id}) {
+export default function Item({title,description,price,brand,category,thumbnail,id,dict}) {
 
     // change title style and structure
     let titleSize = 'text-lg'
     if(title.length > 13) titleSize = 'text-sm'
 
   return (
-    <Link href={`/home/${id}`} className="">
+    <Link href={`marketplace/${id}`} className="">
         <div className="w-full h-full group shadow-sm border border-gray-300 rounded-xl overflow-hidden">
             <div className=""> 
                 <Image src={thumbnail} alt="" width={250} height={150} className="w-[250px] h-[150px] mx-auto"/>
@@ -20,7 +20,7 @@ export default function Item({title,description,price,brand,category,thumbnail,i
                 </div>
                 <div>
                 <p className="text-gray-800 text-md font-bold mb-1 dark:text-gray-100">${price}</p>
-                <button className="bg-transparent relative pl-3 pr-2 before:content-[''] before:h-full before:w-full before:absolute before:-left-[95%] hover:before:translate-x-[95%] before:duration-300 overflow-hidden before:bg-orange-600 before:-z-10 dark:text-gray-100"><span className="z-20 bg-transparent">Add to cart</span></button>
+                <button className="bg-transparent relative pl-3 pr-2 before:content-[''] before:h-full before:w-full before:absolute before:-left-[95%] hover:before:translate-x-[95%] before:duration-300 overflow-hidden before:bg-orange-600 before:-z-10 dark:text-gray-100"><span className="z-20 bg-transparent">{dict.product.addToCart}</span></button>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
 import { useEffect,useState } from "react"
 import Image from "next/image"
 
-export default function ProdcutPage({params}) {
+export default function ProdcutPage({params,dict}) {
     const [product,setProduct] = useState(null)
 
     useEffect(()=>{
@@ -33,16 +33,15 @@ export default function ProdcutPage({params}) {
                     </div>
                     <div className="mb-6">
                     <p className="text-3xl text-gray-900 font-bold mb-5 dark:text-gray-300 ">${product.price}</p>
-                    <button className="text-white text-2xl py-3 rounded-xl bg-orange-600 w-full">Add to cart</button>
+                    <button className="text-white text-2xl py-3 rounded-xl bg-orange-600 w-full">{dict.product.addToCart}</button>
                     </div>
                 </div>
               
             </div>
 
             <p className="mt-12 text-gray-400 italic"> 
-                <span className="text-gray-500 not-italic">*Terms and Conditions : </span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in incidunt modi quas nostrum. 
-                Repellat assumenda expedita officiis, omnis sunt ratione possimus, exercitationem, optio veniam tempora eos maiores repudiandae magnam.
+                <span className="text-gray-500 not-italic">*{dict.product.termsHeader} : </span>
+                {dict.product.terms}
             </p>
     </div>
     ) : <div className="h-full w-full grid place-content-center">Loading...</div>
