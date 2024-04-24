@@ -4,36 +4,38 @@ import { useState,useEffect } from "react"
 
 import { CiDark } from "react-icons/ci";
 import { GiBleedingEye } from "react-icons/gi";
+import { setDarkMode, setThemeTheme } from "../funcs";
 
 
 
-export default function ThemeButton({dict}) {
-    const [isDarkMode, setIsDarkMode] = useState(false)
+
+export default function ThemeButton({dict,theme}) {
+    const [isDarkMode, setIsDarkMode] = useState(theme)
+    
+    
+    // console.log(theme, "themeeeee")
 
     useEffect(()=>{
-        if(window.localStorage.getItem('darkMode') === null){
+
+        //USER THAT HASN'T CHANED THEME YET USE SYSTEM SETTINGS
+        if(document.body.classList.contains('system')){
+
             if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-                document.body.classList.add('dark')
+                console.log("you're system is set to  *DARK MODE*")
+                document.documentElement.classList.add('dark')
                 setIsDarkMode(true)
-                return
-            }else {
-                return
-            }
-        }else {
-            if(window.localStorage.getItem('darkMode') === "true"){
-                setIsDarkMode(true)
-                document.body.classList.add('dark')
-            }else {
-                return
+                return       
             }
         }
+        
+        },[])
 
 
-    },[])
-
-    function handleThemeChange (){
-        window.localStorage.setItem('darkMode',!isDarkMode)
-        document.body.classList.toggle('dark')
+     async function handleThemeChange (){
+        if(document.body.classList.contains('system')) document.body.classList.remove('system')
+        console.log(document)
+        document.documentElement.classList.toggle('dark')
+        await setDarkMode('darkMode',!isDarkMode)
         setIsDarkMode(prev => !prev)
     }
 

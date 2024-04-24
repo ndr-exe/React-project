@@ -3,7 +3,9 @@
 import ThemeButton from '../../components/ThemeButton/ThemeButton'
 import LangBtn from '../../components/LangBtn'
 import { getDictionary } from '../dictionaries'
+
 import Link from 'next/link'
+import ThemeBtnWrapper from '@/app/components/ThemeButton/ThemeBtnWrapper'
 
 
  //USING ROUTE HANDLERS FOR LOGIN / LOGOUT LOGIC INSTEAD OF SERVER ACTIONS
@@ -49,7 +51,8 @@ import Link from 'next/link'
       </div>
       <div className='absolute top-4 right-5 flex gap-4'>
         <LangBtn/>
-        <ThemeButton dict={dict}/>
+        <ThemeBtnWrapper dict={dict}/>
+        {/* <ThemeButton dict={dict}/> */}
       </div>
       <form className="flex flex-col border border-gray-400 px-4 py-3 rounded-md relative" action='api/login' method='post'  >
         
