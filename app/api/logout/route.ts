@@ -3,5 +3,5 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     cookies().delete('token')
-    return NextResponse.redirect(new URL('/marketplace',request.url))
+    return NextResponse.redirect(new URL('/login',request.url))
   }

@@ -1,23 +1,17 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation';
-import { useTransition } from 'react';
-import { handleLangChange } from './funcs';
+import { useRouter } from 'next/navigation';
+import { handleLangChange } from '../funcs';
 
 
-export default function LocalSwitcher() {
+export default function LocalSwitcher({lang}: {lang: string}) {
 
-  const [isPending, startTransition] = useTransition();
   const router = useRouter();
-  const path = usePathname()
-  const start = path.slice(1,3)
-  const end = path.slice(4)
-
 
   let activeEng = ''
   let activeGe = ''
 
-  if(start === "en") {
+  if(lang === "en") {
     activeEng = "bg-gray-400/70 rounded-xl"
     activeGe = "text-opacity-50 opacity-50"
   }else{
@@ -26,12 +20,8 @@ export default function LocalSwitcher() {
   }
 
   function handleClick(lang: string) {
-    const nextLocale = lang
     handleLangChange(lang)
-    startTransition(() => {
-        router.replace(`/${nextLocale}/${end}`);
-      });
-        
+    router.refresh()
   }
 
   return (

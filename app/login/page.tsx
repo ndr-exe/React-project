@@ -1,6 +1,7 @@
-import LangBtn from '../../components/LangBtn'
-import ThemeBtnWrapper from '../../components/ThemeButton/ThemeBtnWrapper'
+import { cookies } from 'next/headers'
+import ThemeBtnWrapper from '../components/ThemeButton/ThemeBtnWrapper'
 import { getDictionary } from '../dictionaries'
+import LangBtnWrapper from '../components/LangBtn/LangBtnWrapper'
 
 
 
@@ -32,9 +33,13 @@ import { getDictionary } from '../dictionaries'
  
   // }
 
-  export default async function Home({params:{lang}} : {params: {lang: string}}) {
+ 
+export default async function Home() {
 
-  const dict = await getDictionary(lang)
+
+const lang = cookies().get('locale')?.value
+
+  const dict = await getDictionary(lang as string)
 
   return (
     
@@ -46,7 +51,7 @@ import { getDictionary } from '../dictionaries'
        <p><span className='text-indigo-400'>user:</span> aeatockj <span className='text-indigo-400'>pass:</span> szWAG6hc</p>
       </div>
       <div className='absolute top-4 right-5 flex gap-4'>
-        <LangBtn/>
+        <LangBtnWrapper/>
         <ThemeBtnWrapper dict={dict}/>
       </div>
       <form className="flex flex-col border border-gray-400 px-4 py-3 rounded-md relative" action='api/login' method='post'  >

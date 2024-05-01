@@ -17,7 +17,6 @@ export default function ThemeButton({dict,theme} : {dict: DictType, theme: boole
         if(document.body.classList.contains('system')){
 
             if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-                console.log("you're system is set to  *DARK MODE*")
                 document.documentElement.classList.add('dark')
                 setIsDarkMode(true)
                 return       
@@ -29,7 +28,6 @@ export default function ThemeButton({dict,theme} : {dict: DictType, theme: boole
 
      async function handleThemeChange (){
         if(document.body.classList.contains('system')) document.body.classList.remove('system')
-        console.log(document)
         document.documentElement.classList.toggle('dark')
         await setDarkMode('darkMode',!isDarkMode)
         setIsDarkMode(prev => !prev)

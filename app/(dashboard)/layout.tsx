@@ -1,7 +1,8 @@
 // COMPONENT IMPORTS
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 import { getDictionary } from "../dictionaries";
+import { cookies } from "next/headers";
 
 export const metadata = {
   title: "FastLag inc.",
@@ -10,11 +11,12 @@ export const metadata = {
 
 type PropsType = {
   children: React.ReactNode,
-  params: {lang: string}
 }
 
-export default async function RootLayout({children, params:{lang}}: PropsType) {
-  const dict = await getDictionary(lang)
+export default async function RootLayout({children}: PropsType) {
+  
+  const lang = cookies().get('locale')?.value
+  const dict = await getDictionary(lang as string)
 
 
   return (

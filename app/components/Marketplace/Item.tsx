@@ -2,11 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 
-export default function Item({title,description,price,brand,category,thumbnail,id,dict} : ItemPorpsType) {
-
-    // change title style and structure
-    let titleSize = 'text-lg'
-    if((title).length > 13) titleSize = 'text-sm'
+export default function Item({title,price,brand,thumbnail,id,dict} : ItemPorpsType) {
 
   return (
     <Link href={`marketplace/${id}`} className="">

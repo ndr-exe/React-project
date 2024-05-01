@@ -3,7 +3,7 @@
 import { useEffect,useState } from "react"
 import Image from "next/image"
 
-export default function ProdcutPage({params,dict}: {params: {id: number, lang: string, product: string}, dict: DictType}) {
+export default function ProdcutPage({params,dict}: {params: {product: string}, dict: DictType}) {
     const [product,setProduct] = useState<ProductType | null>(null)
 
     useEffect(()=>{

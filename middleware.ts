@@ -1,81 +1,66 @@
 import { NextResponse,NextRequest} from 'next/server'
 import {cookies} from 'next/headers'
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
+
 
 
 let locales = ['en','ge']
+
  
-function getLocale() { 
-    let locale: (RequestCookie | string | undefined) 
-    locale = cookies().get('locale')
-    if (locale) return locale.value
-    return locale = 'en'
-}
+export async function middleware(request: NextRequest) {
 
-
-export function middleware(request: NextRequest) {
-  
-  let { pathname } = request.nextUrl
+  let isLogged = cookies().get('token') ? true : false
+  let {pathname} = request.nextUrl
   let pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
-  let isLogged = cookies().get('token') ? true : false
-  const locale = getLocale()
+  let middlewareResponse
 
-  
-  if(pathname.indexOf('logout') !== -1){
-    return NextResponse.redirect(new URL(`${locale}/api/logout`,request.url))
+  if(!cookies().get('locale')) {
+    request.nextUrl.pathname = `${pathname}`
+      middlewareResponse = NextResponse.redirect(request.nextUrl)
+      middlewareResponse.cookies.set('locale', 'en');
+      return middlewareResponse
   }
 
-  if(!isLogged && pathname.indexOf('login') === -1){
-
-      pathname = '/login'
-      pathnameHasLocale = false
+  if(pathnameHasLocale){
+      const locale = pathname.slice(1,3)
+      request.nextUrl.pathname = `${pathname.slice(3)}`
+      middlewareResponse = NextResponse.redirect(request.nextUrl)
+      middlewareResponse.cookies.set('locale', `${locale}`);
+      return middlewareResponse
   }
 
-  else if(isLogged && pathname.indexOf('login') !== -1){
-
-
-    pathname = '/marketplace'
-    pathnameHasLocale = false
+  if(!isLogged && pathname.startsWith('/login')){
+    return  
   }
 
-  else if(isLogged && pathname === '/' || isLogged && pathname === `/${locale}`) {
-
-
-    pathname = `/marketplace`
-    pathnameHasLocale = false
+  if(!isLogged && !(pathname.startsWith('/login'))){
+    request.nextUrl.pathname = `/login`
+    middlewareResponse = NextResponse.redirect(request.nextUrl)
+    return middlewareResponse  
   }
 
-  
-  if (pathnameHasLocale) return
- 
-  // Redirect if there is no locale
-  request.nextUrl.pathname = `/${locale}${pathname}`
-  // e.g. incoming request is /products
-  // The new URL is now /en-US/products
-  return NextResponse.redirect(request.nextUrl)
+  if(isLogged && pathname.startsWith('/login')){
+    request.nextUrl.pathname = `/marketplace`
+    middlewareResponse = NextResponse.redirect(request.nextUrl)
+    return middlewareResponse  
+  }
+
+  if(isLogged && (pathname === '/' || pathname === '/en' || pathname === '/ge')){
+    request.nextUrl.pathname = `/marketplace`
+    middlewareResponse = NextResponse.redirect(request.nextUrl)
+    return middlewareResponse  
+  }
+  return
 }
  
 export const config = {
   matcher: [
     // Skip all internal paths (_next)
-    '/((?!_next|en/api|ge/api).*)',
+    '/((?!_next|api).*)',
     // '/((?!_next).*)',
     // Optional: only run on root (/) URL
     // '/'
   ],
 }
-
-// export const config = {
-//   matcher: [
-//     /*
-//      * Match all request paths except for the ones starting with:
-//      * - api (API routes)
-//      * - static (static files)
-//      * - favicon.ico (favicon file)
-//      */
-//     '/((?!api|static|favicon.ico).*)',
-//   ],
-// }
 

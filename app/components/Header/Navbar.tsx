@@ -3,9 +3,10 @@ import Link from "next/link"
 // import { logout } from '../funcs'
 // import { useEffect, useState } from 'react'
 // import ThemeButton from '../ThemeButton/ThemeButton'
-import LangBtn from '../LangBtn'
+
 import ThemeBtnWrapper from '../ThemeButton/ThemeBtnWrapper'
 import Navigation from './Navigation'
+import LangBtnWrapper from "../LangBtn/LangBtnWrapper"
 
 
 export default function Navbar({dict}: {dict: DictType}) {
@@ -25,7 +26,7 @@ export default function Navbar({dict}: {dict: DictType}) {
             </ul> */}
             <ul className='flex ml-auto items-center'>
                 <li>
-                <LangBtn/>
+                <LangBtnWrapper/>
                 </li>
             <li className='pr-4'>
                 <ThemeBtnWrapper dict={dict}/>
@@ -37,7 +38,7 @@ export default function Navbar({dict}: {dict: DictType}) {
                     router.refresh()
                     }}>{dict.options.logout}
                  </button> */}
-                 <Link href="/logout" className='hover:text-orange-600 font-bold dark:text-gray-100'>{dict.options.logout}</Link>
+                 <Link href="/api/logout" className='hover:text-orange-600 font-bold dark:text-gray-100'>{dict.options.logout}</Link>
             </li>
             
             </ul>

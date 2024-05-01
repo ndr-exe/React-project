@@ -1,4 +1,4 @@
-import BlogPage from "../../../../components/Blogs/BlogPage"
+import BlogPage from "../../../components/Blogs/BlogPage"
 
 
 export async function generateStaticParams(){
@@ -6,11 +6,10 @@ export async function generateStaticParams(){
     const data = await res.json()
   
     return data.posts.map((post: EditedBlogType) => ({
-      id: post.id.toString(),
-      lang: 'en'
+      id: post.id.toString()
     }))
   }
 
-export default function page({params}: {params:{lang: string, id: number}}) {
+export default function page({params}: {params:{id: number}}) {
     return <BlogPage params={params}/>
 }
