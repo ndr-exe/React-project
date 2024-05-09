@@ -27,4 +27,3 @@ export async function getThemeInfo(){
   return theme.value === 'true' ? true : false
 
 }
-
