@@ -11,7 +11,7 @@ export interface User {
 
 export async function getUsers() {
     // const response = await fetch(BASE_URL + '/api/get-users',{ next: { tags: ['users'] }});
-    const response = await fetch(BASE_URL + '/api/get-users', {cache: 'no-store'});
+    const response = await fetch(BASE_URL + '/api/get-users');
     // const response = await fetch(BASE_URL + '/api/get-users');
     const { users } = await response.json();
   

@@ -2,6 +2,7 @@ import { getUsers, User } from "../../api";
 import AddUserBtn from "../components/Users/AddUserBtn";
 import DeleteUser from "../components/Users/DeleteUser";
 import UpdateUserBtn from "../components/Users/UpdateUserBtn"
+export const dynamic = 'force-dynamic'
 
 
 export default async function page() {
