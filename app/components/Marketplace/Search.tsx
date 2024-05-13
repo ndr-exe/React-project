@@ -10,7 +10,10 @@ import { IoBodyOutline } from "react-icons/io5";
 
 import CategoryButton from "./CategoryButton";
 import DropDown from "./DropDown";
+
 import { FormEvent } from "react";
+import Cart from "./Cart";
+import dynamic from "next/dynamic";
 
 type SearchProps = {
   handleFilter: Function,
@@ -18,11 +21,13 @@ type SearchProps = {
   handleSort: Function,
   dict: DictType,
   isSorted: boolean,
-  activeFilter: string
+  activeFilter: string,
+  cartProducts: number
 }
+const NoSSR = dynamic(() => import('../../components/Marketplace/Cart'), { ssr: false })
 
 
-export default function Search({handleFilter,handleSearch,activeFilter,handleSort,isSorted,dict}: SearchProps) {
+export default function Search({handleFilter,handleSearch,activeFilter,handleSort,isSorted,dict,cartProducts}: SearchProps) {
 
   //Debouncing logic
   let searchTimeout: ReturnType<typeof setTimeout> | undefined
@@ -46,7 +51,7 @@ export default function Search({handleFilter,handleSearch,activeFilter,handleSor
   return (
     <div className='flex items-center gap-5 px-8 '>
       <form onSubmit={(e)=>handleSubmit(e)} >
-       <ul className="flex gap-7 text-md">
+       <ul className="flex gap-5 text-md">
         <li className=" outline-neutral-400 outline-1">
           <CategoryButton 
           handleFilter={handleFilter} filter="smartphones" activeFilter={activeFilter} ><FiSmartphone/>{dict.filters.smartphones}</CategoryButton>
@@ -69,15 +74,16 @@ export default function Search({handleFilter,handleSearch,activeFilter,handleSor
  
       <DropDown handleSort={handleSort} isSorted={isSorted} dict={dict}/>
       
-    <form action="/" className='text-xl flex items-center gap-3 ml-auto '>
+    <form action="/" className='text-xl flex items-center gap-2 ml-auto '>
         <input 
         onChange={e => handleChange(e.target.value)}
-        className='px-2 py-1 outline-none rounded-lg block placeholder:text-gray-500 placeholder:text-md border border-black dark:bg-gray-400 dark:placeholder:text-gray-800'
+        className='px-1 py-1 outline-none rounded-xl block placeholder:text-gray-500 placeholder:text-md border border-black dark:bg-gray-400 dark:placeholder:text-gray-800 placeholder:text-lg'
          type="text" name="search" id="" placeholder={`${dict.filters.searchPlaceholder}...`} />
         {/* <button type="submit" className="text-blue-900 text-3xl block">
             <FaSearch/>
         </button> */}
     </form>
+    <NoSSR cartProducts={cartProducts}/>
 </div>
   )
 }

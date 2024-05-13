@@ -24,7 +24,8 @@ type ItemPorpsType = {
     category: string,
     thumbnail: string,
     id: string,
-    dict: DictType
+    dict: DictType,
+    handleClick: Function
 }
 
 interface RawBlogType {

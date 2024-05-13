@@ -1,9 +1,11 @@
 'use client'
-import { useState,useEffect } from "react";
+import { useState,useEffect, useReducer } from "react";
 
 //COMPONENT IMPORTS
 import Search from "./Search";
 import Item from "./Item";
+import { useLocalStorage } from "../../../hooks";
+import {ProductPayload,InitialProducts,reducer,REDUCER_ACTION_TYPE} from '../../../reducer'
 
 
 export default function ItemsGrid({dict} : {dict: DictType}) {
@@ -11,6 +13,34 @@ export default function ItemsGrid({dict} : {dict: DictType}) {
     const [initialProducts,setInitialProducts] = useState([])
     const [activeFilter,setActiveFilter] = useState<string | null>(null)
     const [isSorted,setIsSorted] = useState<boolean | string>(false)
+
+
+    function checkLocalStorage(){
+        if(typeof window === 'undefined') return []
+        if(!window.localStorage.getItem('products')) return []
+        const products = JSON.parse(window.localStorage.getItem('products')as string)
+        return products
+    }
+    const initialState: InitialProducts[] = checkLocalStorage()
+
+    const [selectedProducts,dispatch] = useReducer(reducer,initialState)
+
+
+
+    const [updateItems,resetItems] = useLocalStorage()
+
+    useEffect(()=>{
+        updateItems(selectedProducts)
+    }
+    ,[selectedProducts])
+
+    function handleClick(obj: ProductPayload){
+        dispatch({
+            type: REDUCER_ACTION_TYPE.INCREMENT,
+            payload: obj })
+      }
+      
+   
 
     // fetch PRODUCTS
     useEffect(()=>{
@@ -46,7 +76,6 @@ export default function ItemsGrid({dict} : {dict: DictType}) {
         setProducts(filteredProducts)
 
     }
-
 
 
     //Searching through *ALL* items
@@ -91,9 +120,11 @@ export default function ItemsGrid({dict} : {dict: DictType}) {
        setProducts(sortedProducts)
     }
 
+    
+
 
   return (
-    <div className='col-span-9 h-full grid grid-cols-1 grid-rows-[110px,1fr]'>
+        <div className='col-span-9 h-full grid grid-cols-1 grid-rows-[110px,1fr]'>
 
         <Search 
         activeFilter={activeFilter as string}
@@ -102,7 +133,12 @@ export default function ItemsGrid({dict} : {dict: DictType}) {
         handleSort={handleSort}
         isSorted={isSorted as boolean}
         dict={dict}
+        cartProducts = {selectedProducts.reduce((acc: number,curr)=>{
+            if(typeof curr.count !== 'undefined') return acc + curr.count
+            return 0
+        },0)}
         />
+
     {products.length || initialProducts.length ? (
         <div className='grid grid-cols-[repeat(4,250px)] auto-rows-[320px] overflow-y-scroll gap-12 justify-center'>
             {products.map(product => {
@@ -117,7 +153,8 @@ export default function ItemsGrid({dict} : {dict: DictType}) {
                     description={description.slice(0,20).concat("...")}
                     key={id}
                     id={id.toString()}
-                     dict={dict}
+                    dict={dict}
+                    handleClick={handleClick}
                     />
                 )
             })}              

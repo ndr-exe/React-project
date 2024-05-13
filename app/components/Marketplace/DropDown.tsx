@@ -38,7 +38,7 @@ className={"absolute w-full h-screen right-0 top-0 " + activeClass} >
 
 
 <div className="relative inline-block text-left text-black ">
-  <div className="w-[150px]">
+  <div className="w-[120px]">
     <button 
     onClick={handleClick} 
     className={"inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold shadow-md" + activeSortBtn}
