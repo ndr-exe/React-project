@@ -4,43 +4,49 @@ import { useState,useEffect, useReducer } from "react";
 //COMPONENT IMPORTS
 import Search from "./Search";
 import Item from "./Item";
-import { useLocalStorage } from "../../../hooks";
-import {ProductPayload,InitialProducts,reducer,REDUCER_ACTION_TYPE} from '../../../reducer'
+import { useAppInfo } from "../Context-Provaiders/AppProvider";
+import { getCartProducts } from "../../../api";
+import { updateCart } from "../funcs";
+import { useRouter } from "next/navigation";
+export const dynamic = 'force-dynamic'
 
 
-export default function ItemsGrid({dict} : {dict: DictType}) {
+
+
+
+export default function ItemsGrid({dict,cart} : {dict: DictType,cart: CartProducts}) {
     const [products,setProducts] = useState<ProductType[]>([])
     const [initialProducts,setInitialProducts] = useState([])
     const [activeFilter,setActiveFilter] = useState<string | null>(null)
     const [isSorted,setIsSorted] = useState<boolean | string>(false)
+    const [cartState,setCartState] = useState<CartProducts>(()=> {
+        if(cart.empty) return {0:0}
+        return cart
+    })
 
+const router = useRouter()
+     
 
-    function checkLocalStorage(){
-        if(typeof window === 'undefined') return []
-        if(!window.localStorage.getItem('products')) return []
-        const products = JSON.parse(window.localStorage.getItem('products')as string)
-        return products
-    }
-    const initialState: InitialProducts[] = checkLocalStorage()
+    const cartContext = useAppInfo()
 
-    const [selectedProducts,dispatch] = useReducer(reducer,initialState)
+    function handleClick(id:number){
 
+        cartContext?.setProductsCountInCart((prev) => prev + 1)
 
-
-    const [updateItems,resetItems] = useLocalStorage()
-
-    useEffect(()=>{
-        updateItems(selectedProducts)
-    }
-    ,[selectedProducts])
-
-    function handleClick(obj: ProductPayload){
-        dispatch({
-            type: REDUCER_ACTION_TYPE.INCREMENT,
-            payload: obj })
+        if(typeof cartState[id] === 'undefined'){
+            const updatedCartState = {...cartState, [id]: 1}
+            setCartState(updatedCartState)
+            updateCart(updatedCartState)
+            return
+        }
+        if(typeof cartState[id] !== 'undefined'){
+            const updatedCartState = {...cartState, [id]: cartState[id] + 1}
+            setCartState(updatedCartState)
+            updateCart(updatedCartState)
+            return
+        }      
       }
-      
-   
+
 
     // fetch PRODUCTS
     useEffect(()=>{
@@ -52,7 +58,6 @@ export default function ItemsGrid({dict} : {dict: DictType}) {
         }
         getProducts()
     },[])
-
 
 
     // Applying FILTERS
@@ -133,10 +138,6 @@ export default function ItemsGrid({dict} : {dict: DictType}) {
         handleSort={handleSort}
         isSorted={isSorted as boolean}
         dict={dict}
-        cartProducts = {selectedProducts.reduce((acc: number,curr)=>{
-            if(typeof curr.count !== 'undefined') return acc + curr.count
-            return 0
-        },0)}
         />
 
     {products.length || initialProducts.length ? (

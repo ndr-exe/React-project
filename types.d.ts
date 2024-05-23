@@ -2,7 +2,7 @@ type DictType = {
         [key: string]: {[key: string]: string}
 }
 
-type ProductType = {
+interface ProductType {
     id:                 number,
     title:              string,
     description:        string,
@@ -16,6 +16,17 @@ type ProductType = {
     images:             string[],
 }
 
+interface CartProductType extends ProductType  {
+    count: number,
+}
+
+
+
+type CartProducts = {
+    [key: string]: number
+}
+
+
 type ItemPorpsType = {
     title: string,
     description: string,
@@ -25,7 +36,7 @@ type ItemPorpsType = {
     thumbnail: string,
     id: string,
     dict: DictType,
-    handleClick: Function
+    handleClick: (number)=>void
 }
 
 interface RawBlogType {

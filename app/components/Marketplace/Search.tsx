@@ -22,12 +22,9 @@ type SearchProps = {
   dict: DictType,
   isSorted: boolean,
   activeFilter: string,
-  cartProducts: number
 }
-const NoSSR = dynamic(() => import('../../components/Marketplace/Cart'), { ssr: false })
 
-
-export default function Search({handleFilter,handleSearch,activeFilter,handleSort,isSorted,dict,cartProducts}: SearchProps) {
+export default function Search({handleFilter,handleSearch,activeFilter,handleSort,isSorted,dict}: SearchProps) {
 
   //Debouncing logic
   let searchTimeout: ReturnType<typeof setTimeout> | undefined
@@ -49,7 +46,7 @@ export default function Search({handleFilter,handleSearch,activeFilter,handleSor
 
 
   return (
-    <div className='flex items-center gap-5 px-8 '>
+    <div className='flex items-center gap-8 px-8 justify-center'>
       <form onSubmit={(e)=>handleSubmit(e)} >
        <ul className="flex gap-5 text-md">
         <li className=" outline-neutral-400 outline-1">
@@ -74,7 +71,7 @@ export default function Search({handleFilter,handleSearch,activeFilter,handleSor
  
       <DropDown handleSort={handleSort} isSorted={isSorted} dict={dict}/>
       
-    <form action="/" className='text-xl flex items-center gap-2 ml-auto '>
+    <form action="/" className='text-xl flex items-center gap-2'>
         <input 
         onChange={e => handleChange(e.target.value)}
         className='px-1 py-1 outline-none rounded-xl block placeholder:text-gray-500 placeholder:text-md border border-black dark:bg-gray-400 dark:placeholder:text-gray-800 placeholder:text-lg'
@@ -83,7 +80,6 @@ export default function Search({handleFilter,handleSearch,activeFilter,handleSor
             <FaSearch/>
         </button> */}
     </form>
-    <NoSSR cartProducts={cartProducts}/>
 </div>
   )
 }

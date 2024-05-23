@@ -3,6 +3,9 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { getDictionary } from "../dictionaries";
 import { cookies } from "next/headers";
+import AppProvider from "../components/Context-Provaiders/AppProvider";
+import { getCartProducts } from "../../api";
+
 
 export const metadata = {
   title: "FastLag inc.",
@@ -18,8 +21,11 @@ export default async function RootLayout({children}: PropsType) {
   const lang = cookies().get('locale')?.value
   const dict = await getDictionary(lang as string)
 
+  const cartProducts = await getCartProducts()
+  
 
   return (
+      <AppProvider cartProducts={cartProducts} >
       <div className="h-lvh text-black">
         <div className="w-full h-full max-w-screen-xl mx-auto grid grid-cols-1 grid-rows-12">
         <Header dict={dict}/>
@@ -27,5 +33,6 @@ export default async function RootLayout({children}: PropsType) {
         <Footer dict={dict}/>
         </div>
       </div>
+      </AppProvider>
   );
 }

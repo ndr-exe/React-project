@@ -7,6 +7,7 @@ import Link from "next/link"
 import ThemeBtnWrapper from '../ThemeButton/ThemeBtnWrapper'
 import Navigation from './Navigation'
 import LangBtnWrapper from "../LangBtn/LangBtnWrapper"
+import Cart from "../Marketplace/Cart"
 
 
 export default function Navbar({dict}: {dict: DictType}) {
@@ -25,6 +26,9 @@ export default function Navbar({dict}: {dict: DictType}) {
                 <li className='pr-6 flex items-center text-orange-600'><a href="/">Sign up</a></li>
             </ul> */}
             <ul className='flex ml-auto items-center'>
+                <li className="flex items-center mt-3">
+                    <Cart/>
+                </li>
                 <li>
                 <LangBtnWrapper/>
                 </li>

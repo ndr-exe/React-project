@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.NODE_ENV === 'development' ?  "http://localhost:3000" : "https://localhost999.vercel.app"
+export const BASE_URL = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : "https://localhost999.vercel.app"  
 
 
 export interface User {
@@ -51,3 +51,11 @@ export async function deleteUser(id: number) {
   }
 
 
+
+export async function getCartProducts(){
+  const response = await fetch(`${BASE_URL}/api/get-cart-products`,{cache: 'no-store'})
+  const data =  await response.json()
+  const cart: CartProducts = data.cartProducts.rows[0].cart_products
+  return cart
+
+}
