@@ -42,7 +42,8 @@ export default function Navbar({dict}: {dict: DictType}) {
                     router.refresh()
                     }}>{dict.options.logout}
                  </button> */}
-                 <Link href="/api/logout" className='hover:text-orange-600 font-bold dark:text-gray-100'>{dict.options.logout}</Link>
+                 <a href="/api/auth/login" className='hover:text-orange-600 font-bold dark:text-gray-100'>login</a>
+                 <a href="/api/auth/logout" className='hover:text-orange-600 font-bold dark:text-gray-100'>{dict.options.logout}</a>
             </li>
             
             </ul>
