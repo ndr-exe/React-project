@@ -8,7 +8,7 @@ let locales = ['en','ge']
  
 export async function middleware(request: NextRequest) {
 
-  let isLogged = cookies().get('token') ? true : false
+  // let isLogged = cookies().get('token') ? true : false
   let {pathname} = request.nextUrl
   let pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
@@ -30,23 +30,25 @@ export async function middleware(request: NextRequest) {
       return middlewareResponse
   }
 
-  if(!isLogged && pathname.startsWith('/login')){
-    return  
-  }
+  // if(!isLogged && pathname.startsWith('/login')){
+  //   return  
+  // }
 
-  if(!isLogged && !(pathname.startsWith('/login'))){
-    request.nextUrl.pathname = `/login`
-    middlewareResponse = NextResponse.redirect(request.nextUrl)
-    return middlewareResponse  
-  }
+  // if(!isLogged && !(pathname.startsWith('/login'))){
+  //   request.nextUrl.pathname = `/login`
+  //   middlewareResponse = NextResponse.redirect(request.nextUrl)
+  //   return middlewareResponse  
+  // }
 
-  if(isLogged && pathname.startsWith('/login')){
-    request.nextUrl.pathname = `/marketplace`
-    middlewareResponse = NextResponse.redirect(request.nextUrl)
-    return middlewareResponse  
-  }
+  // if(isLogged && pathname.startsWith('/login')){
+  //   request.nextUrl.pathname = `/marketplace`
+  //   middlewareResponse = NextResponse.redirect(request.nextUrl)
+  //   return middlewareResponse  
+  // }
 
-  if(isLogged && (pathname === '/' || pathname === '/en' || pathname === '/ge')){
+  if(
+    // isLogged &&
+     (pathname === '/' || pathname === '/en' || pathname === '/ge')){
     request.nextUrl.pathname = `/marketplace`
     middlewareResponse = NextResponse.redirect(request.nextUrl)
     return middlewareResponse  
