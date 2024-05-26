@@ -11,7 +11,8 @@
       "geo":"Geo",
       "dark":"DRK",
       "light":"LGHT",
-      "logout": "Log out"
+      "logout": "Log out",
+      "login": "Log in"
     },
     "filters": {
       "smartphones": "Smartphones",

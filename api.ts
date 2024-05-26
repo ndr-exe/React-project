@@ -1,3 +1,4 @@
+import { getSession } from "@auth0/nextjs-auth0";
 import { revalidatePath } from "next/cache";
 
 export const BASE_URL = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : "https://localhost999.vercel.app"  
@@ -54,11 +55,16 @@ export async function deleteUser(id: number) {
 
 
 export async function getCartProducts(){
-  const response = await fetch(`${BASE_URL}/api/get-cart-products`,{cache: 'no-store'})
-  const data =  await response.json()
-  const cart: CartProducts = data.cartProducts.rows[0].cart_products
-  return cart
-
+  const session = await getSession()
+  let sub
+  if(!session?.user) return {}
+  
+  if(session && session.user) sub = session.user.sub
+    const response = await fetch(`${BASE_URL}/api/get-cart-products`,{cache: 'no-store', headers: {Authorization: sub }})
+    const data =  await response.json()
+    const cart: CartProducts = data.cartProducts.rows[0].customer_cart
+    if(cart.empty) return {}
+    return cart
 }
 
 

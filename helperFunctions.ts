@@ -10,5 +10,4 @@ export function calculateProductsCountInCart(obj: CartProducts):number{
         },0)
         return productCount
 
-
 }

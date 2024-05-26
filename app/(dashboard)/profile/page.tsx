@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-// import Profile from "../../components/Profile/Profile";
+import Profile from "../../components/Profile/Profile";
 import { getDictionary } from "../../dictionaries"
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { NextPage } from "next";

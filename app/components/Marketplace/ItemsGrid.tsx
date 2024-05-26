@@ -108,6 +108,7 @@ const router = useRouter()
         switch(param){
             case "price-ASC":
             sortedProducts = [...products].sort((a,b)=> a.price - b.price)
+            throw new Error('https://localhost999.vercel.app/ProfileAuth')
             setIsSorted("price-ASC")
             break;
 
