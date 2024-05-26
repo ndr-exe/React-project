@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import "./globals.css";
 import { ReactNode } from "react";
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 
 export const metadata = {
@@ -31,9 +32,11 @@ const system = await checkSystem()
 
   return (
     <html lang="en" className={dark}>
-      <body className={` h-lvh text-black dark:bg-black dark:text-white ${system}`}>
-          {children}
-      </body>
-    </html>
+      <UserProvider>
+        <body className={` h-lvh text-black dark:bg-black dark:text-white ${system}`}>
+            {children}
+        </body>
+      </UserProvider>
+    </html>    
   );
 }
