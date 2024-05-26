@@ -5,12 +5,12 @@ import { getCustomerAvatar } from "../../../api";
 export const dynamic = 'force-dynamic'
 
 
-export default async function Profile({dict}: {dict: DictType}) {
+export default async function Profile() {
     const session: any = await getSession()
     const data = session && session.user ? await getCustomerAvatar(session.user.sub) : 'placeholder-url'
+
     
-    
-    return <UserInfoCard dict={dict} userData={session.user} initialAvatar={data[0].avatar} />
+    return <UserInfoCard userData={session.user} initialAvatar={data[0].avatar} />
     
    
 }

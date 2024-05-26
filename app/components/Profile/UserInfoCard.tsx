@@ -8,7 +8,7 @@ import { MdCameraAlt } from "react-icons/md";
 
 
 
-export default function Profile({dict,userData,initialAvatar}: {dict: DictType, userData: any, initialAvatar: string}) {
+export default function UserInfoCard({userData,initialAvatar}: {userData: any, initialAvatar: string}) {
 
     const [avatar, setAvatar] = useState<any>(()=>initialAvatar)
     const [activeModal, setActiveModal] = useState(false)

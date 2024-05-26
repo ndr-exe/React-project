@@ -13,7 +13,7 @@ const page: NextPage = withPageAuthRequired(
     const dict = await getDictionary(lang as string)
 
 
-   return <Profile dict={dict}/>
+   return <Profile/>
      
   },
   { returnTo: "/profile" },
