@@ -1,10 +1,13 @@
 import { getCartProducts } from "../../../api"
 import { useAppInfo } from "../../components/Context-Provaiders/AppProvider"
 import CartList from "../../components/Marketplace/CartList"
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { NextPage } from "next";
 
 export const dynamic = 'force-dynamic'
 
-export default async function page() {
+const page: NextPage = withPageAuthRequired(
+  async () => {
   const cartProducts = await getCartProducts()
   const productIDArr = Object.keys(cartProducts)
 
@@ -27,10 +30,13 @@ export default async function page() {
   };
 
   const selectedProducts= await fetchProducts();
-  // console.log(selectedProducts)
   return (
     <div className="grid grid-rows-1 row-span-9">
       <CartList selectedProducts={selectedProducts} cartProducts={cartProducts}/>
     </div>
   )
-}
+    
+  },
+  { returnTo: "/profile" },
+);
+export default page
