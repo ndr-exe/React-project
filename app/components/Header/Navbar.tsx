@@ -1,19 +1,14 @@
-// import { useRouter, usePathname } from 'next/navigation'
-import Link from "next/link"
-// import { logout } from '../funcs'
-// import { useEffect, useState } from 'react'
-// import ThemeButton from '../ThemeButton/ThemeButton'
-
 import ThemeBtnWrapper from '../ThemeButton/ThemeBtnWrapper'
 import Navigation from './Navigation'
 import LangBtnWrapper from "../LangBtn/LangBtnWrapper"
 import Cart from "../Marketplace/Cart"
+import { getSession } from "@auth0/nextjs-auth0"
 
 
-export default function Navbar({dict}: {dict: DictType}) {
+export default async function Navbar({dict}: {dict: DictType}) {
 
-    // const pathname = usePathname()
-    // const router = useRouter()    
+    const session = await getSession();
+
 
   return (
     <nav className='w-full h-full flex'>
@@ -22,7 +17,7 @@ export default function Navbar({dict}: {dict: DictType}) {
 
             <Navigation dict={dict}/>
             {/* <ul className='flex gap-8 ml-auto'>
-                <li className='pl-6 flex items-center '><a href="/">Sign in</a></li>
+                <li className='pl-6 flex items-center '><a href="/api/auth/login">Sign in</a></li>
                 <li className='pr-6 flex items-center text-orange-600'><a href="/">Sign up</a></li>
             </ul> */}
             <ul className='flex ml-auto items-center'>
@@ -42,8 +37,9 @@ export default function Navbar({dict}: {dict: DictType}) {
                     router.refresh()
                     }}>{dict.options.logout}
                  </button> */}
-                 <a href="/api/auth/login" className='hover:text-orange-600 font-bold dark:text-gray-100'>login</a>
-                 <a href="/api/auth/logout" className='hover:text-orange-600 font-bold dark:text-gray-100'>{dict.options.logout}</a>
+                 {session   
+                ? <a href="/api/auth/logout" className='hover:text-orange-600 font-bold dark:text-gray-100'>{dict.options.logout}</a>
+                : (<a href="/api/auth/login" className="hover:text-orange-600 font-bold dark:text-gray-100">{dict.options.login}</a>) }
             </li>
             
             </ul>

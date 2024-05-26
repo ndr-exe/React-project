@@ -1,9 +1,11 @@
+import { getSession } from '@auth0/nextjs-auth0';
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PUT(request: NextRequest) {
   const body = await request.json()
-
+  const sub = request.headers.get('authorization')
+  
 
  try {
   if (!body) throw new Error('request body is required');
@@ -12,7 +14,7 @@ export async function PUT(request: NextRequest) {
 }
 
 
-await sql`UPDATE carts SET cart_products = ${body} WHERE user_id = ${Number(9)};`
+await sql`UPDATE customer_carts SET customer_cart = ${body} WHERE customer_id = ${sub};`
   
 
   return NextResponse.json({ 'SUCSESS':true }, { status: 200 });

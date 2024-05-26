@@ -2,7 +2,7 @@
 
 import { Session, getSession } from "@auth0/nextjs-auth0";
 import Image from "next/image"
-import TestBlobUpload from './UploadAvatarModal'
+import UploadAvatarModal from './UploadAvatarModal'
 import { useState } from "react";
 import { MdCameraAlt } from "react-icons/md";
 
@@ -44,7 +44,7 @@ export default function Profile({dict,userData,initialAvatar}: {dict: DictType, 
             </div>
         </ul>
         {
-          activeModal && <TestBlobUpload handleAvatarChange={handleAvatarChange} handleModalCLose={handleModalClose}/>
+          activeModal && <UploadAvatarModal handleAvatarChange={handleAvatarChange} handleModalCLose={handleModalClose}/>
         }
         
       </div>

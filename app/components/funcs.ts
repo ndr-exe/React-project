@@ -1,8 +1,9 @@
 'use server'
 
 import { cookies } from "next/headers"
-import { BASE_URL } from "../../api"
+import { BASE_URL, getUsers } from "../../api"
 import { revalidatePath } from "next/cache"
+import { getSession } from "@auth0/nextjs-auth0"
 
 
 export async function logout(){
@@ -32,6 +33,13 @@ export async function getThemeInfo(){
 }
 
 export async function updateCart(cart: CartProducts){
-  const response = await fetch(`${BASE_URL}/api/update-cart`,{method: "PUT",body: JSON.stringify(cart)})
+  const session = await getSession()
+  let sub
+  if(session && session.user) sub = session.user.sub
+
+
+  const response = await fetch(`${BASE_URL}/api/update-cart`,{method: "PUT",body: JSON.stringify(cart), headers:{Authorization: sub } })
   revalidatePath('/','layout')
 }
+
+
