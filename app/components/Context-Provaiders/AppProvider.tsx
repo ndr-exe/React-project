@@ -1,31 +1,38 @@
-'use client'
+'use client';
 
-import { Dispatch, SetStateAction, createContext, useContext, useState } from "react"
-import { calculateProductsCountInCart } from "../../../helperFunctions"
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useState,
+} from 'react';
+import { calculateProductsCountInCart } from '../../../helperFunctions';
 
 type AppInfo = {
-  productCountInCart: number
-  setProductsCountInCart: Dispatch<SetStateAction<number>>
-}
+  productCountInCart: number;
+  setProductsCountInCart: Dispatch<SetStateAction<number>>;
+};
 
 type AppContextProps = {
-  children: React.ReactNode,
-  cartProducts: CartProducts
-}
+  children: React.ReactNode;
+  cartItems: CartProducts;
+};
 
-const AppContext = createContext<AppInfo | null>(null)
+const AppContext = createContext<AppInfo | null>(null);
 
-export default function AppProvider({children,cartProducts}: AppContextProps) {
-    const [productCountInCart,setProductsCountInCart] = useState(()=> calculateProductsCountInCart(cartProducts))
-    
+export default function AppProvider({ children, cartItems }: AppContextProps) {
+  const [productCountInCart, setProductsCountInCart] = useState(() =>
+    calculateProductsCountInCart(cartItems)
+  );
 
   return (
-    <AppContext.Provider value={{productCountInCart,setProductsCountInCart}}>
-    {children}
+    <AppContext.Provider value={{ productCountInCart, setProductsCountInCart }}>
+      {children}
     </AppContext.Provider>
-  )
+  );
 }
 
-export function useAppInfo(){
-    return useContext(AppContext)
+export function useAppInfo() {
+  return useContext(AppContext);
 }
