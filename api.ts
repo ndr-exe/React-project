@@ -1,5 +1,6 @@
 import { getSession } from '@auth0/nextjs-auth0';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export const BASE_URL =
   process.env.NODE_ENV === 'development'
@@ -53,10 +54,12 @@ export async function deleteUser(id: number) {
 
 export async function fetchCartItems() {
   const session = await getSession();
-  let sub;
-  if (!session?.user) return {};
+  if (Object.is(session, null)) {
+    console.log('not user');
+    return {};
+  }
 
-  if (session && session.user) sub = session.user.sub;
+  const sub = session!.user.sub;
   const response = await fetch(`${BASE_URL}/api/get-cart-products`, {
     cache: 'no-store',
     headers: { Authorization: sub },
@@ -85,9 +88,12 @@ export async function fetchItems() {
 
 export async function fetchItem(id: number) {
   const response = await fetch(`${BASE_URL}/api/items/${id}/`);
-  const { item } = await response.json();
-  // console.log(item.rows[0]);
-  return item.rows[0];
+  const data = await response.json();
+  if (data.item.rowCount !== 0) {
+    return data.item.rows[0];
+  } else {
+    return redirect('/shop');
+  }
 }
 
 export async function fetchCartItemsWithInfo() {

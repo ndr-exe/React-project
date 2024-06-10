@@ -6,13 +6,9 @@ import { NextRequest, NextResponse } from 'next/server';
 export const GET = async (_: NextRequest) => {
   const data = await getSession();
 
-  let id, email, avatar;
-
-  if (data) {
-    id = data.user.sub;
-    email = data.user.email;
-    avatar = data.user.picture;
-  }
+  const id = data!.user.sub;
+  const email = data!.user.email;
+  const avatar = data!.user.picture;
 
   try {
     await sql`INSERT INTO users (auth_id, email, avatar) VALUES (${id}, ${email}, ${avatar}) ON CONFLICT (auth_id) DO NOTHING`.catch(
@@ -23,5 +19,5 @@ export const GET = async (_: NextRequest) => {
 
     return NextResponse.json({ status: 400 });
   }
-  return redirect('/profile');
+  return redirect('/shop');
 };

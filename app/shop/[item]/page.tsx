@@ -2,7 +2,7 @@ import { getDictionary } from '../../../dictionaries';
 import { cookies } from 'next/headers';
 import { fetchCartItems, fetchItem } from '../../../api';
 import Image from 'next/image';
-import ItemPageButton from '../../components/Shop/ItemPageButton';
+import ItemPageAddToCartButton from '../../components/Shop/Item-Page/ItemPageAddToCartButton';
 
 export default async function page({ params }: { params: { item: string } }) {
   const lang = cookies().get('locale')?.value;
@@ -49,7 +49,7 @@ export default async function page({ params }: { params: { item: string } }) {
           </div>
           <p className="font-bold text-3xl mt-5 mb-4 ">${item.price}</p>
 
-          <ItemPageButton cart={cart} id={item.id} />
+          <ItemPageAddToCartButton cart={cart} id={item.id} />
         </div>
       </section>
     </main>
