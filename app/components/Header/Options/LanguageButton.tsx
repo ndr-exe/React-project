@@ -27,17 +27,11 @@ export default function LocalSwitcher({ lang }: { lang: string }) {
 
   return (
     <div className="flex ml-3 gap-2">
-      <button
-        className={`${activeEng} h-full rounded-full`}
-        onClick={() => handleClick('en')}
-      >
-        <Image src={geo} alt="Georgian Flag Icon" width={25} height={25} />
-      </button>
-      <button
-        className={`${activeGe} h-full rounded-full`}
-        onClick={() => handleClick('ge')}
-      >
+      <button className={`${activeEng} h-full rounded-full`} onClick={() => handleClick('en')}>
         <Image src={uk} alt="Georgian Flag Icon" width={25} height={25} />
+      </button>
+      <button className={`${activeGe} h-full rounded-full`} onClick={() => handleClick('ge')}>
+        <Image src={geo} alt="Georgian Flag Icon" width={25} height={25} />
       </button>
     </div>
   );

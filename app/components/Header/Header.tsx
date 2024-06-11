@@ -38,7 +38,7 @@ export default async function Header() {
         <Image src={logo} width={50} height={50} alt="logo" />
       </div>
 
-      <Cart />
+      {session?.user && <Cart />}
 
       <div className="mr-3">
         <Options>

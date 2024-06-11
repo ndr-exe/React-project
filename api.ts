@@ -55,7 +55,6 @@ export async function deleteUser(id: number) {
 export async function fetchCartItems() {
   const session = await getSession();
   if (Object.is(session, null)) {
-    console.log('not user');
     return {};
   }
 
@@ -65,6 +64,7 @@ export async function fetchCartItems() {
     headers: { Authorization: sub },
   });
   const data = await response.json();
+  if (data.cartItems.rowCount === 0) return {};
   const cart: CartProducts = data.cartItems.rows[0].cart;
   if (cart.empty) return {};
   return cart;

@@ -55,15 +55,18 @@
   },
 
   "profile": {
-    "bio": "Bio",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "username": "Username",
     "email": "Email",
-    "country": "Country",
+    "save": "Save Changes",
+    "edit": "Edit",
+
     "dateOfBirth": "Date of Birth",
     "typeNewPass": "Type new password",
     "newPassHolder": "New password...",
     "confirmPass": "Confirm password",
-    "confirmPassHolder": "Confirm password...",
-    "save": "Save Changes"
+    "confirmPassHolder": "Confirm password..."
   },
 
   "login": {
