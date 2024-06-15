@@ -1,7 +1,5 @@
-import { RxHamburgerMenu } from 'react-icons/rx';
-import { CgOptions } from 'react-icons/cg';
 import Image from 'next/image';
-import logo from '/Users/miminodar/Desktop/360fx360f.png';
+import logo from '../../../public/img/360fx360f.png';
 import HamburgerMenu from './HamburgerMenu';
 import Options from './Options/Options';
 import OptionDropdownWrapper from './Options/OptionsDropdownWrapper';
