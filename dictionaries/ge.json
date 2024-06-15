@@ -1,78 +1,92 @@
 {
   "navbar": {
-    "marketplace": "ბაზრობა",
-    "blog":"ბლოგი",
+    "home": "მთავარი",
+    "shop": "დახლი",
+    "collection": "კოლექცია",
+    "Blog": "ბლოგი",
     "contact": "კონტაქტი",
-    "profile": "პირადი გვერდი"
+    "logout": "გასვლა",
+    "login": "შესვლა",
+    "options": "ოფციები",
+    "toggleTheme": "თემა",
+    "toggleLang": "ენა",
+    "dark": "წყვდიადი",
+    "light": "ნათელი",
+    "eng": "ინგ.",
+    "geo": "ქართ."
   },
 
   "options": {
+    "options": "ოფციები",
+    "toggleTheme": "თემა",
+    "toggleLang": "ენა",
+    "dark": "წყვდიადი",
+    "light": "ნათელი",
     "eng": "ინგ.",
-    "geo":"ქართ.",
-    "dark":"წყვდიადი",
-    "light":"ნათელი",
-    "logout": "გასვლა",
-    "login": "შესვლა"
+    "geo": "ქართ."
   },
 
   "filters": {
     "smartphones": "სმარტფონები",
-    "laptops":"ლეპტოპები",
-    "fragrance":"სუნამოები",
-    "skincare":"სილამაზე",
+    "laptops": "ლეპტოპები",
+    "fragrance": "სუნამოები",
+    "skincare": "სილამაზე",
     "groceries": "საყიდლები",
-    "sort":"დაალაგე",
-    "prizeAsc":"ფასის ზრდადობით",
-    "prizeDesc":"ფასის კლებადობით",
-    "asc":"$ ზრდით",
-    "desc":"$ კლებით",
+    "sort": "დაალაგე",
+    "prizeAsc": "ფასის ზრდადობით",
+    "prizeDesc": "ფასის კლებადობით",
+    "asc": "$ ზრდით",
+    "desc": "$ კლებით",
     "searchPlaceholder": "მოძებნე ნივთი"
   },
   "product": {
     "addToCart": "კალათაში დამატება",
-    "termsHeader" : "წესები და პირობები",
+    "termsHeader": "წესები და პირობები",
     "terms": "რომელმან შექმნა სამყარო ძალითა მით ძლიერითა,ზეგარდმო არსნი სულითა ყვნა ზეცით მონაბერითა,ჩვენ, კაცთა, მოგვცა ქვეყანა, გვაქვს უთვალავი ფერითა,მისგან არს ყოვლი ხელმწიფე სახითა მის მიერითა."
   },
 
   "footer": {
     "about": "ჩვენს შესახებ",
-    "partners":"პარტნიორები",
-    "achievements":"მიღწევები",
-    "conditions":"პირობები",
+    "partners": "პარტნიორები",
+    "achievements": "მიღწევები",
+    "conditions": "პირობები",
     "privacy": "უსაფრთხოება",
-    "analytics":"ანალიტიკა",
-    "marketing":"მარკეტინგი",
-    "trade" : "2024 სოლარის ჯგუფი. ყველა უფლება დაცულია"
+    "analytics": "ანალიტიკა",
+    "marketing": "მარკეტინგი",
+    "trade": "2024 სოლარის ჯგუფი. ყველა უფლება დაცულია"
   },
 
   "blog": {
     "readMore": "განაგრძე კითხვა..."
   },
 
-  "contact":{
+  "contact": {
     "nameHolder": "სახელი",
-    "mailHolder":"ელექტრონული ფოსტა",
-    "msgHolder":"შეტყობინება",
-    "addres":"221ბ ბეიკერ სტრიტი",
+    "mailHolder": "ელექტრონული ფოსტა",
+    "msgHolder": "შეტყობინება",
+    "addres": "221ბ ბეიკერ სტრიტი",
     "dontBeShy": "ნუ დაიმორცხვებით,მოგვწერეთ!"
   },
 
-  "profile":{
-    "bio": "ბიო",
-    "email":"ელექტრონული ფოსტა",
-    "country":"ქვეყანა",
-    "dateOfBirth":"დაბადების თარიღი",
-    "typeNewPass" : "ჩაწერეთ ახალი პასვორდი",
-    "newPassHolder" : "ახალი პასვორდი",
-    "confirmPass" : "დაადასტურეთ პასვორდი",
-    "confirmPassHolder" : "დაადასტურეთ პასვორდი...",
-    "save": "ცვლილებების შენახვა"
+  "profile": {
+    "firstName": "სახელი",
+    "lastName": "გვარი",
+    "username": "მომხ. სახელი",
+    "edit": "რედ.",
+    "revert": "დაბრ.",
+    "email": "ელექტრონული ფოსტა",
+    "save": "ცვლილებების შენახვა",
+
+    "dateOfBirth": "დაბადების თარიღი",
+    "typeNewPass": "ჩაწერეთ ახალი პასვორდი",
+    "newPassHolder": "ახალი პასვორდი",
+    "confirmPass": "დაადასტურეთ პასვორდი",
+    "confirmPassHolder": "დაადასტურეთ პასვორდი..."
   },
 
-  "login":{
+  "login": {
     "usernameHolder": "მომხ. სახელი",
-    "passwordHolder":"პასვორდი",
-    "login":"შესვლა"
+    "passwordHolder": "პასვორდი",
+    "login": "შესვლა"
   }
-  
 }

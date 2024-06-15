@@ -2,9 +2,7 @@ import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function DELETE(request: NextRequest) {
-
-const {userToDelete} = await request.json()
-console.log(userToDelete)
+  const { userToDelete } = await request.json();
 
   try {
     if (!userToDelete) throw new Error('ID is required');
