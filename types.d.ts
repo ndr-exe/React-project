@@ -2,6 +2,10 @@ type DictType = {
   [key: string]: { [key: string]: string };
 };
 
+type LocalDict = {
+  [key: string]: string;
+};
+
 interface ProductType {
   id: number;
   title: string;
@@ -78,3 +82,39 @@ interface CartItem extends Item {
 interface ItemsRaw {
   [key: string]: number;
 }
+
+// USERS
+
+type User = {
+  userInfo: {
+    created_at: string;
+    email: string;
+    email_verified: boolean;
+    family_name: string;
+    given_name: string;
+    identities: [[Object]];
+    idp_tenant_domain: string;
+    name: string;
+    nickname: string;
+    username?: string;
+    picture: string;
+    updated_at: string;
+    user_id: string;
+    last_ip: string;
+    last_login: string;
+    logins_count: number;
+    user_metadata?: {
+      username?: string;
+      firstName?: string;
+      familyName?: string;
+      picture?: string;
+    };
+  };
+  userRoles: [
+    {
+      id: string;
+      name: string;
+      description: string;
+    }
+  ];
+};

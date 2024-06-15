@@ -6,7 +6,7 @@ import Image from 'next/image';
 import geo from '../../../../public/flags/georgia.png';
 import uk from '../../../../public/flags/united-kingdom.png';
 
-export default function LocalSwitcher({ lang }: { lang: string }) {
+export default function LocalSwitcher({ lang }: { lang: string; options: LocalDict }) {
   const router = useRouter();
 
   let activeEng = '';
@@ -26,7 +26,7 @@ export default function LocalSwitcher({ lang }: { lang: string }) {
   }
 
   return (
-    <div className="flex ml-3 gap-2">
+    <div className="flex gap-4 justify-center flex-grow">
       <button className={`${activeEng} h-full rounded-full`} onClick={() => handleClick('en')}>
         <Image src={uk} alt="Georgian Flag Icon" width={25} height={25} />
       </button>

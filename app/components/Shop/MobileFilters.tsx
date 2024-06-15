@@ -7,18 +7,13 @@ export default function MobileFilters() {
   const [closeFilters, setCLoseFilters] = useState(false);
   function handleRangers(e: any) {
     console.log(e.target.value);
-    console.log('hehe');
   }
 
   return (
     <div className="">
       <div className="w-4/5 mx-auto items-center  text-md">
         <button
-          onClick={
-            showFilters
-              ? () => setCLoseFilters(p => !p)
-              : () => setShowFilters(p => !p)
-          }
+          onClick={showFilters ? () => setCLoseFilters(p => !p) : () => setShowFilters(p => !p)}
           className="w-full h-full flex justify-center items-center "
         >
           <span>FILTER ITEMS</span>
@@ -30,9 +25,7 @@ export default function MobileFilters() {
       {showFilters && (
         <div className={`overflow-hidden`}>
           <div
-            onAnimationEnd={() =>
-              closeFilters && (setShowFilters(false), setCLoseFilters(false))
-            }
+            onAnimationEnd={() => closeFilters && (setShowFilters(false), setCLoseFilters(false))}
             className={`bg-green-300 py-4 px-4 applyFilterAnimation ${
               closeFilters && 'applyFilterAnimationClose'
             }`}
@@ -51,20 +44,13 @@ export default function MobileFilters() {
                 <span>Price Ranges</span>
                 <div className="flex ">
                   <li>
-                    <button className="py-2 px-3 shadow-lg rounded-xl">
-                      {' '}
-                      &#60; $100
-                    </button>
+                    <button className="py-2 px-3 shadow-lg rounded-xl"> &#60; $100</button>
                   </li>
                   <li>
-                    <button className="py-2 px-3 shadow-lg rounded-xl">
-                      $100 - $500
-                    </button>
+                    <button className="py-2 px-3 shadow-lg rounded-xl">$100 - $500</button>
                   </li>
                   <li>
-                    <button className="py-2 px-3 shadow-lg rounded-xl">
-                      $500 &#62;
-                    </button>
+                    <button className="py-2 px-3 shadow-lg rounded-xl">$500 &#62;</button>
                   </li>
                 </div>
 

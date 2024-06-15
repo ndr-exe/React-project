@@ -3,9 +3,9 @@ import { useAppInfo } from '../components/Context-Provaiders/AppProvider';
 import { updateCart } from '../../action';
 import { calculateCartItemsPricesSum } from '../../helperFunctions';
 
-let actions: 'increment' | 'decrement' | 'delete' | 'reset';
+type Actions = 'increment' | 'decrement' | 'delete' | 'reset';
 
-function reducer(state: ItemsRaw, action: { type: typeof actions; payload: number }) {
+function reducer(state: ItemsRaw, action: { type: Actions; payload: number }) {
   const stateClone = { ...state };
 
   switch (action.type) {

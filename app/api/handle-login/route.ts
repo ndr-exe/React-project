@@ -11,12 +11,8 @@ export const GET = async (_: NextRequest) => {
   const avatar = data!.user.picture;
 
   try {
-    await sql`INSERT INTO users (auth_id, email, avatar) VALUES (${id}, ${email}, ${avatar}) ON CONFLICT (auth_id) DO NOTHING`.catch(
-      e => console.log(e)
-    );
+    await sql`INSERT INTO users (auth_id, email, avatar) VALUES (${id}, ${email}, ${avatar}) ON CONFLICT (auth_id) DO NOTHING`;
   } catch (error) {
-    console.log(error);
-
     return NextResponse.json({ status: 400 });
   }
   return redirect('/shop');

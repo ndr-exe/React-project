@@ -9,11 +9,15 @@ import { cookies } from 'next/headers';
 import { getDictionary } from '../../../dictionaries';
 import { getSession } from '@auth0/nextjs-auth0';
 import Cart from '../Shop/Cart/CartIcon';
+import Link from 'next/link';
+import { fetchAuth0UserWithMetadataAndRoles } from '../../../userActions';
+import NavbarProfile from './NavbarProfile/NavbarProfile';
 
 export default async function Header() {
   const lang = cookies().get('locale')?.value;
-  const dict = await getDictionary(lang as string);
+  const { navbar } = await getDictionary(lang as string);
   const session = await getSession();
+  const userInfo = session?.user && (await fetchAuth0UserWithMetadataAndRoles(session.user.sub));
   return (
     <nav className="w-full h-16 xl:h-20 flex px-4 bg-white items-center fixed  dark:bg-black top-0 z-50 max-w-[1920px] mx-auto">
       <HamburgerMenu />
@@ -21,16 +25,27 @@ export default async function Header() {
         <Image src={logo} width={50} height={50} alt="logo" />
       </div>
       <div className="hidden md:block md:mr-auto">
-        <ul className="flex gap-3">
+        <ul className="flex gap-4 xl:gap-5">
           <li>
-            <a href="/">{dict.filters.groceries}</a>
+            <Link href="/">{navbar.home}</Link>
           </li>
           <li>
-            <a href="/">Collection</a>
+            <Link href="/shop">{navbar.shop}</Link>
           </li>
           <li>
-            <a href="/">Blog</a>
+            <Link href="/">{navbar.collection}</Link>
           </li>
+          <li>
+            <Link href="/">{navbar.Blog}</Link>
+          </li>
+          <li>
+            <Link href="/">{navbar.contact}</Link>
+          </li>
+          {session?.user && (
+            <li>
+              <Link href="/profile">Profile</Link>
+            </li>
+          )}
         </ul>
       </div>
 
@@ -47,18 +62,21 @@ export default async function Header() {
       </div>
       <div>
         {session?.user ? (
-          <a
-            href="/api/auth/logout"
-            className="px-3 py-1 primary rounded-xl flex items-center text-white"
-          >
-            Log out
-          </a>
+          // <a
+          //   href="/api/auth/logout"
+          //   className="px-3 py-1.5 primary rounded-xl flex items-center text-white min-w-24 justify-center"
+          // >
+          //   {navbar.logout}
+          // </a>
+          <NavbarProfile userInfo={userInfo as User}>
+            <div className="w-full h-full bg-red-300"></div>
+          </NavbarProfile>
         ) : (
           <a
             href="/api/auth/login"
-            className="px-3 py-1 primary rounded-xl flex items-center text-white"
+            className="px-3 py-1.5 primary rounded-xl flex items-center text-white min-w-24 justify-center"
           >
-            Sign in
+            {navbar.login}
           </a>
         )}
       </div>

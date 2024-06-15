@@ -5,7 +5,6 @@ import { updateCart } from '../../action';
 export default function useOptimisticAddToCartButton(cart: any) {
   const [pending, setTransition] = useTransition();
   const [cartState, setCartState] = useState(() => cart);
-  console.log(cartState);
 
   const { productCountInCart, setProductsCountInCart } = useAppInfo();
   const [disabled, setDisabled] = useState(false);

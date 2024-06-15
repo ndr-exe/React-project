@@ -10,8 +10,6 @@ export default async function page({ params }: { params: { item: string } }) {
   const item: Item = await fetchItem(Number(params.item));
   const cart = await fetchCartItems();
 
-  console.log(item);
-
   return (
     <main>
       <section className="mx-auto w-[300px]">

@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   const { user, email, age } = await request.json();
-  console.log(user,email,age)
 
   try {
     if (!user || !email || !age) throw new Error('Name and email are required');

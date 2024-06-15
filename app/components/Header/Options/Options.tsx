@@ -17,7 +17,7 @@ export default function Options({ children }: { children: React.ReactNode }) {
           <CgOptions className="" />
         </button>
         <div
-          className={`absolute w-[200px] h-[180px] xl:w-[200px] xl:h-[200px] top-10 bg-white border shadow-md text-sm px-2 py-1 dark:bg-black -translate-x-1/2 rounded-lg z-50 ${
+          className={`absolute w-[200px] xl:w-[225px] top-10 -left-5 sm:-left-10 bg-white border shadow-md text-sm px-2 pt-1 pb-4 dark:bg-black -translate-x-1/2 rounded-lg z-50 ${
             activeMenu ? 'animateOptions' : 'hidden'
             // 'animateOptions'
           }`}

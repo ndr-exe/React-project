@@ -6,7 +6,7 @@ import { CiDark } from 'react-icons/ci';
 import { GiBleedingEye } from 'react-icons/gi';
 import { setDarkMode } from '../../../../action';
 
-export default function ThemeButton({ theme }: { theme: boolean }) {
+export default function ThemeButton({ theme, options }: { theme: boolean; options: LocalDict }) {
   const [isDarkMode, setIsDarkMode] = useState(theme);
 
   useEffect(() => {
@@ -21,26 +21,32 @@ export default function ThemeButton({ theme }: { theme: boolean }) {
   }, []);
 
   async function handleThemeChange() {
-    if (document.body.classList.contains('system'))
-      document.body.classList.remove('system');
+    if (document.body.classList.contains('system')) document.body.classList.remove('system');
     document.documentElement.classList.toggle('dark');
     await setDarkMode('darkMode', !isDarkMode);
     setIsDarkMode(prev => !prev);
   }
 
   return (
-    <button onClick={handleThemeChange} className="text-lg xl:text-2xl ">
-      {isDarkMode ? (
-        <span className="flex items-center text-yellow-400">
-          Light
-          <GiBleedingEye />
-        </span>
-      ) : (
-        <span className="flex items-center">
-          Dark
-          <CiDark />
-        </span>
-      )}
-    </button>
+    <div className="flex-grow flex justify-center">
+      <button
+        onClick={handleThemeChange}
+        className={`text-lg px-2 flex justify-center items-center border rounded-md group ${
+          isDarkMode ? 'hover:bg-white' : 'hover:bg-black'
+        }`}
+      >
+        {isDarkMode ? (
+          <span className="flex items-center text-yellow-400 group-hover:text-black ">
+            {options.light}
+            <GiBleedingEye />
+          </span>
+        ) : (
+          <span className="flex items-center group-hover:text-white">
+            {options.dark}
+            <CiDark />
+          </span>
+        )}
+      </button>
+    </div>
   );
 }

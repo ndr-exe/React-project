@@ -1,18 +1,29 @@
 {
   "navbar": {
-    "marketplace": "ბაზრობა",
-    "blog": "ბლოგი",
+    "home": "მთავარი",
+    "shop": "დახლი",
+    "collection": "კოლექცია",
+    "Blog": "ბლოგი",
     "contact": "კონტაქტი",
-    "profile": "პირადი გვერდი"
+    "logout": "გასვლა",
+    "login": "შესვლა",
+    "options": "ოფციები",
+    "toggleTheme": "თემა",
+    "toggleLang": "ენა",
+    "dark": "წყვდიადი",
+    "light": "ნათელი",
+    "eng": "ინგ.",
+    "geo": "ქართ."
   },
 
   "options": {
-    "eng": "ინგ.",
-    "geo": "ქართ.",
+    "options": "ოფციები",
+    "toggleTheme": "თემა",
+    "toggleLang": "ენა",
     "dark": "წყვდიადი",
     "light": "ნათელი",
-    "logout": "გასვლა",
-    "login": "შესვლა"
+    "eng": "ინგ.",
+    "geo": "ქართ."
   },
 
   "filters": {
@@ -61,7 +72,8 @@
     "firstName": "სახელი",
     "lastName": "გვარი",
     "username": "მომხ. სახელი",
-    "edit": "რედაქტირება",
+    "edit": "რედ.",
+    "revert": "დაბრ.",
     "email": "ელექტრონული ფოსტა",
     "save": "ცვლილებების შენახვა",
 

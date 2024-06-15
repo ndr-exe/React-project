@@ -1,16 +1,22 @@
 {
   "navbar": {
     "home": "Home",
-    "marketplace": "Marketplace",
-    "blog": "Blog",
+    "shop": "Shop",
+    "collection": "Collection",
+    "Blog": "Blog",
     "contact": "Contact",
-    "profile": "Profile"
+    "logout": "Log out",
+    "login": "Log in"
   },
 
   "options": {
     "options": "Options",
-    "dark": "DRK",
-    "light": "LGHT"
+    "toggleTheme": "Theme",
+    "toggleLang": "Lang.",
+    "dark": "Dark",
+    "light": "Light",
+    "eng": "ENG",
+    "geo": "GEO"
   },
   "filters": {
     "smartphones": "Smartphones",
@@ -61,6 +67,7 @@
     "email": "Email",
     "save": "Save Changes",
     "edit": "Edit",
+    "revert": "Revert",
 
     "dateOfBirth": "Date of Birth",
     "typeNewPass": "Type new password",
