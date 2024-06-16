@@ -13,7 +13,7 @@ export default function Item({
   handleIncrement: any;
 }) {
   return (
-    <li className="rounded-xl  shadow-md w-[300px] sm:w-[350px] lg:w-[300px] 2xl:w-[350px] dark:outline outline-gray-500 group">
+    <li className="rounded-xl  shadow-md w-[300px] sm:w-[350px] lg:w-[280px] 2xl:w-4/5 dark:outline outline-gray-500 group">
       <div className="">
         <Image
           src="https://placehold.co/300x200/png"

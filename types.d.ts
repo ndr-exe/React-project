@@ -58,7 +58,7 @@ interface EditedBlogType extends RawBlogType {
 interface Item {
   id: number;
   title: string;
-  description: string;
+  description: { text: string };
   price: number;
   brand: string;
   category: string;
@@ -66,11 +66,6 @@ interface Item {
   action: string;
   thumbnail: string;
   images: string[];
-  one_star: number;
-  two_star: number;
-  three_star: number;
-  four_star: number;
-  five_star: number;
   rating: number;
   reviews: any;
   created_at: string;

@@ -27,6 +27,8 @@ export default function ProfileInfo({
   const [formData, setFormData] = useState(() => manageFormData(userFullInfo));
   const [avatarError, setAvatarError] = useState(false);
   const inputRef = useRef<null | HTMLInputElement>(null);
+  const usernameRef = useRef<null | HTMLInputElement>(null);
+  const formRef = useRef<null | HTMLFormElement>(null);
   const router = useRouter();
 
   async function handleForm() {
@@ -75,7 +77,7 @@ export default function ProfileInfo({
     <section className="px-7 py-4 sm:px-12 sm:py-6 md:py-8 md:px-36 lg:px-12 lg:w-5/12">
       <div>
         <div className="flex items-center gap-5 xl:gap-7">
-          <div className="w-24 h-24 sm:w-28 sm:h-28  xl:w-32 xl:h-32 rounded-full relative ">
+          <div className="w-24 h-24 sm:w-28 sm:h-28  xl:w-32 xl:h-32 rounded-full relative shrink-0 ">
             <Image
               src={formData.picture}
               alt="AVATAR"
@@ -107,14 +109,14 @@ export default function ProfileInfo({
               </div>
             )}
           </div>
-          <div>
+          <div className="">
             <p className="text-lg xl:text-xl font-semibold">{formData.username}</p>
             <p className="text-sm sm:text-md xl:text-lg 2xl:text-xl tracking-wide text-gray-500">
               <span>{formData.firstName}</span> <span>{formData.familyName}</span>
             </p>
           </div>
         </div>
-        <form onChange={() => setChangeForm(true)} action="" className="mt-5 sm:mt-2">
+        <form ref={formRef} onChange={() => setChangeForm(true)} action="" className="mt-5 sm:mt-2">
           {/* EDIT FORM */}
           <button
             onClick={e => {
@@ -163,6 +165,9 @@ export default function ProfileInfo({
               name="firstName"
               id="firstName"
               required
+              pattern="[A-Za-z]{2,20}"
+              title="Only letters (either case),no more than 20 characters."
+              maxLength={25}
               className="block border border-gray-400 rounded-md  w-full px-2 py-1 xl:py-1.5 2xl:py-2 outline-green-700 dark:bg-black disabled:opacity-40 "
             />
           </div>
@@ -191,6 +196,9 @@ export default function ProfileInfo({
               name="lastName"
               id="lastName"
               required
+              pattern="[A-Za-z]{2,20}"
+              title="Only letters (either case),no more than 20 characters."
+              maxLength={25}
               className="block border border-gray-400 rounded-md  w-full px-2 py-1 xl:py-1.5 2xl:py-2  outline-green-700 dark:bg-black  disabled:opacity-40 "
             />
           </div>
@@ -219,6 +227,10 @@ export default function ProfileInfo({
               name="username"
               id="username"
               required
+              ref={usernameRef}
+              pattern="[A-Za-z0-9_]{1,15}"
+              maxLength={20}
+              title="Only letters (either case), numbers, and the underscore; no more than 15 characters."
               className="block border border-gray-400 rounded-md  w-full px-2 py-1 xl:py-1.5 2xl:py-2  outline-green-700 dark:bg-black disabled:opacity-40   "
             />
           </div>
@@ -243,7 +255,7 @@ export default function ProfileInfo({
               value={formData.email}
               disabled={!userFullInfo.userInfo.user_id.startsWith('auth0') || !activeForm}
               autoComplete="true"
-              type="text"
+              type="email"
               name="email"
               id="email"
               required
@@ -255,9 +267,14 @@ export default function ProfileInfo({
           <button
             onClick={e => {
               e.preventDefault();
-              handleForm();
-              setIsActiveForm(false);
-              setChangeForm(false);
+              const valid = formRef.current!.checkValidity();
+              if (valid) {
+                handleForm();
+                setIsActiveForm(false);
+                setChangeForm(false);
+              } else {
+                formRef.current!.reportValidity();
+              }
             }}
             disabled={loading || !changeForm}
             className={`bg-black dark:bg-white dark:text-black text-white w-full py-2 xl:py-3 2xl:py-3.5 text-md xl:text-lg 2xl:text-xl rounded-lg disabled:opacity-50 transition-colors min-h-10 xl:min-h-14 ${

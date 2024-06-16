@@ -25,7 +25,7 @@ export default async function page({ params }: { params: { item: string } }) {
         <div className="py-4">
           <h1 className="font-bold text-2xl">{item.title}</h1>
           <div>{item.rating}star</div>
-          <p className="mt-3 mb-4 text-gray-600">{item.description.slice(0, 250)}</p>
+          <p className="mt-3 mb-4 text-gray-600">{item.description.text.slice(0, 250)}</p>
 
           <div className="grid grid-cols-2 gap-3">
             <div className=" grid place-content-center p-8 rounded-md shadow-lg ">
