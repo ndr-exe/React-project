@@ -6,24 +6,6 @@ type LocalDict = {
   [key: string]: string;
 };
 
-interface ProductType {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
-
-interface CartProductType extends ProductType {
-  count: number;
-}
-
 type CartProducts = {
   [key: string]: number;
 };
@@ -39,21 +21,6 @@ type ItemPorpsType = {
   dict: DictType;
   handleClick: (number) => void;
 };
-
-interface RawBlogType {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
-  tags: string[];
-  reactions: number;
-}
-
-interface EditedBlogType extends RawBlogType {
-  important: boolean;
-  image: string;
-  uploadDate: string;
-}
 
 interface Item {
   id: number;
@@ -113,3 +80,53 @@ type User = {
     }
   ];
 };
+
+//ITEMS
+
+type Review = {
+  id: number;
+  product_id: number;
+  author_id: string;
+  author_username: string;
+  author_avatar: string;
+  review: { text: string } | null;
+  star: number;
+  created_at: string;
+};
+
+type ItemsWithReview = {
+  [key: number]: {
+    id: number;
+    title: string;
+    description: { text: string };
+    price: number;
+    brand: string;
+    category: string;
+    caliber: string;
+    action: string;
+    thumbnail: string;
+    images: string[];
+    created_at: string;
+    reviews: number;
+    stars: number;
+  };
+};
+
+type ItemWithoutReviews = {
+  id: number;
+  title: string;
+  description: { text: string };
+  price: number;
+  brand: string;
+  category: string;
+  caliber: string;
+  action: string;
+  thumbnail: string;
+  images: string[];
+  created_at: string;
+};
+
+interface ItemWithReviews extends ItemWithoutReviews {
+  reviews: number;
+  stars: number;
+}

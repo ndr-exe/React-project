@@ -2,7 +2,7 @@ import FullFilters from './FullFilters';
 import ItemsGrid from './ItemsGrid';
 import MobileFilters from './MobileFilters';
 
-export default function Shop({ items }: { items: Item[] }) {
+export default function Shop({ items }: { items: ItemWithReviews[] }) {
   return (
     <div>
       <div className="py-4 px-4 xl:hidden">

@@ -83,14 +83,14 @@ export async function getCustomerAvatar(sub: any) {
 export async function fetchItems() {
   const response = await fetch(`${BASE_URL}/api/items/fetch-items`);
   const { items } = await response.json();
-  return items.rows;
+  return items;
 }
 
 export async function fetchItem(id: number) {
   const response = await fetch(`${BASE_URL}/api/items/${id}/`);
   const data = await response.json();
-  if (data.item.rowCount !== 0) {
-    return data.item.rows[0];
+  if (true) {
+    return data;
   } else {
     return redirect('/shop');
   }
