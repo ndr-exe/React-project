@@ -6,24 +6,6 @@ type LocalDict = {
   [key: string]: string;
 };
 
-interface ProductType {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
-
-interface CartProductType extends ProductType {
-  count: number;
-}
-
 type CartProducts = {
   [key: string]: number;
 };
@@ -40,22 +22,7 @@ type ItemPorpsType = {
   handleClick: (number) => void;
 };
 
-interface RawBlogType {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
-  tags: string[];
-  reactions: number;
-}
-
-interface EditedBlogType extends RawBlogType {
-  important: boolean;
-  image: string;
-  uploadDate: string;
-}
-
-type ItemWithoutReviews = {
+interface Item {
   id: number;
   title: string;
   description: { text: string };
@@ -66,14 +33,10 @@ type ItemWithoutReviews = {
   action: string;
   thumbnail: string;
   images: string[];
+  rating: number;
+  reviews: any;
   created_at: string;
-};
-
-interface ItemWithReviews extends ItemWithoutReviews {
-  reviews: number;
-  stars: number;
 }
-
 interface CartItem extends Item {
   count: number;
 }
@@ -148,3 +111,22 @@ type ItemsWithReview = {
     stars: number;
   };
 };
+
+type ItemWithoutReviews = {
+  id: number;
+  title: string;
+  description: { text: string };
+  price: number;
+  brand: string;
+  category: string;
+  caliber: string;
+  action: string;
+  thumbnail: string;
+  images: string[];
+  created_at: string;
+};
+
+interface ItemWithReviews extends ItemWithoutReviews {
+  reviews: number;
+  stars: number;
+}
