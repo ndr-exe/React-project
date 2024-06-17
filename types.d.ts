@@ -55,7 +55,7 @@ interface EditedBlogType extends RawBlogType {
   uploadDate: string;
 }
 
-interface Item {
+type ItemWithoutReviews = {
   id: number;
   title: string;
   description: { text: string };
@@ -66,10 +66,14 @@ interface Item {
   action: string;
   thumbnail: string;
   images: string[];
-  rating: number;
-  reviews: any;
   created_at: string;
+};
+
+interface ItemWithReviews extends ItemWithoutReviews {
+  reviews: number;
+  stars: number;
 }
+
 interface CartItem extends Item {
   count: number;
 }
@@ -112,4 +116,35 @@ type User = {
       description: string;
     }
   ];
+};
+
+//ITEMS
+
+type Review = {
+  id: number;
+  product_id: number;
+  author_id: string;
+  author_username: string;
+  author_avatar: string;
+  review: { text: string } | null;
+  star: number;
+  created_at: string;
+};
+
+type ItemsWithReview = {
+  [key: number]: {
+    id: number;
+    title: string;
+    description: { text: string };
+    price: number;
+    brand: string;
+    category: string;
+    caliber: string;
+    action: string;
+    thumbnail: string;
+    images: string[];
+    created_at: string;
+    reviews: number;
+    stars: number;
+  };
 };

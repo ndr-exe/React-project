@@ -19,9 +19,21 @@ export async function GET(request: Request, { params }: { params: { itemID: stri
   const itemID = params.itemID; // 'a', 'b', or 'c'
 
   try {
-    const item = await sql`SELECT * FROM products WHERE id=${Number(itemID)};`;
+    const itemWithoutReviewsRaw = await sql`SELECT * FROM products WHERE id=${Number(itemID)};`;
+    const reviewsRaw = await sql`SELECT * FROM reviews WHERE product_id=${Number(itemID)};`;
 
-    return NextResponse.json({ item }, { status: 200 });
+    const itemWithoutReviews = itemWithoutReviewsRaw.rows[0] as ItemWithoutReviews;
+    const reviews = reviewsRaw.rows as Review[];
+    const itemWithReview: ItemWithReviews = { ...itemWithoutReviews, reviews: 0, stars: 0 };
+
+    reviews.forEach((review: Review) => {
+      itemWithReview.reviews += 1;
+      itemWithReview.stars += review.star;
+    });
+
+    // const itemWithReview: ItemWithReviews = {...itemWithoutReviews, stars: reviews. }
+
+    return NextResponse.json({ itemWithReview, reviews }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }

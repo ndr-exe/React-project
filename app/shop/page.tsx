@@ -5,7 +5,7 @@ import ItemsGrid from '../components/Shop/ItemsGrid';
 import Shop from '../components/Shop/Shop';
 
 export default async function page() {
-  const data: Item[] = await fetchItems();
+  const data: ItemWithReviews[] = await fetchItems();
   const items = [...data, ...data, ...data, ...data, ...data, ...data, ...data, ...data];
 
   return (

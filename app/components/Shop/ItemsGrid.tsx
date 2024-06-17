@@ -2,7 +2,7 @@ import { fetchCartItems } from '../../../api';
 import GridWrapper from './GridWrapper';
 import Item from './Item';
 
-export default async function ItemsGrid({ items }: { items: Item[] }) {
+export default async function ItemsGrid({ items }: { items: ItemWithReviews[] }) {
   const cart = await fetchCartItems();
 
   return (
