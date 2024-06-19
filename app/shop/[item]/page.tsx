@@ -5,6 +5,7 @@ import Image from 'next/image';
 import ItemPageAddToCartButton from '../../components/Shop/Item-Page/ItemPageAddToCartButton';
 import Rating from '../../components/Shop/Rating';
 import GoBackButton from '../../components/Shop/Item-Page/GoBackButton';
+import ReviewSection from '../../components/Shop/Item-Page/ReviewSection';
 
 export default async function page({ params }: { params: { item: string } }) {
   const lang = cookies().get('locale')?.value;
@@ -16,7 +17,7 @@ export default async function page({ params }: { params: { item: string } }) {
   return (
     <main>
       <GoBackButton />
-      <section className="mx-auto w-80 sm:w-96 md:w-[560px] lg:w-4/5 lg:flex lg:gap-5 2xl:gap-10 py-7 sm:py-8 md:py-9 xl:py-10 2xl:py-12">
+      <section className="mx-auto w-80 sm:w-96 md:w-[560px] lg:w-4/5 lg:flex lg:gap-5 2xl:gap-10 py-7 sm:py-8 md:py-9 xl:py-10 2xl:py-12 xl:mb-5">
         <div className="shrink-0 lg:w-1/2 2xl:w-5/12 lg:flex lg:items-center ">
           <Image
             src="https://placehold.co/300x200/png"
@@ -33,7 +34,6 @@ export default async function page({ params }: { params: { item: string } }) {
           <Rating stars={itemWithReview.stars} reviews={itemWithReview.reviews} />
           <p className="mt-3 mb-4 2xl:mb-6 text-gray-600 2xl:text-lg dark:text-gray-400">
             {itemWithReview.description.text.slice(0, 300)}
-            {/* {itemWithReview.description.text} */}
           </p>
 
           <div className="grid grid-cols-2 gap-3 2xl:text-lg xl:max-w-[550px] xl:mx-auto 2xl:mb-4">
@@ -59,6 +59,7 @@ export default async function page({ params }: { params: { item: string } }) {
           <ItemPageAddToCartButton cart={cart} id={itemWithReview.id} />
         </div>
       </section>
+      <ReviewSection itemWithReview={itemWithReview} reviews={reviews} />
     </main>
   );
 }

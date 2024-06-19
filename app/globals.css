@@ -107,3 +107,10 @@
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
 }
+
+.defaultBtn {
+  @apply transition-colors bg-[#627733] text-white hover:bg-[#8FA147];
+}
+.abortBtn {
+  @apply transition-colors bg-[#C34A36] text-white hover:bg-[#FF8066];
+}
