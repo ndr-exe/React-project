@@ -28,10 +28,10 @@ export function manageFormData(userFullInfo: User) {
   const { userInfo } = userFullInfo;
   if (!userInfo.user_id.startsWith('auth0') && userInfo.user_metadata) {
     return {
-      picture: userInfo.user_metadata.picture!,
-      firstName: userInfo.user_metadata.firstName!,
-      familyName: userInfo.user_metadata.familyName!,
-      username: userInfo.user_metadata.username!,
+      picture: userInfo.user_metadata.picture || userInfo.picture,
+      firstName: userInfo.user_metadata.firstName || userInfo.given_name,
+      familyName: userInfo.user_metadata.familyName || userInfo.family_name,
+      username: userInfo.user_metadata.username || userInfo.nickname,
       email: userInfo.email,
     };
   }

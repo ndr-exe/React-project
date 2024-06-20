@@ -50,7 +50,7 @@ export default function EditableReview({
     setIsEditMode(false);
   }
   return (
-    <>
+    <li className="flex gap-1 sm:gap-5 border-b pb-3 last:border-b-0 first:border-t first:pt-3">
       {!isEditMode ? (
         children
       ) : (
@@ -103,10 +103,10 @@ export default function EditableReview({
           setActiveStars(review.star);
           setReviewText(review.review?.text);
         }}
-        className="ml-2"
+        className=""
       >
         Edit
       </button>
-    </>
+    </li>
   );
 }

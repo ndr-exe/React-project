@@ -35,7 +35,7 @@ export async function updateCart(cart: CartProducts) {
   let sub;
   if (session && session.user) sub = session.user.sub;
 
-  const response = await fetch(`${BASE_URL}/api/update-cart`, {
+  const response = await fetch(`${BASE_URL}/api/cart/update-cart`, {
     method: 'PUT',
     body: JSON.stringify(cart),
     headers: { Authorization: sub },

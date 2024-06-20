@@ -18,14 +18,20 @@ export default function NavBarProfileDropdown({
     <div className="">
       <div className="text-center border-b pb-1">
         <p className="flex gap-2 justify-center text-sm xl:text-base text-gray-400">
-          <span>{userInfo.userInfo.user_metadata?.firstName || userInfo.userInfo.name}</span>
+          <span>
+            {userInfo.userInfo.user_metadata?.firstName ||
+              userInfo.userInfo.given_name ||
+              userInfo.userInfo.name}
+          </span>
 
           <span>
             {userInfo.userInfo.user_metadata?.familyName || userInfo.userInfo.family_name}
           </span>
         </p>
         <p className="font-semibold xl:text-lg">
-          {userInfo.userInfo.user_metadata?.username || userInfo.userInfo.username}
+          {userInfo.userInfo.user_metadata?.username ||
+            userInfo.userInfo.username ||
+            userInfo.userInfo.nickname}
         </p>
       </div>
       <ul className="flex flex-col gap-1 px-2 pt-3 xl:text-base xl:gap-1.5">

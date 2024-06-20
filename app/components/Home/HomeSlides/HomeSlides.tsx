@@ -5,7 +5,6 @@ import first from '../../../../public/img/pexels-goumbik-669283.jpg';
 import second from '../../../../public/img/pexels-karolina-grabowska-5202434.jpg';
 import third from '../../../../public/img/pexels-pixabay-163443.jpg';
 import fourth from '../../../../public/img/pexels-tima-miroshnichenko-6204669.jpg';
-import omg from '../../../../public/img/pexels-goumbik-669283.jpg';
 import SlideInfo from './SlideInfo';
 
 const thumbs = [
@@ -14,6 +13,7 @@ const thumbs = [
     alt="slide"
     fill
     key={0}
+    placeholder="blur"
     className="animate-fade animate-duration-1000 animate-ease-in bg-blend-overlay"
   />,
   <Image
@@ -21,6 +21,7 @@ const thumbs = [
     alt="slide"
     fill
     key={1}
+    placeholder="blur"
     className="animate-fade animate-duration-1000 animate-ease-in bg-blend-darken"
   />,
   <Image
@@ -28,6 +29,7 @@ const thumbs = [
     alt="slide"
     fill
     key={2}
+    placeholder="blur"
     className="animate-fade animate-duration-1000 animate-ease-in"
   />,
   <Image
@@ -35,6 +37,7 @@ const thumbs = [
     alt="slide"
     fill
     key={3}
+    placeholder="blur"
     className="animate-fade animate-duration-1000 animate-ease-in"
   />,
 ];
