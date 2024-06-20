@@ -107,7 +107,6 @@ export async function updateUser({ id, formData }: { id: string; formData: formD
 
     fetch(`https://dev-jsesbq8t8nmosufz.us.auth0.com/api/v2/users/${id}`, requestOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
       .catch(error => console.log('error', error));
   }
 
@@ -120,7 +119,6 @@ export async function updateUser({ id, formData }: { id: string; formData: formD
 
   fetch(`https://dev-jsesbq8t8nmosufz.us.auth0.com/api/v2/users/${id}`, requestOptions)
     .then(response => response.text())
-    .then(result => console.log(result))
     .then(() =>
       fetch(`${BASE_URL}/api/user/update-credentials-on-postgres`, {
         method: 'PATCH',
@@ -158,7 +156,6 @@ export async function uploadAvatarUrlToAuth0({ id, blobUrl }: { id: string; blob
 
   fetch(`https://dev-jsesbq8t8nmosufz.us.auth0.com/api/v2/users/${id}`, requestOptions)
     .then(response => response.text())
-    .then(result => console.log(result))
     .then(() =>
       fetch(`${BASE_URL}/api/user/update-avatar-on-postgres`, {
         method: 'PATCH',

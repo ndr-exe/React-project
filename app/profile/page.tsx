@@ -14,7 +14,6 @@ const page: NextPage = withPageAuthRequired(
     const { profile: localDict } = await getDictionary(lang as string);
     const session = await getSession();
     const userFullInfo: User = await fetchAuth0UserWithMetadataAndRoles(session!.user.sub);
-    console.log(userFullInfo);
 
     return (
       <main className="lg:min-h-[calc(100vh-80px)] lg:flex lg:items-center ">

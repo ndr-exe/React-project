@@ -63,8 +63,6 @@ export async function submitReview(reviewWithRating: reviewWithRating) {
         author_avatar: userInfoRaw.user_metadata.picture,
       };
   const reviewWithAuthorInfo = { ...reviewWithRating, ...userInfo };
-  // console.log(reviewWithAuthorInfo);
-  console.log(reviewWithAuthorInfo);
 
   await fetch(`${BASE_URL}/api/items/review/add-review`, {
     method: 'POST',
@@ -82,7 +80,6 @@ type UpdatedReview = {
 };
 
 export async function updateReview(reviewWithRating: UpdatedReview) {
-  console.log(reviewWithRating);
   await fetch(`${BASE_URL}/api/items/review/update-review`, {
     method: 'PATCH',
     body: JSON.stringify(reviewWithRating),

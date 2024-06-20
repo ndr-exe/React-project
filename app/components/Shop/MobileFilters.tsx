@@ -5,9 +5,6 @@ import { IoIosArrowUp } from 'react-icons/io';
 export default function MobileFilters() {
   const [showFilters, setShowFilters] = useState(false);
   const [closeFilters, setCLoseFilters] = useState(false);
-  function handleRangers(e: any) {
-    console.log(e.target.value);
-  }
 
   return (
     <div className="">

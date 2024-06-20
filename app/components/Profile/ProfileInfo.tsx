@@ -45,7 +45,6 @@ export default function ProfileInfo({
   async function handleAvatarChange() {
     const img = inputRef.current!.files![0];
     if (img.size > 3500000) {
-      console.log('file is bigger');
       setAvatarError(true);
       setTimeout(() => setAvatarError(false), 3500);
       return;
@@ -59,7 +58,6 @@ export default function ProfileInfo({
     });
 
     const newBlob = (await response.json()) as PutBlobResult;
-    console.log(newBlob);
 
     const avatarUrl = await uploadAvatarUrlToAuth0({ id, blobUrl: newBlob.url });
 
@@ -97,7 +95,6 @@ export default function ProfileInfo({
                 type="file"
                 accept="image/png, image/gif, image/jpeg"
                 ref={inputRef}
-                // onSelect={() => console.log('heeeyyyy')}
                 onInput={() => handleAvatarChange()}
                 className="absolute hidden"
               />
