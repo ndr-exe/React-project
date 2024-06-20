@@ -6,7 +6,6 @@ import ProfileInfo from '../components/Profile/ProfileInfo';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { NextPage } from 'next';
 import { fetchAuth0UserWithMetadataAndRoles } from '../../userActions';
-const hey = process.env.AUTH0_METADATA_EDIT;
 
 const page: NextPage = withPageAuthRequired(
   async () => {

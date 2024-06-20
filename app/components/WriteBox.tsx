@@ -7,8 +7,9 @@ import { submitReview } from '../../action';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 import { CgSpinnerAlt } from 'react-icons/cg';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
-export default function WriteBox({ user, itemID }: { user: any; itemID: number }) {
+export default function WriteBox({ user, itemID }: { user: string; itemID: number }) {
   const [showFilters, setShowFilters] = useState(false);
   const [closeFilters, setCLoseFilters] = useState(false);
   const [activeStars, setActiveStars] = useState(0);
@@ -18,6 +19,8 @@ export default function WriteBox({ user, itemID }: { user: any; itemID: number }
   const [ratingIsMissing, setRatingIsMissing] = useState(false);
   const texareaRef = useRef<HTMLTextAreaElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
 
   function handleRatingIsMissing() {
     setRatingIsMissing(false);
@@ -38,7 +41,7 @@ export default function WriteBox({ user, itemID }: { user: any; itemID: number }
     const reviewWithRating = {
       review: { text: reviewText },
       star: activeStars,
-      author_id: user.sub,
+      author_id: user,
       product_id: itemID,
     };
     setIsLoading(true);
@@ -49,10 +52,23 @@ export default function WriteBox({ user, itemID }: { user: any; itemID: number }
   }
 
   return (
-    <div className="">
+    <div className="" ref={divRef}>
       <div className="w-full mx-auto items-center  text-md">
         <button
-          onClick={showFilters ? () => setCLoseFilters(p => !p) : () => setShowFilters(p => !p)}
+          ref={buttonRef}
+          onClick={
+            showFilters
+              ? () => {
+                  setCLoseFilters(p => !p);
+                  buttonRef.current?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.scrollIntoView(
+                    { behavior: 'smooth' }
+                  );
+                  // buttonRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }
+              : () => {
+                  setShowFilters(p => !p);
+                }
+          }
           className={` h-full flex justify-center items-center rounded-md min-w-40 pl-2 pr-3 py-1 mr-auto mb-5 ${
             showFilters ? 'abortBtn' : 'defaultBtn'
           } `}
@@ -78,6 +94,9 @@ export default function WriteBox({ user, itemID }: { user: any; itemID: number }
       {showFilters && (
         <div className={`overflow-hidden `}>
           <div
+            onAnimationStart={() =>
+              showFilters && formRef.current!.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
             onAnimationEnd={() => closeFilters && (setShowFilters(false), setCLoseFilters(false))}
             className={`pt-1 pb-6 px-4 applyFilterAnimation ${
               closeFilters && 'applyFilterAnimationClose'

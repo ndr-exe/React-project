@@ -21,7 +21,7 @@ export async function fetchCartItems() {
   }
 
   const sub = session!.user.sub;
-  const response = await fetch(`${BASE_URL}/api/get-cart-products`, {
+  const response = await fetch(`${BASE_URL}/api/cart/fetch-cart-items`, {
     cache: 'no-store',
     headers: { Authorization: sub },
   });

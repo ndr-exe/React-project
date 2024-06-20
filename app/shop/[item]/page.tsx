@@ -6,6 +6,7 @@ import ItemPageAddToCartButton from '../../components/Shop/Item-Page/ItemPageAdd
 import Rating from '../../components/Shop/Rating';
 import GoBackButton from '../../components/Shop/Item-Page/GoBackButton';
 import ReviewSection from '../../components/Shop/Item-Page/ReviewSection';
+import { getSession } from '@auth0/nextjs-auth0';
 
 export default async function page({ params }: { params: { item: string } }) {
   const lang = cookies().get('locale')?.value;
@@ -13,6 +14,7 @@ export default async function page({ params }: { params: { item: string } }) {
   const { itemWithReview, reviews }: { itemWithReview: ItemWithReviews; reviews: Review[] } =
     await fetchItem(Number(params.item));
   const cart = await fetchCartItems();
+  const session = await getSession();
 
   return (
     <main>
@@ -59,7 +61,7 @@ export default async function page({ params }: { params: { item: string } }) {
           <ItemPageAddToCartButton cart={cart} id={itemWithReview.id} />
         </div>
       </section>
-      <ReviewSection itemWithReview={itemWithReview} reviews={reviews} />
+      <ReviewSection itemWithReview={itemWithReview} session={session} reviews={reviews} />
     </main>
   );
 }

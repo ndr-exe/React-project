@@ -25,11 +25,7 @@ async function checkSystem() {
   return '';
 }
 
-export default async function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
   const dark = await checkPrefered();
   const system = await checkSystem();
   const cartItems = await fetchCartItems();
@@ -38,9 +34,7 @@ export default async function RootLayout({
     <html lang="en" className={`${dark}`}>
       <UserProvider>
         <AppProvider cartItems={cartItems}>
-          <body
-            className={`text-black dark:bg-black dark:text-white ${system} `}
-          >
+          <body className={`text-black dark:bg-black dark:text-white ${system} `}>
             <div className="max-w-[1920px] mx-auto">
               <Header />
               <div className="mt-16 xl:mt-20">{children}</div>

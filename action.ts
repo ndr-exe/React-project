@@ -64,7 +64,7 @@ export async function submitReview(reviewWithRating: reviewWithRating) {
       };
   const reviewWithAuthorInfo = { ...reviewWithRating, ...userInfo };
 
-  await fetch(`${BASE_URL}/api/items/review/add-review`, {
+  await fetch(`${BASE_URL}/api/items/review`, {
     method: 'POST',
     body: JSON.stringify(reviewWithAuthorInfo),
   });
@@ -80,9 +80,16 @@ type UpdatedReview = {
 };
 
 export async function updateReview(reviewWithRating: UpdatedReview) {
-  await fetch(`${BASE_URL}/api/items/review/update-review`, {
+  await fetch(`${BASE_URL}/api/items/review`, {
     method: 'PATCH',
     body: JSON.stringify(reviewWithRating),
+  });
+  revalidatePath('/', 'page');
+}
+export async function deleteReview(id: number) {
+  await fetch(`${BASE_URL}/api/items/review`, {
+    method: 'DELETE',
+    body: JSON.stringify(id),
   });
   revalidatePath('/', 'page');
 }

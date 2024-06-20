@@ -1,22 +1,22 @@
 'use client';
 import Image from 'next/image';
-import CustomerReviewRating from './CustomerReviewRating';
-import { useRef, useState } from 'react';
+import { Suspense, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import RateItem from './RateItem';
 import { CgSpinnerAlt } from 'react-icons/cg';
-import { updateReview } from '../../../../action';
-export default function EditableReview({
-  children,
-  review,
-}: {
-  children: React.ReactNode;
-  review: Review;
-}) {
+import { deleteReview, updateReview } from '../../../../action';
+import { FiTrash2 } from 'react-icons/fi';
+import { CiEdit } from 'react-icons/ci';
+import { ImUndo } from 'react-icons/im';
+import { GrEdit } from 'react-icons/gr';
+import UserReview from './UserReview';
+
+export default function EditableReview({ review }: { review: Review }) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [activeStars, setActiveStars] = useState(review.star);
   const [reviewText, setReviewText] = useState(review.review?.text);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingOnDelete, setLoadingOnDelete] = useState(false);
   const [ratingIsMissing, setRatingIsMissing] = useState(false);
   const texareaRef = useRef<HTMLTextAreaElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -49,12 +49,20 @@ export default function EditableReview({
     setIsLoading(false);
     setIsEditMode(false);
   }
+
+  async function handleDeleteReview(id: number) {
+    setLoadingOnDelete(true);
+    await deleteReview(id);
+    setIsEditMode(false);
+    setLoadingOnDelete(false);
+  }
+
   return (
-    <li className="flex gap-1 sm:gap-5 border-b pb-3 last:border-b-0 first:border-t first:pt-3">
+    <li className="flex gap-1 sm:gap-5 border-b pb-3 last:border-b-0 first:border-t first:pt-3 flex-wrap">
       {!isEditMode ? (
-        children
+        <UserReview review={review} />
       ) : (
-        <form ref={formRef} action="" className="flex flex-col gap-3 w-fit ">
+        <form ref={formRef} action="" className="flex flex-col gap-3 flex-grow ">
           <RateItem
             handleRatingChange={handleRatingChange}
             activeStars={activeStars}
@@ -85,7 +93,7 @@ export default function EditableReview({
             disabled={
               isLoading || (review.review?.text === reviewText && activeStars === review.star)
             }
-            className="border px-2 py-2 rounded-lg defaultBtn flex justify-center items-center min-h-11 disabled:opacity-75 disabled:pointer-events-none"
+            className="border px-6 py-1 w-fit self-center rounded-lg defaultBtn flex justify-center items-center min-h-11 disabled:opacity-75 disabled:pointer-events-none"
           >
             {isLoading ? (
               <span>
@@ -97,16 +105,33 @@ export default function EditableReview({
           </button>
         </form>
       )}
-      <button
-        onClick={() => {
-          setIsEditMode(p => !p);
-          setActiveStars(review.star);
-          setReviewText(review.review?.text);
-        }}
-        className=""
-      >
-        Edit
-      </button>
+      <div className="self-center flex sm:flex-col gap-7 w-full pt-3 justify-center sm:w-max sm:pt-0 ">
+        <button
+          onClick={() => {
+            setIsEditMode(p => !p);
+            setActiveStars(review.star);
+            setReviewText(review.review?.text);
+          }}
+          className="flex items-center gap-0.5"
+        >
+          {isEditMode ? <ImUndo className="text-xl" /> : <GrEdit className="text-xl" />}
+        </button>
+        <button
+          disabled={loadingOnDelete}
+          onClick={() => {
+            handleDeleteReview(review.id);
+          }}
+          className="flex items-center gap-0.5"
+        >
+          {loadingOnDelete ? (
+            <span>
+              <CgSpinnerAlt className="animate-spin text-lg" />
+            </span>
+          ) : (
+            <FiTrash2 className="text-2xl" />
+          )}
+        </button>
+      </div>
     </li>
   );
 }
