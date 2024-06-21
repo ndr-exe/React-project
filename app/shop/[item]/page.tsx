@@ -15,6 +15,7 @@ export default async function page({ params }: { params: { item: string } }) {
     await fetchItem(Number(params.item));
   const cart = await fetchCartItems();
   const session = await getSession();
+  const isLogged = !Object.is(session, null);
 
   return (
     <main>
@@ -58,10 +59,10 @@ export default async function page({ params }: { params: { item: string } }) {
           </div>
           <p className="font-bold text-3xl mt-5 mb-4 xl:mb-6 2xl:mb-8 ">${itemWithReview.price}</p>
 
-          <ItemPageAddToCartButton cart={cart} id={itemWithReview.id} />
+          <ItemPageAddToCartButton cart={cart} id={itemWithReview.id} isLogged={isLogged} />
         </div>
       </section>
-      <ReviewSection itemWithReview={itemWithReview} session={session} reviews={reviews} />
+      <ReviewSection itemWithReview={itemWithReview} reviews={reviews} />
     </main>
   );
 }

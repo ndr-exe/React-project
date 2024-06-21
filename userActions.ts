@@ -1,5 +1,6 @@
 'use server';
 
+import { getSession } from '@auth0/nextjs-auth0';
 import { revalidatePath } from 'next/cache';
 
 const BASE_URL =
@@ -165,4 +166,18 @@ export async function uploadAvatarUrlToAuth0({ id, blobUrl }: { id: string; blob
     .catch(error => console.log('error', error));
 
   revalidatePath('/', 'layout');
+}
+
+type UserRoles = {
+  id: string;
+  name: string;
+  description: string;
+};
+
+export async function checkIfUserIsAdmin() {
+  const session = await getSession();
+  if (session === null) return false;
+  const roles: Awaited<UserRoles[]> = await fetchAuth0UserRoles(session?.user.sub);
+  if (!Array.isArray(roles)) return false;
+  return roles.findIndex(role => role.id === 'rol_jYB8r272UIcUllni') !== -1;
 }

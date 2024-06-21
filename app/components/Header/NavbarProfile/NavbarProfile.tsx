@@ -1,15 +1,9 @@
 'use client';
 import Image from 'next/image';
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import NavBarProfileDropdown from './NavBarProfileDropdown';
 
-export default function NavbarProfile({
-  userInfo,
-  children,
-}: {
-  userInfo: User;
-  children: ReactNode;
-}) {
+export default function NavbarProfile({ userInfo }: { userInfo: User }) {
   const [activeProfileDroodown, setActiveProfileDropdown] = useState(false);
 
   function handleClose() {

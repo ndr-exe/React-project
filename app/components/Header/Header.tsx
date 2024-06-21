@@ -66,9 +66,7 @@ export default async function Header() {
           // >
           //   {navbar.logout}
           // </a>
-          <NavbarProfile userInfo={userInfo as User}>
-            <div className="w-full h-full bg-red-300"></div>
-          </NavbarProfile>
+          <NavbarProfile userInfo={userInfo as User}></NavbarProfile>
         ) : (
           <a
             href="/api/auth/login"

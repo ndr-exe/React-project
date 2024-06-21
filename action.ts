@@ -93,3 +93,13 @@ export async function deleteReview(id: number) {
   });
   revalidatePath('/', 'page');
 }
+
+export async function updateItem(item: ItemWithReviews) {
+  const response = await fetch(`${BASE_URL}/api/items/update-item`, {
+    method: 'PATCH',
+    body: JSON.stringify(item),
+  });
+  const data = await response.json();
+  console.log(data);
+  revalidatePath('/', 'page');
+}

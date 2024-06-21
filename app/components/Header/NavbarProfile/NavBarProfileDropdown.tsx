@@ -6,6 +6,7 @@ import { PiArticleMedium } from 'react-icons/pi';
 import { FaRegStarHalf } from 'react-icons/fa';
 import { PiPackage } from 'react-icons/pi';
 import { MdLogout } from 'react-icons/md';
+import { MdOutlineDashboardCustomize } from 'react-icons/md';
 
 export default function NavBarProfileDropdown({
   userInfo,
@@ -76,6 +77,18 @@ export default function NavBarProfileDropdown({
             Orders
           </Link>
         </li>
+        {userInfo.userRoles.findIndex(role => role.name === 'Admin') !== -1 && (
+          <li>
+            <Link
+              onClick={() => handleClose()}
+              href="/admin"
+              className="flex items-center gap-1 hover:text-[#378058] transition-colors"
+            >
+              <MdOutlineDashboardCustomize />
+              Admin Panel
+            </Link>
+          </li>
+        )}
         <li className="flex justify-center mt-2">
           <a
             href="/api/auth/logout"

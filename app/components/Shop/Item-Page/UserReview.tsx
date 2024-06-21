@@ -17,11 +17,13 @@ export default function userReview({ review }: { review: any }) {
         <p className="font-medium lg:text-lg 2xl:text-xl">{review.author_username}</p>
         <div className="flex-1">
           <CustomerReviewRating stars={review.star} />
-          <p className="text-gray-700 lg:text-lg 2xl:text-xl md:mt-1 lg:mt-2">
+          <p className="text-gray-700 dark:text-gray-200 lg:text-lg 2xl:text-xl md:mt-1 lg:mt-2">
             {review.review!.text}
           </p>
         </div>
-        <p className="font-light text-gray-600 text-sm lg:text-md">{review.created_at}</p>
+        <p className="font-light text-gray-600 dark:text-gray-500 text-sm lg:text-md">
+          {review.created_at}
+        </p>
       </div>
     </>
   );

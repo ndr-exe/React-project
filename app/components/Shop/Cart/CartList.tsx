@@ -3,7 +3,15 @@
 import CartItem from './CartItem';
 import useCartItemManagment from '../../../hooks/useCartItemManagment';
 
-export default function CartList({ items, itemsRaw }: { items: CartItem[]; itemsRaw: ItemsRaw }) {
+export default function CartList({
+  items,
+  itemsRaw,
+  key,
+}: {
+  items: CartItem[];
+  itemsRaw: ItemsRaw;
+  key: string | undefined;
+}) {
   const {
     handleIncrement,
     handleDecrement,
@@ -15,13 +23,15 @@ export default function CartList({ items, itemsRaw }: { items: CartItem[]; items
     isPending,
   } = useCartItemManagment(itemsRaw, items);
 
+  const msg = typeof key === 'undefined' ? 'no key avail.' : key;
+
   return (
     <main className="py-5 px-4 lg:px-9 xl:px-12 2xl:px-20">
       <div className="flex flex-col gap-4 xl:gap-6 lg:flex-row lg:justify-between">
         <div className="">
           <h1 className="text-xl font-bold xl:text-xl 2xl:text-2xl xl:mb-2">Your Cart</h1>
           <p className="text-md text-gray-500 2xl-text-lg">
-            Review and manage the items in your cart.
+            Review and manage the items in your cart.{msg}
           </p>
         </div>
         <button
