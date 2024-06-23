@@ -1,3 +1,5 @@
+import CartItem from './app/components/Shop/Cart/CartItem';
+
 export function calculateProductsCountInCart(obj: CartProducts): number {
   const arr = Object.values(obj);
   const productCount = arr.reduce((acc: number, curr: number) => {
@@ -42,4 +44,14 @@ export function manageFormData(userFullInfo: User) {
     username: userInfo.username || userInfo.nickname,
     email: userInfo.email,
   };
+}
+
+export function returnFilteredItems(itemsRaw: ItemsRaw, items: CartItem[]) {
+  if (Object.keys(CartItem).length === items.length) return itemsRaw;
+
+  let filteredItems = {} as ItemsRaw;
+  items.forEach(item => {
+    filteredItems[item.id] = item.count;
+  });
+  return filteredItems;
 }

@@ -5,6 +5,7 @@ import { BASE_URL } from './api';
 import { revalidatePath } from 'next/cache';
 import { getSession } from '@auth0/nextjs-auth0';
 import { fetchAuth0UserData } from './userActions';
+import { redirect } from 'next/navigation';
 
 export async function logout() {
   cookies().delete('token');
@@ -94,12 +95,53 @@ export async function deleteReview(id: number) {
   revalidatePath('/', 'page');
 }
 
-export async function updateItem(item: ItemWithReviews) {
-  const response = await fetch(`${BASE_URL}/api/items/update-item`, {
-    method: 'PATCH',
+export async function updateItems(item: ItemWithReviews, operation: 'ADD' | 'UPDATE') {
+  const response = await fetch(`${BASE_URL}/api/items/update-items`, {
+    method: operation === 'ADD' ? 'POST' : 'PATCH',
     body: JSON.stringify(item),
   });
   const data = await response.json();
-  console.log(data);
+  revalidatePath('/', 'page');
+}
+
+export async function deleteItem(id: number) {
+  const response = await fetch(`${BASE_URL}/api/items/update-items`, {
+    method: 'DELETE',
+    body: JSON.stringify(id),
+  });
+  const data = await response.json();
+  revalidatePath('/', 'page');
+}
+
+// BLOG
+export async function updateBlog(blogpost: BlogpostHydrated, operation: 'ADD' | 'UPDATE') {
+  let blogpostWithUserInfo;
+  if (operation === 'ADD') {
+    const session = await getSession();
+    const userInfoRaw = await fetchAuth0UserData(session?.user.sub);
+    const userInfo = session?.user.sub.startsWith('auth0')
+      ? { author_username: userInfoRaw.username, author_avatar: userInfoRaw.picture }
+      : {
+          author_username: userInfoRaw.user_metadata.username,
+          author_avatar: userInfoRaw.user_metadata.picture,
+          author_id: session?.user.sub,
+        };
+    blogpostWithUserInfo = { ...blogpost, ...userInfo };
+  }
+
+  const response = await fetch(`${BASE_URL}/api/blog`, {
+    method: operation === 'ADD' ? 'POST' : 'PATCH',
+    body: operation === 'ADD' ? JSON.stringify(blogpostWithUserInfo) : JSON.stringify(blogpost),
+  });
+  const data = await response.json();
+  revalidatePath('/', 'page');
+}
+
+export async function deleteBlogpost(id: number) {
+  const response = await fetch(`${BASE_URL}/api/blog`, {
+    method: 'DELETE',
+    body: JSON.stringify(id),
+  });
+  const data = await response.json();
   revalidatePath('/', 'page');
 }

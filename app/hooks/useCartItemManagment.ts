@@ -1,7 +1,7 @@
 import { useOptimistic, useState, useTransition } from 'react';
 import { useAppInfo } from '../components/Context-Provaiders/AppProvider';
 import { updateCart } from '../../action';
-import { calculateCartItemsPricesSum } from '../../helperFunctions';
+import { calculateCartItemsPricesSum, returnFilteredItems } from '../../helperFunctions';
 
 type Actions = 'increment' | 'decrement' | 'delete' | 'reset';
 
@@ -30,7 +30,7 @@ export default function useCartItemManagment(itemsRaw: ItemsRaw, items: CartItem
   const { productCountInCart, setProductsCountInCart } = useAppInfo();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<any>(null);
-  const [optimisticItems, dispatch] = useOptimistic(itemsRaw, reducer);
+  const [optimisticItems, dispatch] = useOptimistic(returnFilteredItems(itemsRaw, items), reducer);
   const pricesSum = calculateCartItemsPricesSum(items, optimisticItems);
 
   async function handleIncrement(id: number) {

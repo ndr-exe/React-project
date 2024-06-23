@@ -2,6 +2,7 @@
 
 import { getSession } from '@auth0/nextjs-auth0';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 const BASE_URL =
   process.env.NODE_ENV === 'development'
@@ -72,6 +73,15 @@ export async function fetchAuth0UserWithMetadataAndRoles(id: string) {
   const userInfo = await fetchAuth0UserData(id);
   const userRoles = await fetchAuth0UserRoles(id);
   return { userInfo, userRoles };
+}
+
+export async function compareUserIDsToGrantPermission(inputID: string) {
+  const session = await getSession();
+  if (Object.is(session, null) || session!.user.sub !== inputID) {
+    return redirect('/');
+  } else {
+    return;
+  }
 }
 
 export async function updateUser({ id, formData }: { id: string; formData: formData }) {

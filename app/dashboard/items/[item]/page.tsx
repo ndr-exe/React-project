@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { getDictionary } from '../../../../dictionaries';
 import { fetchItem } from '../../../../api';
-import EditProduct from '../../../components/dashboard/EditProduct';
+import EditItem from '../../../components/dashboard/EditItem';
 import Link from 'next/link';
 
 export default async function page({ params }: { params: { item: string } }) {
@@ -14,7 +14,7 @@ export default async function page({ params }: { params: { item: string } }) {
       <h1 className="text-center">Edit Item</h1>
       <Link href={'/'}>Go back</Link>
       <div className="mx-auto">
-        <EditProduct item={itemWithReview} />
+        <EditItem item={itemWithReview} />
       </div>
     </main>
   );

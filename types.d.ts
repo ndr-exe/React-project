@@ -130,3 +130,18 @@ interface ItemWithReviews extends ItemWithoutReviews {
   reviews: number;
   stars: number;
 }
+
+//BLOG
+
+type BlogpostHydrated = {
+  id: number;
+  author_id: string;
+  author_username: string;
+  author_avatar: string;
+  title: string;
+  blogpost: { text: string };
+  thumbnail: string;
+  likes: number;
+  dislikes: number;
+  userLiked?: boolean;
+};

@@ -58,8 +58,24 @@ export async function fetchCartItemsWithInfo() {
 
   for (let index = 0; index < itemsIDArr.length; index++) {
     const singleItem = await fetchItem(Number(itemsIDArr[index]), true);
-    items.push({ ...singleItem, count: itemsRaw[itemsIDArr[index]] });
+    Object.values(singleItem).length > 0 &&
+      items.push({ ...singleItem, count: itemsRaw[itemsIDArr[index]] });
   }
 
   return { items, itemsRaw };
+}
+
+// BLOG
+
+export async function fetchBlog(id: number) {
+  const session = await getSession();
+  const userID = !Object.is(session, null) && session!.user.sub;
+
+  const response = await fetch(`${BASE_URL}/api/blog?id=${id}`, {
+    headers: { Authorization: userID },
+  });
+
+  const { blogpostHydrated } = await response.json();
+
+  return blogpostHydrated;
 }

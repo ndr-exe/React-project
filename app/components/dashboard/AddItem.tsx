@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 import ImageSelector from './ImageSelector';
-import { updateItem } from '../../../action';
-import { useRouter } from 'next/navigation';
+import { updateItems } from '../../../action';
+import { usePathname, useRouter } from 'next/navigation';
 import { PutBlobResult } from '@vercel/blob';
 import { ImUndo } from 'react-icons/im';
 import { GrEdit } from 'react-icons/gr';
@@ -13,23 +13,43 @@ import { CgSpinnerAlt } from 'react-icons/cg';
 type newImg = {
   [key: string]: File;
 };
+const itemSkeleton = {
+  id: 999,
+  title: '',
+  description: { text: '' },
+  price: 0,
+  brand: '',
+  category: '',
+  caliber: '',
+  action: '',
+  thumbnail: '',
+  images: ['', ''],
+  created_at: '',
+  reviews: 0,
+  stars: 0,
+};
 
-export default function EditProduct({ item }: { item: ItemWithReviews }) {
-  const [itemState, setItemState] = useState(() => item);
+const defaultPlaceholderImgUrl = 'https://placehold.co/100x100/png';
+
+export default function AddItem() {
+  const [itemState, setItemState] = useState(() => itemSkeleton);
   const [isEditing, setisEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [newImages, setNewImages] = useState<newImg>({});
   const formRef = useRef<HTMLFormElement | null>(null);
   const router = useRouter();
 
+  const pathname = usePathname();
+  console.log(pathname);
+  const idx = pathname.lastIndexOf('/');
+  const updatedPath = pathname.slice(0, 16);
+  console.log(updatedPath);
   async function handleUpdate() {
     if (!formRef.current?.reportValidity()) return;
-    if (Object.values(newImages).length < 1) {
-      setIsLoading(true);
-      await updateItem(itemState);
-      router.refresh();
-      setIsLoading(false);
-      setisEditing(false);
+    if (Object.values(newImages).length < 3) {
+      setError(true);
+      setTimeout(() => setError(false), 2500);
       return;
     }
     setIsLoading(true);
@@ -49,8 +69,8 @@ export default function EditProduct({ item }: { item: ItemWithReviews }) {
         itemStateClone.images[1] = newBlob.url;
       }
     }
-    console.log(itemStateClone);
-    await updateItem(itemStateClone);
+
+    await updateItems(itemStateClone, 'ADD');
     setIsLoading(false);
     setisEditing(false);
     router.refresh();
@@ -105,8 +125,9 @@ export default function EditProduct({ item }: { item: ItemWithReviews }) {
             className="px-1.5 py-1.5 rounded-md border dark:bg-gray-800"
             onChange={e => {
               if (!isEditing) return;
+              const price = isNaN(Number(e.target.value)) ? 0 : Number(e.target.value);
               setItemState(p => {
-                return { ...p, price: Number(e.target.value) };
+                return { ...p, price };
               });
             }}
           />
@@ -118,8 +139,9 @@ export default function EditProduct({ item }: { item: ItemWithReviews }) {
             Description
           </label>
           <textarea
-            minLength={55}
-            maxLength={315}
+            required
+            minLength={155}
+            maxLength={666}
             name="description"
             id="description"
             value={itemState.description.text}
@@ -184,22 +206,35 @@ export default function EditProduct({ item }: { item: ItemWithReviews }) {
       </form>
       {/* IMAGE SELECTORS  */}
       <div
-        className={`flex gap-5 items-start self-center mt-5 mb-8 ${
+        className={`flex gap-5 items-start self-center mt-5 mb-8 relative ${
           !isEditing && 'pointer-events-none'
         }`}
       >
         <div>
           <p className="text-center">Thumbnail</p>
-          <ImageSelector currentImg={item.thumbnail} setImg={setNewImages} type="thumbnail" />
+          <ImageSelector
+            currentImg={defaultPlaceholderImgUrl}
+            setImg={setNewImages}
+            type="thumbnail"
+          />
         </div>
         <div>
           <p className="text-center">#1 Image</p>
-          <ImageSelector currentImg={item.images[0]} setImg={setNewImages} type="first" />
+          <ImageSelector currentImg={defaultPlaceholderImgUrl} setImg={setNewImages} type="first" />
         </div>
         <div>
           <p className="text-center">#2 Image</p>
-          <ImageSelector currentImg={item.images[1]} setImg={setNewImages} type="second" />
+          <ImageSelector
+            currentImg={defaultPlaceholderImgUrl}
+            setImg={setNewImages}
+            type="second"
+          />
         </div>
+        {error && (
+          <p className="absolute text-red-500 -bottom-8 text-center w-full">
+            All 3 Images must be Selected!
+          </p>
+        )}
       </div>
       {/*  */}
 
@@ -209,7 +244,7 @@ export default function EditProduct({ item }: { item: ItemWithReviews }) {
           disabled={isLoading}
           onClick={e => {
             e.preventDefault();
-            isEditing && setItemState(item);
+            isEditing && setItemState(itemSkeleton);
             setisEditing(p => !p);
           }}
         >

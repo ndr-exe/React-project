@@ -10,9 +10,16 @@ const page: NextPage = withPageAuthRequired(
     const lang = cookies().get('locale')?.value;
     const { profile: localDict } = await getDictionary(lang as string);
     const { items, itemsRaw } = await fetchCartItemsWithInfo();
-    const key = process.env.TEST_ENV_KEY;
+    const key = process.env.NEXT_PUBLIC_TEST_KEY;
+    const secretKey = process.env.TEST_KEY;
 
-    return <CartList items={items} itemsRaw={itemsRaw} key={key} />;
+    return (
+      <div>
+        <p>{key}</p>
+        <p>{secretKey}</p>
+        <CartList items={items} itemsRaw={itemsRaw} />;
+      </div>
+    );
   },
   { returnTo: '/api/auth/login' }
 );

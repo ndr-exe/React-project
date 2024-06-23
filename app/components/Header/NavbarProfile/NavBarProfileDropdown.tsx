@@ -81,7 +81,7 @@ export default function NavBarProfileDropdown({
           <li>
             <Link
               onClick={() => handleClose()}
-              href="/admin"
+              href="/dashboard/items"
               className="flex items-center gap-1 hover:text-[#378058] transition-colors"
             >
               <MdOutlineDashboardCustomize />
