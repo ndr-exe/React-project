@@ -20,6 +20,7 @@ const blogSkeleton = {
   title: '',
   blogpost: { text: '' },
   thumbnail: '',
+  created_at: '',
   likes: 0,
   dislikes: 0,
 };
