@@ -3,6 +3,7 @@
 import CartItem from './CartItem';
 import useCartItemManagment from '../../../hooks/useCartItemManagment';
 import { returnFilteredItems } from '../../../../helperFunctions';
+import CheckoutButton from './CheckoutButton';
 
 export default function CartList({ items, itemsRaw }: { items: CartItem[]; itemsRaw: ItemsRaw }) {
   const {
@@ -15,6 +16,7 @@ export default function CartList({ items, itemsRaw }: { items: CartItem[]; items
     error,
     isPending,
   } = useCartItemManagment(itemsRaw, items);
+  console.log(optimisticItems);
 
   return (
     <main className="py-5 px-4 lg:px-9 xl:px-12 2xl:px-20">
@@ -52,12 +54,7 @@ export default function CartList({ items, itemsRaw }: { items: CartItem[]; items
             <p className="text-xl xl:text-2xl font-bold xl:mb-2 2xl:mb-3">Total</p>
             <p className="text-xl xl:text-3xl font-bold">${pricesSum}</p>
           </div>
-          <button
-            onClick={() => null}
-            className="bg-black text-white text-lg px-6 py-2 rounded-lg border md:w-fit xl:text-xl 2xl:text-2xl xl:px-7 xl:py-3 lg:self-center"
-          >
-            Proceed to Chechkout
-          </button>
+          <CheckoutButton items={items} itemsRaw={itemsRaw} />
         </div>
       </div>
     </main>

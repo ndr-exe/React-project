@@ -15,8 +15,10 @@ const page: NextPage = withPageAuthRequired(
 
     return (
       <div>
+        <p>hehe</p>
         <p>{key}</p>
         <p>{secretKey}</p>
+        <p>hehe</p>
         <CartList items={items} itemsRaw={itemsRaw} />;
       </div>
     );

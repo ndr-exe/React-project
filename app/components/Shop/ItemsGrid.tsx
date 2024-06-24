@@ -1,12 +1,13 @@
 import { getSession } from '@auth0/nextjs-auth0';
-import { fetchCartItems } from '../../../api';
+import { fetchCartItems, fetchItems } from '../../../api';
 import GridWrapper from './GridWrapper';
-import Item from './Item';
 
-export default async function ItemsGrid({ items }: { items: ItemWithReviews[] }) {
+export default async function ItemsGrid() {
+  // const items: ItemWithReviews[] = await fetchItems();
   const cart = await fetchCartItems();
   const session = await getSession();
   const isLogged = !Object.is(session, null);
+  const items: ItemWithReviews[] = await fetchItems();
 
   return (
     <div className="py-5">

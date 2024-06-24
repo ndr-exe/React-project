@@ -79,3 +79,21 @@ export async function fetchBlog(id: number) {
 
   return blogpostHydrated;
 }
+
+export async function fetchBlogposts() {
+  const response = await fetch(`${BASE_URL}/api/blog/fetch-all`, {});
+  const data = await response.json();
+  return data;
+}
+
+//ORDERS
+
+export async function fetchOrders() {
+  const session = await getSession();
+  const userID = session && session.user && session.user.sub;
+  const response = await fetch(`${BASE_URL}/api/orders`, {
+    headers: { Authorization: userID },
+  });
+  const { orders } = await response.json();
+  return orders;
+}

@@ -10,7 +10,6 @@ export default async function page() {
   const dict = await getDictionary(lang as string);
   return (
     <main className="max-w-screen-lg mx-auto">
-      <Link href={'/'}>Go back</Link>
       <h1 className="text-center">Write a Blogpost</h1>
       <div className="mx-auto">
         <AddBlogpost />

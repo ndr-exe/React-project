@@ -7,9 +7,9 @@ import { cookies } from 'next/headers';
 import { getDictionary } from '../../../dictionaries';
 import { getSession } from '@auth0/nextjs-auth0';
 import Cart from '../Shop/Cart/CartIcon';
-import Link from 'next/link';
 import { fetchAuth0UserWithMetadataAndRoles } from '../../../userActions';
 import NavbarProfile from './NavbarProfile/NavbarProfile';
+import ActiveLink from './ActiveLink';
 
 export default async function Header() {
   const lang = cookies().get('locale')?.value;
@@ -24,26 +24,18 @@ export default async function Header() {
       </div>
       <div className="hidden md:block md:mr-auto">
         <ul className="flex gap-4 xl:gap-5">
-          <li>
-            <Link href="/">{navbar.home}</Link>
+          <li className="">
+            <ActiveLink link="/" displayLink="Home" />
           </li>
-          <li>
-            <Link href="/shop">{navbar.shop}</Link>
+          <li className="">
+            <ActiveLink link="/shop" displayLink="Shop" />
           </li>
-          <li>
-            <Link href="/">{navbar.collection}</Link>
+          <li className="">
+            <ActiveLink link="/blog" displayLink="Blog" />
           </li>
-          <li>
-            <Link href="/">{navbar.Blog}</Link>
+          <li className="">
+            <ActiveLink link="/contact" displayLink="Conact Us" />
           </li>
-          <li>
-            <Link href="/">{navbar.contact}</Link>
-          </li>
-          {session?.user && (
-            <li>
-              <Link href="/profile">Profile</Link>
-            </li>
-          )}
         </ul>
       </div>
 

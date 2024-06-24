@@ -141,7 +141,43 @@ type BlogpostHydrated = {
   title: string;
   blogpost: { text: string };
   thumbnail: string;
+  created_at: string;
   likes: number;
   dislikes: number;
   userLiked?: boolean;
+  reactionID?: number;
+};
+
+type Blogpost = {
+  id: number;
+  author_id: string;
+  author_username: string;
+  author_avatar: string;
+  title: string;
+  blogpost: { text: string };
+  thumbnail: string;
+  created_at: string;
+};
+
+type Reaction = {
+  id: number;
+  user_auth_id: string;
+  blogpost_id: number;
+  liked: boolean | null;
+};
+
+//ORDERS
+type OrderInfo = {
+  userID: string | undefined;
+  orderInfo: {
+    total: number | null;
+    address: Stripe.Address | null | undefined;
+    userMail: string | null;
+    items: {
+      itemName: string;
+      itemPrice: string;
+      itemCount: number | null;
+      itemThumbnail: string | undefined;
+    }[];
+  };
 };

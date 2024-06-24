@@ -6,6 +6,8 @@ import { revalidatePath } from 'next/cache';
 import { getSession } from '@auth0/nextjs-auth0';
 import { fetchAuth0UserData } from './userActions';
 import { redirect } from 'next/navigation';
+import Stripe from 'stripe';
+import { sql } from '@vercel/postgres';
 
 export async function logout() {
   cookies().delete('token');
@@ -144,4 +146,39 @@ export async function deleteBlogpost(id: number) {
   });
   const data = await response.json();
   revalidatePath('/', 'page');
+}
+
+export async function updateReaction(
+  action: 'delete' | 'like' | 'dislike',
+  blogID: number,
+  updateExist?: boolean
+) {
+  const session = await getSession();
+  const userID = !Object.is(session, null) && session?.user && session.user.sub;
+  if (!userID) return;
+  const isLiked = action === 'like' ? true : false;
+
+  if (action === 'delete') {
+    //delete
+    await sql`DELETE FROM reactions WHERE user_auth_id=${userID} AND blogpost_id=${blogID}`;
+  } else {
+    updateExist &&
+      (await sql`DELETE FROM reactions WHERE user_auth_id=${userID} AND blogpost_id=${blogID}`);
+    await sql`INSERT INTO reactions (user_auth_id,blogpost_id,liked) VALUES(${userID},${blogID},${isLiked})`;
+  }
+}
+export async function addOrder(obj: any) {
+  const response = await fetch(`${BASE_URL}/api/orders`, {
+    method: 'POST',
+    body: JSON.stringify(obj),
+  });
+  const data = await response.json();
+
+  revalidatePath('/', 'page');
+}
+
+export async function fetchItems() {
+  const response = await fetch(`${BASE_URL}/api/items/fetch-items`);
+  const { items } = await response.json();
+  return items;
 }

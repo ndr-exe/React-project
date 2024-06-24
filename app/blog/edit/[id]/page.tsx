@@ -15,7 +15,6 @@ export default async function page({ params }: { params: { id: string } }) {
 
   return (
     <main className="max-w-screen-lg mx-auto">
-      <Link href={'/'}>Go back</Link>
       <h1 className="text-center">Edit a Blogpost</h1>
       <div className="mx-auto">
         <EditBlogpost blogPostHydrated={blogPostHydrated} />

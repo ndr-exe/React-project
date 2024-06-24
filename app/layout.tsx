@@ -31,10 +31,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const cartItems = await fetchCartItems();
 
   return (
-    <html lang="en" className={`${dark}`}>
+    <html lang="en" className={`${dark} min-h-dvh `}>
       <UserProvider>
         <AppProvider cartItems={cartItems}>
-          <body className={`text-black dark:bg-black dark:text-white ${system} `}>
+          <body className={`text-black dark:bg-black  dark:text-white ${system} `}>
             <div className="max-w-[1920px] mx-auto">
               <Header />
               <div className="mt-16 xl:mt-20">{children}</div>

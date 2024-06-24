@@ -8,7 +8,6 @@ export default async function page() {
   const dict = await getDictionary(lang as string);
   return (
     <main className="">
-      <Link href={'/'}>Go back</Link>
       <h1 className="text-center">Add Item</h1>
       <div className="mx-auto">
         <AddItem />

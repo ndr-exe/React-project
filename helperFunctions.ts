@@ -1,3 +1,4 @@
+import Stripe from 'stripe';
 import CartItem from './app/components/Shop/Cart/CartItem';
 
 export function calculateProductsCountInCart(obj: CartProducts): number {
@@ -54,4 +55,88 @@ export function returnFilteredItems(itemsRaw: ItemsRaw, items: CartItem[]) {
     filteredItems[item.id] = item.count;
   });
   return filteredItems;
+}
+
+export function mergeItemInfoOnCheckout(itemsRaw: ItemsRaw, items: CartItem[]) {
+  return items.map(item => {
+    return { ...item, count: itemsRaw[item.id] };
+  });
+}
+
+export function formatAmountForStripe(amount: number, currency: string): number {
+  let numberFormat = new Intl.NumberFormat(['en-US'], {
+    style: 'currency',
+    currency: currency,
+    currencyDisplay: 'symbol',
+  });
+  const parts = numberFormat.formatToParts(amount);
+  let zeroDecimalCurrency: boolean = true;
+  for (let part of parts) {
+    if (part.type === 'decimal') {
+      zeroDecimalCurrency = false;
+    }
+  }
+  return zeroDecimalCurrency ? amount : Math.round(amount * 100);
+}
+
+export function formatAmountForDisplay(amount: number, currency: string): string {
+  let numberFormat = new Intl.NumberFormat(['en-US'], {
+    style: 'currency',
+    currency: currency,
+    currencyDisplay: 'symbol',
+  });
+  return numberFormat.format(amount);
+}
+
+// export function populateOrderDetails(checkoutSession: Stripe.Checkout.Session,) {
+//   const total = checkoutSession.amount_total;
+//   const userID = checkoutSession.metadata?.userID;
+//   const address = checkoutSession.customer_details?.address;
+
+//   const items = checkoutSession.line_items!.data.map(item => {
+//     return {
+//       itemName: item.description,
+//       itemPrice: formatAmountForDisplay(item.price?.unit_amount!, item.price?.currency!),
+//       itemCount: item.quantity,
+//       itemThumbnail: item.price?.metadata.thumbnail,
+//     };
+//   });
+//   return { userID, orderInfo: { total, address, , items } };
+// }
+
+export function formatShortDate(isoTimestamp: string) {
+  const date = new Date(isoTimestamp);
+
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const year = String(date.getUTCFullYear()).slice(2);
+
+  return `${month}/${day}/${year}`;
+}
+
+export function formatISODateToCustom(dateString: string): string {
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const date = new Date(dateString);
+
+  const day = date.getUTCDate();
+  const month = monthNames[date.getUTCMonth()];
+  const year = date.getUTCFullYear();
+
+  const formattedDate = `${month} ${day}/${year}`;
+
+  return formattedDate;
 }

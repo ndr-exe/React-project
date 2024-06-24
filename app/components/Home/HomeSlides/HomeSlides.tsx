@@ -45,25 +45,25 @@ const thumbs = [
 const info = [
   <SlideInfo
     key={10}
-    heading="M4A4 slide 1 bitch"
+    heading="lorem Lorem, ipsum dolor sit amet"
     details="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
   aperiam mollitia maxime."
   />,
   <SlideInfo
     key={11}
-    heading="AWP slide 2 bitch"
+    heading="lorem Lorem, ipsum dolor sit amet"
     details="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
   aperiam mollitia maxime."
   />,
   <SlideInfo
     key={12}
-    heading="AK-47 slide 3 bitch"
+    heading="lorem Lorem, ipsum dolor sit amet"
     details="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
   aperiam mollitia maxime."
   />,
   <SlideInfo
     key={13}
-    heading="Desert_eagle slide 4 bitch"
+    heading="lorem Lorem, ipsum dolor sit amet"
     details="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
   aperiam mollitia maxime."
   />,

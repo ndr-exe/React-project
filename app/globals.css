@@ -114,3 +114,18 @@
 .abortBtn {
   @apply transition-colors bg-[#C34A36] text-white hover:bg-[#FF8066];
 }
+
+.gradientBgFirst {
+  background: #374a19;
+  background: linear-gradient(315deg, #374a19, #1f4df5);
+}
+
+.gradientBgSecond {
+  background: #688b2f;
+  background: linear-gradient(315deg, #688b2f, #183ec6);
+}
+
+.gradientBgFirst:nth-of-type(4n + 1) {
+  background: #688b2f;
+  background: linear-gradient(315deg, #688b2f, #183ec6);
+}

@@ -31,10 +31,10 @@ export default function Item({
           alt={item.title}
           width={300}
           height={200}
-          className={`w-full dark:outline-gray-500 rounded-t-xl transition-transform `}
+          className={`w-full dark:outline-gray-500 rounded-t-xl group-hover:scale-125 transition-transform `}
         />
       </div>
-      <div className="pl-4 py-4 2xl:py-6">
+      <div className="pl-4 py-4 2xl:py-6 hover:text-blue-400">
         <p className="font-bold text-xl">{item.title}</p>
         <p className="text-gray-500 mb-1">{item.category}</p>
         <Rating stars={item.stars} reviews={item.reviews} />

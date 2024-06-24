@@ -39,7 +39,10 @@ export async function GET(request: NextRequest) {
       });
     } else {
       reactions.forEach(reaction => {
-        if (reaction.user_auth_id === userID) blogpostHydrated.userLiked = reaction.liked;
+        if (reaction.user_auth_id === userID) {
+          blogpostHydrated.userLiked = reaction.liked;
+          blogpostHydrated.reactionID = reaction.id;
+        }
         reaction.liked ? (blogpostHydrated.likes += 1) : (blogpostHydrated.dislikes += 1);
       });
     }

@@ -184,6 +184,11 @@ type UserRoles = {
   description: string;
 };
 
+export async function returnUser() {
+  const session = await getSession();
+  return session && session.user && session.user.sub;
+}
+
 export async function checkIfUserIsAdmin() {
   const session = await getSession();
   if (session === null) return false;

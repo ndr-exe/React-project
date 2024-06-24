@@ -12,7 +12,6 @@ export default async function page({ params }: { params: { item: string } }) {
   return (
     <main className="">
       <h1 className="text-center">Edit Item</h1>
-      <Link href={'/'}>Go back</Link>
       <div className="mx-auto">
         <EditItem item={itemWithReview} />
       </div>
