@@ -2,10 +2,7 @@ import { getSession } from '@auth0/nextjs-auth0';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-export const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://localhost999.vercel.app';
+export const BASE_URL = process.env.NEXT_PUBLIC_URL;
 
 export interface User {
   id: number;
