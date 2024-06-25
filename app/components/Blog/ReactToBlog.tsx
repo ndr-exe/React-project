@@ -2,10 +2,17 @@
 import React, { useState } from 'react';
 import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai';
 import { updateReaction } from '../../../action';
+import { isLoggedOut } from '@auth0/nextjs-auth0/dist/auth0-session';
 
 type options = 'like' | 'dislike' | 'none';
 
-export default function ReactToBlog({ blogpost }: { blogpost: BlogpostHydrated }) {
+export default function ReactToBlog({
+  blogpost,
+  isLogged,
+}: {
+  isLogged: boolean;
+  blogpost: BlogpostHydrated;
+}) {
   const [reactions, setReactions] = useState(() => ({
     likes: blogpost.likes,
     dislikes: blogpost.dislikes,
@@ -45,7 +52,13 @@ export default function ReactToBlog({ blogpost }: { blogpost: BlogpostHydrated }
   console.log(isRated);
   return (
     <div className={``}>
-      <div className="flex gap-2 dark:text-gray-100  text-gray-600 ">
+      <div className="flex gap-2 dark:text-gray-100  text-gray-600 relative">
+        {!isLogged && (
+          <a href="/api/auth/login" className="absolute w-full h-ful top-0 left-0 opacity-0 z-50">
+            Log in
+          </a>
+        )}
+
         <p className="flex text-sm items-center ">
           <span
             className={`w-3 h-6 flex items-center  ${
@@ -55,6 +68,7 @@ export default function ReactToBlog({ blogpost }: { blogpost: BlogpostHydrated }
             {reactions.likes}
           </span>
           <button
+            disabled={!isLogged}
             onClick={() => {
               handleReaction('like');
             }}
@@ -75,6 +89,7 @@ export default function ReactToBlog({ blogpost }: { blogpost: BlogpostHydrated }
             {reactions.dislikes}
           </span>
           <button
+            disabled={!isLogged}
             onClick={() => {
               handleReaction('dislike');
             }}

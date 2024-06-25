@@ -22,7 +22,7 @@ export default function HamburgerMenu() {
         )}
       </button>
       <div
-        className={`absolute w-screen h-screen bg-black overflow-y-hidden top-0 left-0 -translate-x-full mt-16 z-10 transition-transform ${
+        className={`absolute w-screen h-screen bg-white dark:bg-black overflow-y-hidden top-0 left-0 -translate-x-full mt-16 z-10 transition-transform ${
           activeMenu && 'translate-x-0 '
         }`}
       >

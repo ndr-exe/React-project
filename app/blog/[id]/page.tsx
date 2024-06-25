@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { getSession } from '@auth0/nextjs-auth0';
 import { formatISODateToCustom } from '../../../helperFunctions';
 import ReactToBlog from '../../components/Blog/ReactToBlog';
+import GoBackButton from '../../components/Shop/Item-Page/GoBackButton';
 export const dynamic = 'force-dynamic';
 
 export default async function page({ params }: { params: { id: string } }) {
@@ -17,6 +18,10 @@ export default async function page({ params }: { params: { id: string } }) {
 
   return (
     <main className="max-w-screen-lg mx-auto px-2 sm:px-8 md:px-9 lg:px-10 xl:px-0">
+      <div className="mb-3">
+        <GoBackButton link="/blog" linkToDisplay="Blog" />
+      </div>
+
       <div className="relative w-full aspect-[3/1]">
         <Image src={blogpost.thumbnail} alt={blogpost.title} fill />
       </div>
@@ -36,7 +41,7 @@ export default async function page({ params }: { params: { id: string } }) {
             <p className="font-semibold tracking-wide">{blogpost.author_username}</p>
           </div>
           <div>
-            <ReactToBlog blogpost={blogpost} />
+            <ReactToBlog blogpost={blogpost} isLogged={isLogged} />
           </div>
         </div>
         <p className="self-end text-sm text-gray-500">

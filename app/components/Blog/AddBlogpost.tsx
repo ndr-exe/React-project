@@ -59,13 +59,14 @@ export default function AddBlogpost() {
       setIsLoading(false);
       setisEditing(false);
       router.refresh();
+      router.push('/blog');
     }
   }
 
   return (
     <div className="flex flex-col items-center pt-5 pb-8">
       <div
-        className={`flex gap-5 items-start self-center px-10 mt-5 mb-8 w-4/5 relative ml-[8%] ${
+        className={`flex gap-5 items-start self-center px-10 mt-5 mb-8 w-4/5 relative ml-0 ${
           !isEditing && 'pointer-events-none'
         }`}
       >
@@ -89,7 +90,7 @@ export default function AddBlogpost() {
         className="w-full px-10 py-5 mx-auto flex flex-col gap-3"
       >
         {/* TITLE */}
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2">
           <label htmlFor="title" className="basis-[8%]">
             Title
           </label>
@@ -102,7 +103,7 @@ export default function AddBlogpost() {
             id="title"
             value={blogpostState.title}
             disabled={!isEditing}
-            className="px-1.5 py-1.5 rounded-md border dark:bg-gray-800 w-2/5"
+            className="px-1.5 py-1.5 rounded-md border dark:bg-gray-800 w-full md:w-3/5"
             onChange={e => {
               if (!isEditing) return;
               setBlogpostState(p => {
@@ -113,14 +114,14 @@ export default function AddBlogpost() {
         </div>
 
         {/* DESCRIPTION */}
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2">
           <label htmlFor="description" className="basis-[8%]">
             Text
           </label>
           <textarea
             required
             minLength={255}
-            maxLength={1200}
+            maxLength={3600}
             name="description"
             id="description"
             value={blogpostState.blogpost.text}
@@ -160,7 +161,7 @@ export default function AddBlogpost() {
           )}
         </button>
         <button
-          className="disabled:opacity-65 active:bg-green-300 px-5 py-1.5 text-white rounded-md dark:bg-white dark:text-black bg-blue-800 min-w-28"
+          className="disabled:opacity-65  px-5 py-1.5 text-white rounded-md dark:bg-white dark:text-black bg-blue-800 min-w-28"
           disabled={!isEditing}
           onClick={() => handleUpdate()}
         >
