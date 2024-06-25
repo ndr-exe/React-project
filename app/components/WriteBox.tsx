@@ -2,12 +2,10 @@
 import { useRef, useState } from 'react';
 import { GoPencil } from 'react-icons/go';
 import RateItem from './Shop/Item-Page/RateItem';
-import { fetchAuth0UserData } from '../../userActions';
 import { submitReview } from '../../action';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 import { CgSpinnerAlt } from 'react-icons/cg';
-import { useUser } from '@auth0/nextjs-auth0/client';
 
 export default function WriteBox({ user, itemID }: { user: string; itemID: number }) {
   const [showFilters, setShowFilters] = useState(false);
@@ -60,9 +58,9 @@ export default function WriteBox({ user, itemID }: { user: string; itemID: numbe
             showFilters
               ? () => {
                   setCLoseFilters(p => !p);
-                  buttonRef.current?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.scrollIntoView(
-                    { behavior: 'smooth' }
-                  );
+                  // buttonRef.current?.parentElement?.parentElement?.scrollIntoView({
+                  //   behavior: 'smooth',
+                  // });
                   // buttonRef.current?.scrollIntoView({ behavior: 'smooth' });
                 }
               : () => {
@@ -94,9 +92,10 @@ export default function WriteBox({ user, itemID }: { user: string; itemID: numbe
       {showFilters && (
         <div className={`overflow-hidden `}>
           <div
-            onAnimationStart={() =>
-              showFilters && formRef.current!.scrollIntoView({ behavior: 'smooth', block: 'start' })
-            }
+            onAnimationStart={e => {
+              e.preventDefault();
+              // formRef.current!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
             onAnimationEnd={() => closeFilters && (setShowFilters(false), setCLoseFilters(false))}
             className={`pt-1 pb-6 px-4 applyFilterAnimation ${
               closeFilters && 'applyFilterAnimationClose'
@@ -119,7 +118,7 @@ export default function WriteBox({ user, itemID }: { user: string; itemID: numbe
                 draggable="false"
                 name="reviewBox"
                 id="reviewBox"
-                placeholder="Share yor thougts about the current item"
+                placeholder="Share your thougts about the current item"
                 className="block px-2 py-2 border border-[#627733] rounded-md w-full dark:bg-black"
                 value={reviewText}
                 required

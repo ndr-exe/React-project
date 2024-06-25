@@ -1,3 +1,4 @@
+import { formatISODateToCustom } from '../../../../helperFunctions';
 import CustomerReviewRating from './CustomerReviewRating';
 import Image from 'next/image';
 
@@ -22,7 +23,7 @@ export default function userReview({ review }: { review: any }) {
           </p>
         </div>
         <p className="font-light text-gray-600 dark:text-gray-500 text-sm lg:text-md">
-          {review.created_at}
+          {formatISODateToCustom(review.created_at)}
         </p>
       </div>
     </>

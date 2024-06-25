@@ -129,3 +129,7 @@
   background: #688b2f;
   background: linear-gradient(315deg, #688b2f, #183ec6);
 }
+
+.calc {
+  width: calc(100% * 3);
+}

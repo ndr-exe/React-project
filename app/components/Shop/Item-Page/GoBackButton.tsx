@@ -1,14 +1,19 @@
 'use client';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { IoChevronBack } from 'react-icons/io5';
 
-export default function GoBackButton() {
-  const router = useRouter();
-
+export default function GoBackButton({
+  link,
+  linkToDisplay,
+}: {
+  link: string;
+  linkToDisplay: string;
+}) {
   return (
-    <button onClick={() => router.back()} className="">
-      <IoChevronBack />
-      Back to Shop
-    </button>
+    <Link href={link} className="w-fit flex items-center hover:text-orange-600 transition-colors ">
+      {' '}
+      <IoChevronBack className="text-xl" />
+      Back To {linkToDisplay}
+    </Link>
   );
 }
