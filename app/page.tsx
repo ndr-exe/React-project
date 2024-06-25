@@ -1,15 +1,16 @@
 import HomeSlides from './components/Home/HomeSlides/HomeSlides';
 import Image from 'next/image';
 import WelcomeSection from './components/Home/WelcomeSection/WelcomeSection';
+import Discover from '../app/components/Discovery/Discover';
 
 export default function page() {
   return (
     <main className="">
       <HomeSlides />
       <WelcomeSection />
-      <div className="w-full h-[500px] bg-green-300"></div>
-      <div className="w-full h-[500px] bg-red-400"></div>
-      <div className="w-full h-[500px] bg-red-300"></div>
+      <div>
+        <Discover />
+      </div>
     </main>
   );
 }

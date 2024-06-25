@@ -10,12 +10,10 @@ export default function ItemImageSLider({ images }: { images: string[] }) {
   const [elem, setElem] = useState('');
   const touchStart = useRef<number | null>(null);
   const touchEnd = useRef<number | null>(null);
-  console.log(idx);
   function handleLeftMove() {
     setIdx(p => {
       if (p == 0) {
-        console.log('hey');
-        return 0;
+        return 2;
       }
       return p - 1;
     });
@@ -23,8 +21,7 @@ export default function ItemImageSLider({ images }: { images: string[] }) {
   function handleRightMove() {
     setIdx(p => {
       if (p == 2) {
-        console.log('hey');
-        return 2;
+        return 0;
       }
       return p + 1;
     });
@@ -48,7 +45,7 @@ export default function ItemImageSLider({ images }: { images: string[] }) {
     const isRightSwipe = distance < -minSwipeDistance;
     if (isRightSwipe) handleLeftMove();
     if (isLeftSwipe) handleRightMove();
-    if (isLeftSwipe || isRightSwipe) console.log('swipe', isLeftSwipe ? 'left' : 'right');
+    // if (isLeftSwipe || isRightSwipe) console.log('swipe', isLeftSwipe ? 'left' : 'right');
   };
 
   let movingBy: string;

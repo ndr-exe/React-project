@@ -34,7 +34,7 @@ export async function POST(request: Request) {
         quantity: item.count,
       })),
       success_url: `${process.env.NEXT_PUBLIC_URL}/payment/stripe/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_URL}/cancel`,
+      cancel_url: `${process.env.NEXT_PUBLIC_URL}/shop`,
       metadata: {
         userID,
       },

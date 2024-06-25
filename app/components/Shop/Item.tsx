@@ -5,6 +5,7 @@ import useOptimisticAddToCartButton from '../../hooks/useOptimisticAddToCartButt
 import Rating from './Rating';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 export default function Item({
   item,
@@ -17,26 +18,30 @@ export default function Item({
   handleIncrement: any;
   isLogged: boolean;
 }) {
-  // useEffect(()=>{
-  //   imgRef.current!.classList
-  // },[imgRef])
-
   return (
     <li
-      className={` rounded-xl  shadow-md w-[300px] sm:w-[350px] lg:w-[280px] 2xl:w-4/5 dark:outline outline-gray-500 overflow-hidden group`}
+      className={` rounded-xl  shadow-md  w-[300px] sm:w-[350px] lg:w-[280px] 2xl:w-4/5 dark:shadow-none dark:outline outline-neutral-500 outline-1  overflow-hidden group`}
     >
-      <div className="overflow-hidden">
-        <Image
-          src="https://placehold.co/300x200/png"
-          alt={item.title}
-          width={300}
-          height={200}
-          className={`w-full dark:outline-gray-500 rounded-t-xl group-hover:scale-125 transition-transform `}
-        />
-      </div>
-      <div className="pl-4 py-4 2xl:py-6 hover:text-blue-400">
-        <p className="font-bold text-xl">{item.title}</p>
-        <p className="text-gray-500 mb-1">{item.category}</p>
+      <Link href={`shop/${item.id}`}>
+        <div className="overflow-hidden w-full aspect-[6/4] relative ">
+          <Image
+            src={item.thumbnail}
+            // src="https://placehold.co/300x200/png"
+            alt={item.title}
+            fill
+            className={`rounded-t-xl group-hover:scale-110  scale object-cover`}
+          />
+        </div>
+      </Link>
+      <div className="pl-4 py-4 2xl:py-6">
+        <Link href={`shop/${item.id}`}>
+          <p className="font-bold text-xl group-hover:text-orange-500 transition-colors">
+            {item.title}
+          </p>
+        </Link>
+        <p className="text-gray-500 mb-1 group-hover:text-orange-500 transition-colors">
+          {item.category}
+        </p>
         <Rating stars={item.stars} reviews={item.reviews} />
         <p className="text-2xl font-bold mt-3 2xl:mt-6">${item.price}</p>
         {isLogged ? (

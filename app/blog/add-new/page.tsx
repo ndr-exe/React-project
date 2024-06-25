@@ -11,9 +11,9 @@ export default async function page() {
   const dict = await getDictionary(lang as string);
   return (
     <main className="max-w-screen-lg mx-auto">
-      <GoBackButton link="/blog" linkToDisplay="Blog" />
+      <GoBackButton link="/blog" linkToDisplay="blog" />
 
-      <h1 className="text-center">Write a Blogpost</h1>
+      <h1 className="text-center">Write Blogpost</h1>
       <div className="mx-auto">
         <AddBlogpost />
       </div>

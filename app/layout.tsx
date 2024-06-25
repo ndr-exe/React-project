@@ -5,6 +5,7 @@ import { UserProvider } from '@auth0/nextjs-auth0/client';
 import Header from './components/Header/Header';
 import AppProvider from './components/Context-Provaiders/AppProvider';
 import { fetchCartItems } from '../api';
+import Footer from './components/Footer';
 
 export const metadata = {
   title: 'FastLag inc.',
@@ -38,6 +39,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <div className="max-w-[1920px] mx-auto">
               <Header />
               <div className="mt-16 xl:mt-20">{children}</div>
+              <Footer />
             </div>
           </body>
         </AppProvider>

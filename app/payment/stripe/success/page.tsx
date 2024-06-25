@@ -1,10 +1,8 @@
 import { Stripe } from 'stripe';
 import { stripe } from '../../../lib/stripe';
-import { formatAmountForDisplay } from '../../../../helperFunctions';
-import { addOrder } from '../../../../action';
+import { addOrder, updateCart } from '../../../../action';
 import { redirect } from 'next/navigation';
 
-// app/success/page.tsx
 const SuccessPage = async ({ searchParams }: { searchParams: { session_id: string } }) => {
   const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.retrieve(
     searchParams.session_id,
@@ -31,6 +29,7 @@ const SuccessPage = async ({ searchParams }: { searchParams: { session_id: strin
   const orderInfo = { userID, orderInfo: { total, address, items } };
 
   checkoutSession.status === 'complete' && (await addOrder(orderInfo));
+  checkoutSession.status === 'complete' && (await updateCart({}));
 
   redirect('/orders');
 

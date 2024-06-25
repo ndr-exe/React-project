@@ -5,7 +5,6 @@ import { fetchOrders } from '../../api';
 
 export default async function page() {
   const orders: Awaited<any[]> = await fetchOrders();
-  // console.log(orders[0].order_info);
 
   return (
     <main className="mx-auto max-w-screen-xl w-full h-full px-5 sm:px-10 md:pt-4  ">

@@ -41,10 +41,7 @@ export default function AddItem() {
   const router = useRouter();
 
   const pathname = usePathname();
-  console.log(pathname);
-  const idx = pathname.lastIndexOf('/');
-  const updatedPath = pathname.slice(0, 16);
-  console.log(updatedPath);
+
   async function handleUpdate() {
     if (!formRef.current?.reportValidity()) return;
     if (Object.values(newImages).length < 3) {

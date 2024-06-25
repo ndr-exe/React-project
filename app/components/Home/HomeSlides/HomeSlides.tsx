@@ -83,22 +83,22 @@ export default function MainSlider() {
     }
   }
 
-  // useEffect(() => {
-  //   resetTimeout();
-  //   timerRef.current = window.setTimeout(
-  //     () =>
-  //       setCurrImageIdx(p => {
-  //         if (p < 3) {
-  //           return p + 1;
-  //         } else {
-  //           return 0;
-  //         }
-  //       }),
-  //     5000
-  //   );
+  useEffect(() => {
+    resetTimeout();
+    timerRef.current = window.setTimeout(
+      () =>
+        setCurrImageIdx(p => {
+          if (p < 3) {
+            return p + 1;
+          } else {
+            return 0;
+          }
+        }),
+      5000
+    );
 
-  //   return () => resetTimeout();
-  // }, [currImageIdx]);
+    return () => resetTimeout();
+  }, [currImageIdx]);
 
   return (
     <section className="min-w-full">

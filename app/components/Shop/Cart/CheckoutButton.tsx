@@ -1,9 +1,9 @@
-// components/CheckoutButton.tsx
 'use client';
 import { loadStripe } from '@stripe/stripe-js';
 import { useState } from 'react';
 import { mergeItemInfoOnCheckout } from '../../../../helperFunctions';
 import { returnUser } from '../../../../userActions';
+import { CgSpinnerAlt } from 'react-icons/cg';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -36,7 +36,6 @@ const CheckoutButton: React.FC<{ items: CartItem[]; itemsRaw: ItemsRaw }> = ({
       });
 
       const session = await response.json();
-      console.log(session);
 
       if (session.error) {
         console.error('Error creating checkout session:', session.error);
@@ -64,9 +63,13 @@ const CheckoutButton: React.FC<{ items: CartItem[]; itemsRaw: ItemsRaw }> = ({
     <button
       onClick={handleClick}
       disabled={loading}
-      className="bg-black text-white text-lg px-6 py-2 rounded-lg border md:w-fit xl:text-xl 2xl:text-2xl xl:px-7 xl:py-3 lg:self-center"
+      className="bg-black text-white text-lg px-6 py-2 rounded-lg border md:w-fit xl:text-xl 2xl:text-2xl xl:px-7 xl:py-3 lg:self-center  xl:min-w-[300px] flex items-center justify-center"
     >
-      {loading ? 'Loading...' : 'Proceed to Chechkout'}
+      {loading ? (
+        <CgSpinnerAlt className="text-3xl animate-spin text-white " />
+      ) : (
+        'Proceed to Chechkout'
+      )}
     </button>
   );
 };

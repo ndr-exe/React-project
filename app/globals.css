@@ -71,10 +71,6 @@
   background: linear-gradient(315deg, #050e2f, #c7572c);
 }
 .gradientos-light {
-  /*
-* Created with https://www.css-gradient.com
-* Gradient link: https://www.css-gradient.com/?c1=eaeee7&c2=041e06&gt=l&gd=dbr
-*/
   background: #eaeee7;
   background: linear-gradient(315deg, #eaeee7, #041e06);
 }
@@ -132,4 +128,12 @@
 
 .calc {
   width: calc(100% * 3);
+}
+
+.scale {
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-delay: 0s;
+  will-change: transform;
+  backface-visibility: hidden;
 }

@@ -10,13 +10,13 @@ import { fetchAuth0UserWithMetadataAndRoles } from '../../userActions';
 const page: NextPage = withPageAuthRequired(
   async () => {
     const lang = cookies().get('locale')?.value;
-    const { profile: localDict } = await getDictionary(lang as string);
+    const dict = await getDictionary(lang as string);
     const session = await getSession();
     const userFullInfo: User = await fetchAuth0UserWithMetadataAndRoles(session!.user.sub);
 
     return (
-      <main className="lg:min-h-[calc(100vh-80px)] lg:flex lg:items-center ">
-        <ProfileInfo localDict={localDict} userFullInfo={userFullInfo} />
+      <main className="lg:min-h-[calc(100vh-80px)] ">
+        <ProfileInfo dict={dict} userFullInfo={userFullInfo} />
       </main>
     );
   },

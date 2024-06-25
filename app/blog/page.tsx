@@ -2,7 +2,7 @@ import React from 'react';
 import { fetchBlogposts } from '../../api';
 import Link from 'next/link';
 import Image from 'next/image';
-import { formatISODateToCustom, formatShortDate } from '../../helperFunctions';
+import { formatISODateToCustom } from '../../helperFunctions';
 import { AiOutlineLike } from 'react-icons/ai';
 import { AiOutlineDislike } from 'react-icons/ai';
 import { returnUser } from '../../userActions';
@@ -11,20 +11,22 @@ import DeleteBlogpostButton from '../components/Blog/DeleteBlogpostButton';
 import { BiEdit } from 'react-icons/bi';
 
 import { getSession } from '@auth0/nextjs-auth0';
+import { cookies } from 'next/headers';
+import { getDictionary } from '../../dictionaries';
 
 export const dynamic = 'force-dynamic';
 
 export default async function page() {
   const { blogposts } = await fetchBlogposts();
+  const lang = cookies().get('locale')?.value;
+  const dict = await getDictionary(lang as string);
   const user = await returnUser();
   const session = await getSession();
   const isLogged = !Object.is(session, null);
 
-  // console.log(blogposts);
-
   return (
     <main className="max-w-screen-lg mx-auto pb-5 ">
-      <h1>Latest Posts</h1>
+      <h1 className="text-3xl">Latest Posts</h1>
       {isLogged ? (
         <Link
           href="blog/add-new"

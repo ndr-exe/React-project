@@ -13,7 +13,7 @@ export default function GoBackButton({
     <Link href={link} className="w-fit flex items-center hover:text-orange-600 transition-colors ">
       {' '}
       <IoChevronBack className="text-xl" />
-      Back To {linkToDisplay}
+      Go Back {linkToDisplay}
     </Link>
   );
 }

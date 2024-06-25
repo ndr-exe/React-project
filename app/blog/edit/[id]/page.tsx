@@ -1,7 +1,5 @@
 import { cookies } from 'next/headers';
 
-import Link from 'next/link';
-
 import { getDictionary } from '../../../../dictionaries';
 import EditBlogpost from '../../../components/Blog/EditBlogpost';
 import { fetchBlog } from '../../../../api';
@@ -18,7 +16,7 @@ export default async function page({ params }: { params: { id: string } }) {
     <main className="max-w-screen-lg mx-auto">
       <GoBackButton link="/blog" linkToDisplay="Blog" />
 
-      <h1 className="text-center">Edit a Blogpost</h1>
+      <h1 className="text-center">Edit Blogpost</h1>
       <div className="mx-auto">
         <EditBlogpost blogPostHydrated={blogPostHydrated} />
       </div>

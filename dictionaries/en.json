@@ -18,40 +18,37 @@
     "eng": "ENG",
     "geo": "GEO"
   },
-  "filters": {
-    "smartphones": "Smartphones",
-    "laptops": "Laptops",
-    "fragrance": "Fragrance",
-    "skincare": "Skincare",
-    "groceries": "Groceries",
-    "sort": "Sort by",
-    "prizeAsc": "Prize Ascending",
-    "prizeDesc": "Prize Descending",
-    "asc": "Price Asc.",
-    "desc": "Price Desc.",
-    "searchPlaceholder": "Search All Products"
-  },
+
   "product": {
     "addToCart": "Add to cart ",
     "termsHeader": "Terms and Conditions",
     "terms": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in incidunt modi quas nostrum. Repellat assumenda expedita officiis, omnis sunt ratione possimus, exercitationem, optio veniam tempora eos maiores repudiandae magnam."
   },
 
-  "footer": {
-    "about": "About",
-    "partners": "Partners",
-    "achievements": "Achievements",
-    "conditions": "Conditions",
-    "privacy": "Privacy",
-    "analytics": "Analytics",
-    "marketing": "Marketing",
-    "trade": "2024 Solaris Group. All rights reserved"
-  },
-
   "blog": {
-    "readMore": "Read More..."
+    "writeNew": "Write a Blogpost",
+    "thumbIsReq": "Thumbnail image is required",
+    "title": "Title",
+    "text": "Text",
+    "undo": "Undo",
+    "edit": "Edit",
+    "upload": "Upload",
+    "imgError": "IMG must be less than 3.5 MB",
+    "postedOn": "Posted on",
+    "editFull": "Edit a Blogpost"
   },
 
+  "goBackLinks": {
+    "backTo": "Back To",
+    "blog": "Blog"
+  },
+
+  "cart": {
+    "yourCart": "Your Cart",
+    "reviewAndManage": "Review and manage the items in your cart.",
+    "clear": "Clear Cart",
+    "total": "Total"
+  },
   "contact": {
     "nameHolder": "NAME",
     "mailHolder": "EMAIL",
@@ -74,11 +71,5 @@
     "newPassHolder": "New password...",
     "confirmPass": "Confirm password",
     "confirmPassHolder": "Confirm password..."
-  },
-
-  "login": {
-    "usernameHolder": "Username",
-    "passwordHolder": "Password",
-    "login": "Login"
   }
 }

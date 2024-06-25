@@ -21,7 +21,6 @@ export default function ReactToBlog({
     if (typeof blogpost.userLiked === 'boolean') return blogpost.userLiked ? 'like' : 'dislike';
     return 'none';
   });
-  console.log(reactions);
 
   async function handleReaction(reaction: 'like' | 'dislike') {
     const key = reaction === 'like' ? 'likes' : 'dislikes';
@@ -49,7 +48,7 @@ export default function ReactToBlog({
       });
     }
   }
-  console.log(isRated);
+
   return (
     <div className={``}>
       <div className="flex gap-2 dark:text-gray-100  text-gray-600 relative">

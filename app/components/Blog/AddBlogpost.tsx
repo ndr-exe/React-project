@@ -27,7 +27,7 @@ const blogSkeleton = {
 
 const defaultPlaceholderImgUrl = 'https://placehold.co/450x150/png';
 
-export default function AddBlogpost() {
+export default function AddBlogpost({}: {}) {
   const [blogpostState, setBlogpostState] = useState(() => blogSkeleton);
   const [isEditing, setisEditing] = useState(true);
   const [isLoading, setIsLoading] = useState(false);

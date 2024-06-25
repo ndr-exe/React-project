@@ -20,13 +20,12 @@ export default function CartItem({
   if (!count) return null;
   return (
     <li className="pr-3 pl-2 py-2 rounded-lg border flex items-center gap-2 sm:gap-6 xl:pl-4 xl:py-4 xl:pr-4">
-      <div className="w-[90px] sm:w-[120px] md:w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[175px] ">
+      <div className="w-[90px] sm:w-[120px] md:w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[175px] aspect-[4/3] relative ">
         <Image
-          src="https://placehold.co/300x200/png"
+          src={item.thumbnail}
           alt="title"
-          width={300}
-          height={200}
-          className="w-full group-hover:-translate-y-10 dark:group-hover:outline dark:outline-gray-500 rounded-lg transition-transform "
+          fill
+          className="w-full object-cover group-hover:-translate-y-10 dark:group-hover:outline dark:outline-gray-500 rounded-lg transition-transform "
         />
       </div>
       <div className="w-1/3 lg:w-1/5">

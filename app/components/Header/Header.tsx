@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import logo from '../../../public/img/360fx360f.png';
+import logo from '../../../public/img/Designer (1).png';
 import HamburgerMenu from './HamburgerMenu';
 import Options from './Options/Options';
 import OptionDropdownWrapper from './Options/OptionsDropdownWrapper';
@@ -25,17 +25,17 @@ export default async function Header() {
       <div className="hidden md:block md:mr-auto">
         <ul className="flex gap-4 xl:gap-5">
           <li className="">
-            <ActiveLink link="/" displayLink="Home" />
+            <ActiveLink link="/" displayLink={navbar.home} />
           </li>
           <li className="">
-            <ActiveLink link="/shop" displayLink="Shop" />
+            <ActiveLink link="/shop" displayLink={navbar.shop} />
           </li>
           <li className="">
-            <ActiveLink link="/blog" displayLink="Blog" />
+            <ActiveLink link="/blog" displayLink={navbar.Blog} />
           </li>
-          <li className="">
+          {/* <li className="">
             <ActiveLink link="/contact" displayLink="Conact Us" />
-          </li>
+          </li> */}
         </ul>
       </div>
 

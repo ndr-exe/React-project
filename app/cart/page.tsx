@@ -8,14 +8,12 @@ import { NextPage } from 'next/types';
 const page: NextPage = withPageAuthRequired(
   async () => {
     const lang = cookies().get('locale')?.value;
-    const { profile: localDict } = await getDictionary(lang as string);
+    const dict = await getDictionary(lang as string);
     const { items, itemsRaw } = await fetchCartItemsWithInfo();
-    const key = process.env.NEXT_PUBLIC_TEST_KEY;
-    const secretKey = process.env.TEST_KEY;
 
     return (
       <div>
-        <CartList items={items} itemsRaw={itemsRaw} />;
+        <CartList items={items} itemsRaw={itemsRaw} dict={dict} />;
       </div>
     );
   },

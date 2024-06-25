@@ -2,10 +2,17 @@
 
 import CartItem from './CartItem';
 import useCartItemManagment from '../../../hooks/useCartItemManagment';
-import { returnFilteredItems } from '../../../../helperFunctions';
 import CheckoutButton from './CheckoutButton';
 
-export default function CartList({ items, itemsRaw }: { items: CartItem[]; itemsRaw: ItemsRaw }) {
+export default function CartList({
+  items,
+  itemsRaw,
+  dict,
+}: {
+  items: CartItem[];
+  itemsRaw: ItemsRaw;
+  dict: DictType;
+}) {
   const {
     handleIncrement,
     handleDecrement,
@@ -16,7 +23,6 @@ export default function CartList({ items, itemsRaw }: { items: CartItem[]; items
     error,
     isPending,
   } = useCartItemManagment(itemsRaw, items);
-  console.log(optimisticItems);
 
   return (
     <main className="py-5 px-4 lg:px-9 xl:px-12 2xl:px-20">

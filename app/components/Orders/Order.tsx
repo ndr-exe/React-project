@@ -10,7 +10,6 @@ import Image from 'next/image';
 export default function Order({ order }: { order: any }) {
   const [showOrder, setShowOrder] = useState(false);
   const [closeFilters, setCLoseFilters] = useState(false);
-  console.log(order.order_info.items);
 
   return (
     <div className="w-full border rounded-lg px-3 md:pt-2 md:px-5 text-md gradientBgFirst first-child text-xs sm:text-sm md:text-base lg:text-lg xl:text-base max-w-4xl">

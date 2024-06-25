@@ -14,7 +14,6 @@ export default async function page({ params }: { params: { id: string } }) {
   const session = await getSession();
   const isLogged = !Object.is(session, null);
   const blogpost = (await fetchBlog(Number(params.id))) as BlogpostHydrated;
-  console.log(blogpost);
 
   return (
     <main className="max-w-screen-lg mx-auto px-2 sm:px-8 md:px-9 lg:px-10 xl:px-0">

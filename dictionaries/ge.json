@@ -45,27 +45,36 @@
     "terms": "რომელმან შექმნა სამყარო ძალითა მით ძლიერითა,ზეგარდმო არსნი სულითა ყვნა ზეცით მონაბერითა,ჩვენ, კაცთა, მოგვცა ქვეყანა, გვაქვს უთვალავი ფერითა,მისგან არს ყოვლი ხელმწიფე სახითა მის მიერითა."
   },
 
-  "footer": {
-    "about": "ჩვენს შესახებ",
-    "partners": "პარტნიორები",
-    "achievements": "მიღწევები",
-    "conditions": "პირობები",
-    "privacy": "უსაფრთხოება",
-    "analytics": "ანალიტიკა",
-    "marketing": "მარკეტინგი",
-    "trade": "2024 სოლარის ჯგუფი. ყველა უფლება დაცულია"
-  },
-
   "blog": {
-    "readMore": "განაგრძე კითხვა..."
+    "writeNew": "დაწერე პოსტი",
+    "thumbIsReq": "სურათის ატვირთვა სავალდებულოა",
+    "title": "სათაური",
+    "text": "ტექსტი",
+    "undo": "დაბ.",
+    "edit": "რედ.",
+    "upload": "ატვირთვა",
+    "imgError": "სურათის ზომა აღემატება 3.5 MB-ს",
+    "postedOn": "განთავსება",
+    "editFull": "ბლოგპოსტის რედ."
   },
 
+  "goBackLinks": {
+    "backTo": "უკან,",
+    "blog": "ბლოგზე"
+  },
+
+  "cart": {
+    "yourCart": "შენი კალათა",
+    "reviewAndManage": "გადახედე და შეცვალე ნივთები კალათაში",
+    "clear": "გასუფთავება",
+    "total": "ჯამი"
+  },
   "contact": {
-    "nameHolder": "სახელი",
-    "mailHolder": "ელექტრონული ფოსტა",
-    "msgHolder": "შეტყობინება",
-    "addres": "221ბ ბეიკერ სტრიტი",
-    "dontBeShy": "ნუ დაიმორცხვებით,მოგვწერეთ!"
+    "nameHolder": "NAME",
+    "mailHolder": "EMAIL",
+    "msgHolder": "MESSAGE",
+    "addres": "221B Baker Street",
+    "dontBeShy": "Don't Be Shy Hit Us Up!"
   },
 
   "profile": {
@@ -82,11 +91,5 @@
     "newPassHolder": "ახალი პასვორდი",
     "confirmPass": "დაადასტურეთ პასვორდი",
     "confirmPassHolder": "დაადასტურეთ პასვორდი..."
-  },
-
-  "login": {
-    "usernameHolder": "მომხ. სახელი",
-    "passwordHolder": "პასვორდი",
-    "login": "შესვლა"
   }
 }

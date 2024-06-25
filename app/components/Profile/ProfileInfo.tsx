@@ -5,7 +5,6 @@ import { useRef, useState } from 'react';
 import { BsCamera } from 'react-icons/bs';
 import { CiEdit } from 'react-icons/ci';
 import { MdOutlineSettingsBackupRestore } from 'react-icons/md';
-import { ImSpinner9 } from 'react-icons/im';
 import { AiOutlineLoading } from 'react-icons/ai';
 
 import { manageFormData } from '../../../helperFunctions';
@@ -14,10 +13,10 @@ import { PutBlobResult } from '@vercel/blob';
 import { useRouter } from 'next/navigation';
 
 export default function ProfileInfo({
-  localDict,
+  dict,
   userFullInfo,
 }: {
-  localDict: LocalDict;
+  dict: DictType;
   userFullInfo: User;
 }) {
   const [activeForm, setIsActiveForm] = useState(false);
@@ -72,7 +71,7 @@ export default function ProfileInfo({
   }
 
   return (
-    <section className="px-7 py-4 sm:px-12 sm:py-6 md:py-8 md:px-36 lg:px-12 lg:w-5/12">
+    <section className="px-7 py-4 sm:px-12 sm:py-6 md:py-8 md:px-36 lg:px-12 max-w-2xl mx-auto ">
       <div>
         <div className="flex items-center gap-5 xl:gap-7">
           <div className="w-24 h-24 sm:w-28 sm:h-28  xl:w-32 xl:h-32 rounded-full relative shrink-0 ">
@@ -129,22 +128,22 @@ export default function ProfileInfo({
           >
             {activeForm ? (
               <>
-                <span>{localDict.revert}</span> <MdOutlineSettingsBackupRestore />
+                <span>{dict.profile.revert}</span> <MdOutlineSettingsBackupRestore />
               </>
             ) : (
               <>
-                <span>{localDict.edit}</span> <CiEdit className="" />
+                <span>{dict.profile.edit}</span> <CiEdit className="" />
               </>
             )}
           </button>
 
           {/* FIRST NAME */}
-          <div className="mb-3 xl:mb-4 2xl:mb-5 sm:float-left lg:float-none sm:w-2/5 lg:w-full xl:text-lg 2xl:text-xl">
+          <div className="mb-3 xl:mb-4 2xl:mb-5 sm:float-left sm:w-2/5  xl:text-lg 2xl:text-xl">
             <label
               htmlFor="firstName"
               className="mb-1 xl:mb-2 2xl:mb-3 block font-light dark:text-gray-300"
             >
-              {localDict.firstName}
+              {dict.profile.firstName}
             </label>
             <input
               onChange={e => {
@@ -170,12 +169,12 @@ export default function ProfileInfo({
           </div>
 
           {/* FAMILY NAME */}
-          <div className="mb-3 xl:mb-4 2xl:mb-5 sm:float-right lg:float-none sm:w-7/12 lg:w-full xl:text-lg 2xl:text-xl">
+          <div className="mb-3 xl:mb-4 2xl:mb-5 sm:float-right  sm:w-7/12  xl:text-lg 2xl:text-xl">
             <label
               htmlFor="lastName"
               className="mb-1 xl:mb-2 2xl:mb-3 block font-light dark:text-gray-300"
             >
-              {localDict.lastName}
+              {dict.profile.lastName}
             </label>
             <input
               onChange={e => {
@@ -201,12 +200,12 @@ export default function ProfileInfo({
           </div>
 
           {/* USERNAME */}
-          <div className="mb-3 xl:mb-4 2xl:mb-5 sm:clear-left lg:clear-none xl:text-lg 2xl:text-xl">
+          <div className="mb-3 xl:mb-4 2xl:mb-5 sm:clear-left  xl:text-lg 2xl:text-xl">
             <label
               htmlFor="username"
               className="mb-1 xl:mb-2 2xl:mb-3 block font-light dark:text-gray-300"
             >
-              {localDict.username}
+              {dict.profile.username}
             </label>
             <input
               onChange={e => {
@@ -238,7 +237,7 @@ export default function ProfileInfo({
               htmlFor="email"
               className="mb-1 xl:mb-2 2xl:mb-3 block font-light dark:text-gray-300 "
             >
-              {localDict.email}
+              {dict.profile.email}
             </label>
             <input
               onChange={e => {
@@ -281,7 +280,7 @@ export default function ProfileInfo({
               'hover:bg-white hover:text-black hover:shadow-lg dark:hover:bg-black dark:hover:text-white dark:hover:outline'
             }  ${loading && ' flex justify-center items-center'}`}
           >
-            {loading ? <AiOutlineLoading className="animate-spin" /> : localDict.save}
+            {loading ? <AiOutlineLoading className="animate-spin" /> : dict.profile.save}
           </button>
         </form>
       </div>

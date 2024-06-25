@@ -77,18 +77,20 @@ export default function NavBarProfileDropdown({
             Orders
           </Link>
         </li>
-        {userInfo.userRoles.findIndex(role => role.name === 'Admin') !== -1 && (
-          <li>
-            <Link
-              onClick={() => handleClose()}
-              href="/dashboard/items"
-              className="flex items-center gap-1 hover:text-[#378058] transition-colors"
-            >
-              <MdOutlineDashboardCustomize />
-              Admin Panel
-            </Link>
-          </li>
-        )}
+        {userInfo &&
+          userInfo !== null &&
+          userInfo.userRoles.findIndex(role => role.name === 'Admin') !== -1 && (
+            <li>
+              <Link
+                onClick={() => handleClose()}
+                href="/dashboard/items"
+                className="flex items-center gap-1 hover:text-[#378058] transition-colors"
+              >
+                <MdOutlineDashboardCustomize />
+                Admin Panel
+              </Link>
+            </li>
+          )}
         <li className="flex justify-center mt-2">
           <a
             href="/api/auth/logout"
